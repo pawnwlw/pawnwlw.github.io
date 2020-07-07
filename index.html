@@ -177,6 +177,15 @@
 <blockquote>
 <p>第一次提交到本分支，<code>origin</code>是远程仓库默认名称，<code>master</code>是分支名称<br>第2-n次提交到相同分支时，可简化为<code>git push</code>;同时，若仓库和本地不一致，应先执行<code>git pull</code></p>
 </blockquote>
+<div class="title4">Git分支</div>
+</li>
+<li><p>新建分支</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 分支名</span><br></pre></td></tr></table></figure></li>
+<li><p>切换到新的分支</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>合并使用<code>git checkout -b 分支名</code></p>
+</blockquote>
 </li>
 </ul>
 <hr>
@@ -211,7 +220,7 @@
 </li>
 <li><p>创建新博客</p>
 <pre><code>hexo new 博客名</code></pre><blockquote>
-<p>提交就是<code>hexo的提交章节</code></p>
+<p>提交就是<code>hexo的提交</code>章节</p>
 </blockquote>
 </li>
 </ul>
@@ -221,7 +230,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" data-id="ckcbr16n90001ykmafdqgd3ib" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" data-id="ckcbszmp80001j8mae6padzdr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -308,7 +317,7 @@
 <div class="title3">2.2 配置</div>
 
 <p>首先需要在pom.xml中添加相关的依赖。</p>
-<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">      <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.5.5<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>需要一个实体类，其每一个属性都是数据库中的一个字段，用来做读取输入操作。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bobo.second.domain;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.Serializable;</span><br><span class="line"><span class="keyword">import</span> java.util.Date;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> <span class="keyword">implements</span> <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Integer id;</span><br><span class="line">    <span class="keyword">private</span> Date gmt_create;</span><br><span class="line">    <span class="keyword">private</span> Date gmt_modified;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> String gender;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//省略了getter、setter和toString()方法。</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <blockquote>
@@ -408,7 +417,7 @@
 <ul>
 <li>打包<br>Ideaj 右上角有一个MAVEN字样，点开来，点击M按钮（+号右边第二个）,选择执行<code>mvn clean package</code>即可进行打包。生成的jar包在target文件夹内。</li>
 <li>运行<br>进入到打出来的包所在的文件夹内。使用<code>java -jar [包名]</code>命令运行。<blockquote>
-<p>若运行失败，检查环境配置是否和程序所使用的的环境一致。（比如一个JAVA8 一个JAVA11）</p>
+<p>若运行失败，检查环境配置是否和程序所使用的的环境一致。（比如一个Java 8 一个Java 11）</p>
 </blockquote>
 </li>
 </ul>
@@ -416,7 +425,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/%E7%AE%80%E6%98%93%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-BOBO/" data-id="ckcbr16nn0002ykmafmaw0sn7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/%E7%AE%80%E6%98%93%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-BOBO/" data-id="ckcbszmpe0002j8ma7ztw0fhg" class="article-share-link">Share</a>
       
       
     </footer>
@@ -465,7 +474,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/hello-world/" data-id="ckcbr16n50000ykmahmdv76gc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/hello-world/" data-id="ckcbszmox0000j8macmf612rm" class="article-share-link">Share</a>
       
       
     </footer>
