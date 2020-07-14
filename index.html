@@ -64,6 +64,77 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Session的简单使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Session%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-07-14T10:24:05.000Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Session%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">Session的简单使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+</style>
+
+<div class="title3">关于获取Session</div>
+
+<p>读和写Session分别借助了HttpServletRequest类和HttpServletResponse类。在控制类中添加其为参数，Spring会自动导入。<br>其中获得session为<code>request.getSession()</code>。</p>
+<div class="title3">关于修改Session内容</div>
+
+<p>获得Session的内容用<code>getAttribute</code>,显然修改内容用的是<code>setAttribute</code>。这里放入Seesion的为对象，则其要求可序列化，即继承了<code>Serializable</code>接口。</p>
+<div class="title4">简易登录界面</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// com.pawncs.fourth.control.IndexController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"index"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">index</span><span class="params">(ModelAndView modelAndView,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        HttpSession session = request.getSession();</span><br><span class="line">        UserLoginInfo userLoginInfo = (UserLoginInfo) session.getAttribute(<span class="string">"userLoginInfo"</span>);</span><br><span class="line">        <span class="keyword">if</span>(userLoginInfo == <span class="keyword">null</span>)&#123;</span><br><span class="line">            modelAndView.setViewName(<span class="string">"login"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            modelAndView.setViewName(<span class="string">"index"</span>);</span><br><span class="line">            modelAndView.addObject(userLoginInfo);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里login和index都用了freemaker模板，其为模板名。</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"login"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map <span class="title">login</span><span class="params">(@RequestParam(<span class="string">"username"</span>)</span>String username,</span></span><br><span class="line"><span class="function">                     @<span class="title">RequestParam</span><span class="params">(<span class="string">"password"</span>)</span>String password,</span></span><br><span class="line"><span class="function">                     HttpServletRequest request,</span></span><br><span class="line"><span class="function">                     HttpServletResponse response)</span>&#123;</span><br><span class="line">        Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        HttpSession session = request.getSession();</span><br><span class="line">        UserLoginInfo userLoginInfo = <span class="keyword">new</span> UserLoginInfo();</span><br><span class="line">        userLoginInfo.setUserId(session.getId());</span><br><span class="line">        userLoginInfo.setUserName(username);</span><br><span class="line"></span><br><span class="line">        session.setAttribute(<span class="string">"userLoginInfo"</span>,userLoginInfo);</span><br><span class="line">        map.put(<span class="string">"code"</span>,<span class="string">"200"</span>);</span><br><span class="line">        map.put(<span class="string">"message"</span>,<span class="string">"登录成功"</span>);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于freemaker的配置还是要说一下，自己总是忘。在导包导完后，还要在application.yml里写入freemaker的配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># application.yml</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">freemarker:</span></span><br><span class="line">    <span class="attr">suffix:</span> <span class="string">.ftl</span>                    <span class="comment"># 设置模板后缀名</span></span><br><span class="line">    <span class="attr">content-type:</span> <span class="string">text/html</span>                      <span class="comment"># 设置文档类型</span></span><br><span class="line">    <span class="attr">charset:</span> <span class="string">UTF-8</span>                               <span class="comment"># 设置页面编码格式</span></span><br><span class="line">    <span class="attr">cache:</span> <span class="literal">false</span>                                 <span class="comment"># 设置页面缓存</span></span><br><span class="line">    <span class="attr">template-loader-path:</span> <span class="string">classpath:/templates</span>   <span class="comment"># 设置ftl文件路径</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Session%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-id="ckclsho04000040ma8qse4d89" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-关于安卓的打包" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/12/%E5%85%B3%E4%BA%8E%E5%AE%89%E5%8D%93%E7%9A%84%E6%89%93%E5%8C%85/" class="article-date">
@@ -124,7 +195,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/12/%E5%85%B3%E4%BA%8E%E5%AE%89%E5%8D%93%E7%9A%84%E6%89%93%E5%8C%85/" data-id="ckcj1x4rm0000rwma99wfdprq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/12/%E5%85%B3%E4%BA%8E%E5%AE%89%E5%8D%93%E7%9A%84%E6%89%93%E5%8C%85/" data-id="ckclsho10000840mae95wfuf5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -186,7 +257,7 @@
 <div class="title2">零、目录</div>
 
 <hr>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">┌----- 一、Android了解</span><br><span class="line">|       ├-----1.1 Android 概述</span><br><span class="line">|       ├-----1.2 Android 开发工具</span><br><span class="line">|       └-----1.3 第一个Android应用</span><br><span class="line">|</span><br><span class="line">├----- 二、UI组件</span><br><span class="line">|       ├-----2.1 布局管理器</span><br><span class="line">|       ├-----2.2 TextView</span><br><span class="line">|       ├-----2.3 Button</span><br><span class="line">|       ├-----2.4 EditText</span><br><span class="line">|       ├-----2.5 RadioButton</span><br><span class="line">|       ├-----2.6 复选框CheckBox</span><br><span class="line">|       ├-----2.7 ImageView</span><br><span class="line">|       └-----2.4 EditText</span><br><span class="line">|</span><br><span class="line">├----- 三、使用freemaker实现动态页面生成</span><br><span class="line">|       ├-----3.1 freeMaker在线手册</span><br><span class="line">|       ├-----3.2 配置</span><br><span class="line">|       └-----3.3 使用freeMaker</span><br><span class="line">|</span><br><span class="line">└----- 四、附录</span><br><span class="line">        ├-----4.1 css文件</span><br><span class="line">        └-----4.2 打包并运行</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">┌----- 一、Android了解</span><br><span class="line">|       ├-----1.1 Android 概述</span><br><span class="line">|       ├-----1.2 Android 开发工具</span><br><span class="line">|       └-----1.3 第一个Android应用</span><br><span class="line">|</span><br><span class="line">├----- 二、UI组件</span><br><span class="line">|       ├-----2.1 布局管理器</span><br><span class="line">|       ├-----2.2 TextView</span><br><span class="line">|       ├-----2.3 Button</span><br><span class="line">|       ├-----2.4 EditText</span><br><span class="line">|       ├-----2.5 RadioButton</span><br><span class="line">|       ├-----2.6 复选框CheckBox</span><br><span class="line">|       ├-----2.7 ImageView</span><br><span class="line">|       ├-----2.8 列表视图ListView</span><br><span class="line">|       ├-----2.9 网格视图GridView</span><br><span class="line">|       ├-----2.10 滚动视图ScrollView &amp; HorizontalScrollView</span><br><span class="line">|       ├-----2.11 RecycleView</span><br><span class="line">|       └-----2.12 WebView</span><br><span class="line">|</span><br><span class="line">├----- 三、使用freemaker实现动态页面生成</span><br><span class="line">|       ├-----3.1 freeMaker在线手册</span><br><span class="line">|       ├-----3.2 配置</span><br><span class="line">|       └-----3.3 使用freeMaker</span><br><span class="line">|</span><br><span class="line">└----- 四、附录</span><br><span class="line">        ├-----4.1 css文件</span><br><span class="line">        └-----4.2 打包并运行</span><br></pre></td></tr></table></figure>
 <p><a href="https://www.bilibili.com/video/BV1Rt411e76H?from=search&seid=3602781529840559805" target="_blank" rel="noopener">视频地址</a></p>
 <hr>
 <div class="title2">一、Android了解</div>
@@ -361,195 +432,62 @@
 <p>其他的<code>scaleType</code>：<br><code>fitXY</code>撑满控件;<code>fitCenter</code>保持宽高比缩放，直至完全显示;<code>centerCrop</code>保持宽高比缩放，直至完全覆盖控件，裁剪显示</p>
 </blockquote>
 </li>
-<li><p>加载网络图片<br>通过第三方开源库glide</p>
+<li><p>加载网络图片<br>通过第三方开源库 <a href="https://github.com/bumptech/glide" target="_blank" rel="noopener">glide</a><br>简单用法实例<code>Glide.with(this).load(&quot;http://goo.gl/gEgYUd&quot;).into(imageView);</code></p>
 <blockquote>
-<p>通过gradle管理依赖</p>
+<p>通过gradle管理依赖  </p>
 </blockquote>
 </li>
 </ul>
+<blockquote>
+<p>这里需要用到网络权限。所有申请的权限都要在mainfest里面申请。</p>
+</blockquote>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="title3">2.8 列表视图ListView</div>
+
+<blockquote>
+<p>在实际开发中被RecycleView代替，这里仅做了解</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//TOSTUDY</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们先略过叭</p>
+</blockquote>
+<div class="title3">2.9 网格视图GridView</div>
+
+<blockquote>
+<p>在实际开发中被RecycleView代替，这里仅做了解</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//TOSTUDY</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>我们先略过叭</p>
+</blockquote>
+<div class="title3">2.10 滚动视图ScrollView & HorizontalScrollView</div>
+
+<blockquote>
+<p>将ScrollView套在最外面，使其可以上下滚动</p>
+</blockquote>
+<ul>
+<li>垂直滚动 ScrollView</li>
+<li>水平滚动 HorizontalScrollView<blockquote>
+<p>注意，ScrollView和HorizontalScrollView的子元素只能有一个</p>
+</blockquote>
+<div class="title3">2.11 RecyclerView</div>
+
+</li>
+</ul>
+<blockquote>
+<p>能够<strong>灵活</strong>实现大数据集的展示，视图复用管理比ListView更好，能够显示列表、网格、瀑布流等形式，且不同的ViewHolder能够实现item多元化的功能</p>
+</blockquote>
+<p><a href="https://kymjs.com/code/2016/07/10/01/" target="_blank" rel="noopener">RecyclerView文档</a></p>
+<div class="title3">2.12 WebView</div>
+
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/11/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckcj1x4ru0004rwma9zihbp7q" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictory/" rel="tag">dictory</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-有关命令行的那些事儿" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" class="article-date">
-  <time datetime="2020-07-07T09:28:59.000Z" itemprop="datePublished">2020-07-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">命令行相关</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <style>
-.title1{
-    font-size:36px;
-    color:#e7767f;
-    /* 桃红 */
-
-}
-.title2{
-    font-size:29px;
-    color:#176f58;
-    /* 祖母绿 */
-}
-.title3{
-    font-size:22px;
-    color:#21a675;
-    /* 石绿 */
-}
-.title4{
-    font-size:15px;
-    color:#a8cd34;
-    /* 柳绿 */
-}
-</style>
-
-<div class="title1">有关命令行的那些事</div>
-
-<hr>
-<div class="title3">常见的Linux命令</div>
-
-<blockquote>
-<p>时刻注意自己的路径</p>
-</blockquote>
-<ul>
-<li>查看当前目录<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>若要包括隐藏文件，则使用：<code>ls -a</code></p>
-</blockquote>
-</li>
-<li>当前目录创建文件<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 文件</span><br></pre></td></tr></table></figure></li>
-<li>当前目录创建文件夹<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> 文件夹</span><br></pre></td></tr></table></figure></li>
-<li>进入某文件夹<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 文件目录</span><br></pre></td></tr></table></figure></li>
-<li>删除当前目录制定文件(<span style="color:red">慎用</span>)<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf 文件</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>仓库地址在仓库中获取（ssh）</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<div class="title3">有关git</div>
-<div class="title4">全局配置</div>
-
-<ul>
-<li><p>告诉git你是谁</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "your_name"</span><br></pre></td></tr></table></figure></li>
-<li><p>告诉git你的邮箱</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email "your_email@example.com"</span><br></pre></td></tr></table></figure>
-<div class="title4">clone</div>
-</li>
-<li><p>git clone(将github上的仓库下载到本地)</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 仓库地址</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>仓库地址在仓库中获取（ssh）</p>
-</blockquote>
-<div class="title4">绑定本地仓库到github上</div>
-</li>
-<li><p>初始化仓库</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></li>
-<li><p>设置远程地址(将本地仓库绑定到远程仓库)</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin 仓库地址</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>一般在空仓库页面复制命令。（可用git remote -v 查看已有地址）</p>
-</blockquote>
-<div class="title4">Git提交三部曲</div>
-</li>
-<li><p>git add</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>git add .</code>命令效果与之前相同，此处<code>-A</code>指all.</p>
-</blockquote>
-</li>
-<li><p>git commit</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m "本次提交的修改备注"</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>使用<code>git commit -am &quot;本次修改备注&quot;</code>来合并之前的步骤</p>
-</blockquote>
-</li>
-<li><p>git push</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push oringin master</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>第一次提交到本分支，<code>origin</code>是远程仓库默认名称，<code>master</code>是分支名称<br>第2-n次提交到相同分支时，可简化为<code>git push</code>;同时，若仓库和本地不一致，应先执行<code>git pull</code></p>
-</blockquote>
-<div class="title4">Git分支</div>
-</li>
-<li><p>新建分支</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 分支名</span><br></pre></td></tr></table></figure></li>
-<li><p>切换到新的分支</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>合并使用<code>git checkout -b 分支名</code></p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<div class="title3">有关ssh</div>
-
-<ul>
-<li>查看SSH内容（可以检查是否生成了本地SSH）<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure></li>
-<li>生成本地SSH<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b <span class="number">4096</span> -C "your_email@example.com"</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<hr>
-<div class="title3">有关hexo</div>
-
-<ul>
-<li><p>创建博客文件夹</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>blog处可替换为其他文件夹名称</p>
-</blockquote>
-</li>
-<li><p>安装发布工具</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>需要先进入博客目录</p>
-</blockquote>
-</li>
-<li><p>hexo的提交</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>三个命令分别是：清除缓存，生成新的静态文件，发布。<br>需要先修改config文件</p>
-<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&gt;deploy:</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">repository:</span> <span class="string">你的GitHub仓库地址</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></blockquote>
-</li>
-<li><p>创建新博客</p>
-<pre><code>hexo new 博客名</code></pre><blockquote>
-<p>提交就是<code>hexo的提交</code>章节</p>
-</blockquote>
-</li>
-</ul>
-<hr>
-<p><img src="https://qgt-style.oss-cn-hangzhou.aliyuncs.com/newcoursep4/g1/g1-2-2/tenor.gif" alt=""></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" data-id="ckcj1x4rs0003rwma3zigg2a1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/11/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckclsho08000140maekc06uqx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictory/" rel="tag">dictory</a></li></ul>
@@ -746,10 +684,188 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/%E7%AE%80%E6%98%93%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-BOBO/" data-id="ckcj1x4s5000arwmagy1w23pv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/%E7%AE%80%E6%98%93%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-BOBO/" data-id="ckclsho09000240mafd515efq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-有关命令行的那些事儿" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" class="article-date">
+  <time datetime="2020-07-07T09:28:59.000Z" itemprop="datePublished">2020-07-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">命令行相关</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+</style>
+
+<div class="title1">有关命令行的那些事</div>
+
+<hr>
+<div class="title3">常见的Linux命令</div>
+
+<blockquote>
+<p>时刻注意自己的路径</p>
+</blockquote>
+<ul>
+<li>查看当前目录<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>若要包括隐藏文件，则使用：<code>ls -a</code></p>
+</blockquote>
+</li>
+<li>当前目录创建文件<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch 文件</span><br></pre></td></tr></table></figure></li>
+<li>当前目录创建文件夹<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> 文件夹</span><br></pre></td></tr></table></figure></li>
+<li>进入某文件夹<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> 文件目录</span><br></pre></td></tr></table></figure></li>
+<li>删除当前目录制定文件(<span style="color:red">慎用</span>)<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rm -rf 文件</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>仓库地址在仓库中获取（ssh）</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<div class="title3">有关git</div>
+<div class="title4">全局配置</div>
+
+<ul>
+<li><p>告诉git你是谁</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name "your_name"</span><br></pre></td></tr></table></figure></li>
+<li><p>告诉git你的邮箱</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.email "your_email@example.com"</span><br></pre></td></tr></table></figure>
+<div class="title4">clone</div>
+</li>
+<li><p>git clone(将github上的仓库下载到本地)</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone 仓库地址</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>仓库地址在仓库中获取（ssh）</p>
+</blockquote>
+<div class="title4">绑定本地仓库到github上</div>
+</li>
+<li><p>初始化仓库</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure></li>
+<li><p>设置远程地址(将本地仓库绑定到远程仓库)</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin 仓库地址</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>一般在空仓库页面复制命令。（可用git remote -v 查看已有地址）</p>
+</blockquote>
+<div class="title4">Git提交三部曲</div>
+</li>
+<li><p>git add</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add -A</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>git add .</code>命令效果与之前相同，此处<code>-A</code>指all.</p>
+</blockquote>
+</li>
+<li><p>git commit</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m "本次提交的修改备注"</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>使用<code>git commit -am &quot;本次修改备注&quot;</code>来合并之前的步骤</p>
+</blockquote>
+</li>
+<li><p>git push</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push oringin master</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>第一次提交到本分支，<code>origin</code>是远程仓库默认名称，<code>master</code>是分支名称<br>第2-n次提交到相同分支时，可简化为<code>git push</code>;同时，若仓库和本地不一致，应先执行<code>git pull</code></p>
+</blockquote>
+<div class="title4">Git分支</div>
+</li>
+<li><p>新建分支</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch 分支名</span><br></pre></td></tr></table></figure></li>
+<li><p>切换到新的分支</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git checkout 分支名</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>合并使用<code>git checkout -b 分支名</code></p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<div class="title3">有关ssh</div>
+
+<ul>
+<li>查看SSH内容（可以检查是否生成了本地SSH）<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure></li>
+<li>生成本地SSH<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b <span class="number">4096</span> -C "your_email@example.com"</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<div class="title3">有关hexo</div>
+
+<ul>
+<li><p>创建博客文件夹</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init blog</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>blog处可替换为其他文件夹名称</p>
+</blockquote>
+</li>
+<li><p>安装发布工具</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>需要先进入博客目录</p>
+</blockquote>
+</li>
+<li><p>hexo的提交</p>
+<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>三个命令分别是：清除缓存，生成新的静态文件，发布。<br>需要先修改config文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&gt;deploy:</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">repository:</span> <span class="string">你的GitHub仓库地址</span></span><br><span class="line"></span><br><span class="line"> <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></blockquote>
+</li>
+<li><p>创建新博客</p>
+<pre><code>hexo new 博客名</code></pre><blockquote>
+<p>提交就是<code>hexo的提交</code>章节</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<p><img src="https://qgt-style.oss-cn-hangzhou.aliyuncs.com/newcoursep4/g1/g1-2-2/tenor.gif" alt=""></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" data-id="ckclsho12000a40ma041hdkha" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictory/" rel="tag">dictory</a></li></ul>
 
     </footer>
   </div>
@@ -797,7 +913,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/hello-world/" data-id="ckcj1x4rq0001rwma40im90ku" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/hello-world/" data-id="ckclsho0t000740ma6e7j6qlw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -852,6 +968,10 @@
       <ul>
         
           <li>
+            <a href="/2020/07/14/Session%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">Session的简单使用</a>
+          </li>
+        
+          <li>
             <a href="/2020/07/12/%E5%85%B3%E4%BA%8E%E5%AE%89%E5%8D%93%E7%9A%84%E6%89%93%E5%8C%85/">关于安卓的打包</a>
           </li>
         
@@ -860,15 +980,11 @@
           </li>
         
           <li>
-            <a href="/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">命令行相关</a>
-          </li>
-        
-          <li>
             <a href="/2020/07/07/%E7%AE%80%E6%98%93%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-BOBO/">简易报名系统总结-BOBO</a>
           </li>
         
           <li>
-            <a href="/2020/07/07/hello-world/">Hello World</a>
+            <a href="/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/">命令行相关</a>
           </li>
         
       </ul>
