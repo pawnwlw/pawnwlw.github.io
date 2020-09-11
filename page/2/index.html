@@ -64,6 +64,172 @@
       <div class="outer">
         <section id="main">
   
+    <article id="clone-oa-system遇到的问题" class="article article-type-clone" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/16/oa-system%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" class="article-date">
+  <time datetime="2020-07-16T09:20:19.000Z" itemprop="datePublished">2020-07-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/16/oa-system%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/">oa_system遇到的问题</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+</style>
+
+<p><a href="https://gitee.com/aaluoxiang/oa_system" target="_blank" rel="noopener">oasys:办公自动化项目地址</a></p>
+<div class="title3">前言</div>
+
+<p>在将该项目clone到本地后，发现无法运行。在搜索引擎和朋友的帮助下，做出以下措施。</p>
+<div class="title4">增加Maven镜像地址：增加下载速度</div>
+
+<p>在maven的安装目录下找到settings.xml文件。</p>
+<blockquote>
+<p>D:\maven\apache-maven-3.6.3-bin\apache-maven-3.6.3\conf</p>
+</blockquote>
+<p>然后在其<code>&lt;mirrors&gt;</code>标签内添加阿里镜像</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>下载速度和飞一样<br>mvn -U idea:idea</p>
+</blockquote>
+<div class="title4">解决plugin飘红</div>
+
+<p>在解决了这个问题后，仍然存在plugin中存在红色。经过百度后查得，需要在控制台中输入一下<code>mvn -U idea:idea</code>来解决</p>
+<div class="title4">数据库</div>
+
+<p>修改application.properties为自己的数据库</p>
+<p>再运行SQL语句</p>
+<p>此时就可以启动项目了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/16/oa-system%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98/" data-id="ckeyajmfw001oc0ma8eu01otn" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Session的简单使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/14/Session%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-07-14T10:24:05.000Z" itemprop="datePublished">2020-07-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/14/Session%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/">Session和简易登录</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+</style>
+
+<div class="title3">关于获取Session</div>
+
+<p>读和写Session分别借助了HttpServletRequest类和HttpServletResponse类。在控制类中添加其为参数，Spring会自动导入。<br>其中获得session为<code>request.getSession()</code>。</p>
+<div class="title3">关于修改Session内容</div>
+
+<p>获得Session的内容用<code>getAttribute</code>,显然修改内容用的是<code>setAttribute</code>。这里放入Seesion的为对象，则其要求可序列化，即继承了<code>Serializable</code>接口。</p>
+<div class="title4">简易登录界面</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// com.pawncs.fourth.control.IndexController</span></span><br><span class="line"><span class="meta">@RequestMapping</span>(<span class="string">"index"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ModelAndView <span class="title">index</span><span class="params">(ModelAndView modelAndView,HttpServletRequest request)</span></span>&#123;</span><br><span class="line">        HttpSession session = request.getSession();</span><br><span class="line">        UserLoginInfo userLoginInfo = (UserLoginInfo) session.getAttribute(<span class="string">"userLoginInfo"</span>);</span><br><span class="line">        <span class="keyword">if</span>(userLoginInfo == <span class="keyword">null</span>)&#123;</span><br><span class="line">            modelAndView.setViewName(<span class="string">"login"</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            modelAndView.setViewName(<span class="string">"index"</span>);</span><br><span class="line">            modelAndView.addObject(userLoginInfo);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//这里login和index都用了freemaker模板，其为模板名。</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@RequestMapping</span>(<span class="string">"login"</span>)</span><br><span class="line">    <span class="meta">@ResponseBody</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Map <span class="title">login</span><span class="params">(@RequestParam(<span class="string">"username"</span>)</span>String username,</span></span><br><span class="line"><span class="function">                     @<span class="title">RequestParam</span><span class="params">(<span class="string">"password"</span>)</span>String password,</span></span><br><span class="line"><span class="function">                     HttpServletRequest request,</span></span><br><span class="line"><span class="function">                     HttpServletResponse response)</span>&#123;</span><br><span class="line">        Map&lt;String,Object&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        HttpSession session = request.getSession();</span><br><span class="line">        UserLoginInfo userLoginInfo = <span class="keyword">new</span> UserLoginInfo();</span><br><span class="line">        userLoginInfo.setUserId(session.getId());</span><br><span class="line">        userLoginInfo.setUserName(username);</span><br><span class="line"></span><br><span class="line">        session.setAttribute(<span class="string">"userLoginInfo"</span>,userLoginInfo);</span><br><span class="line">        map.put(<span class="string">"code"</span>,<span class="string">"200"</span>);</span><br><span class="line">        map.put(<span class="string">"message"</span>,<span class="string">"登录成功"</span>);</span><br><span class="line">        <span class="keyword">return</span> map;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>关于freemaker的配置还是要说一下，自己总是忘。在导包导完后，还要在application.yml里写入freemaker的配置</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># application.yml</span></span><br><span class="line"><span class="attr">spring:</span></span><br><span class="line">  <span class="attr">freemarker:</span></span><br><span class="line">    <span class="attr">suffix:</span> <span class="string">.ftl</span>                    <span class="comment"># 设置模板后缀名</span></span><br><span class="line">    <span class="attr">content-type:</span> <span class="string">text/html</span>                      <span class="comment"># 设置文档类型</span></span><br><span class="line">    <span class="attr">charset:</span> <span class="string">UTF-8</span>                               <span class="comment"># 设置页面编码格式</span></span><br><span class="line">    <span class="attr">cache:</span> <span class="literal">false</span>                                 <span class="comment"># 设置页面缓存</span></span><br><span class="line">    <span class="attr">template-loader-path:</span> <span class="string">classpath:/templates</span>   <span class="comment"># 设置ftl文件路径</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/14/Session%E7%9A%84%E7%AE%80%E5%8D%95%E4%BD%BF%E7%94%A8/" data-id="ckeyajmdu000kc0ma95uj21ai" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-关于安卓的打包" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/12/%E5%85%B3%E4%BA%8E%E5%AE%89%E5%8D%93%E7%9A%84%E6%89%93%E5%8C%85/" class="article-date">
@@ -124,7 +290,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/12/%E5%85%B3%E4%BA%8E%E5%AE%89%E5%8D%93%E7%9A%84%E6%89%93%E5%8C%85/" data-id="cke4djokh001048ma364a4j62" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/12/%E5%85%B3%E4%BA%8E%E5%AE%89%E5%8D%93%E7%9A%84%E6%89%93%E5%8C%85/" data-id="ckeyajmdv000nc0mahykt627t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -498,7 +664,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/11/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="cke4djoki001348ma2k48bqf0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/11/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckeyajmdw000rc0ma30tyfggu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -554,9 +720,18 @@
     color:#a8cd34;
     /* 柳绿 */
 }
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
 </style>
 
-<div class="title1">有关命令行的那些事</div>
+<div class="name">by pawncs</div>
 
 <hr>
 <div class="title3">常见的Linux命令</div>
@@ -691,7 +866,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" data-id="cke4djokc000t48ma9dyabh0l" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/%E6%9C%89%E5%85%B3%E5%91%BD%E4%BB%A4%E8%A1%8C%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/" data-id="ckeyajmfu001lc0ma6dvr7qi1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -892,7 +1067,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/%E7%AE%80%E6%98%93%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-BOBO/" data-id="cke4djokk001948madk9d12q7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/%E7%AE%80%E6%98%93%E6%8A%A5%E5%90%8D%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BB%93-BOBO/" data-id="ckeyajmfv001mc0maegyecmji" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -943,7 +1118,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/07/hello-world/" data-id="cke4djok8000p48ma91f31s3u" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/07/hello-world/" data-id="ckeyajmdo0008c0macq135nws" class="article-share-link">Share</a>
       
       
     </footer>
@@ -968,7 +1143,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css-js/">html,css,js</a></li></ul>
     </div>
   </div>
 
@@ -997,7 +1172,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
     </div>
   </div>
 
@@ -1010,23 +1185,23 @@
       <ul>
         
           <li>
+            <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Java包的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/scss/">scss</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">开发文档</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/">Android中碰到的错误</a>
           </li>
         
           <li>
             <a href="/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">部署项目到云服务器</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/28/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">开发文档</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/">SQLite数据库</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/Android%E6%9D%83%E9%99%90/">Android权限</a>
           </li>
         
       </ul>

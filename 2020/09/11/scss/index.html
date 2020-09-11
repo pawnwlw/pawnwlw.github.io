@@ -5,19 +5,18 @@
   
 
   
-  <title>开发文档 | Hexo</title>
+  <title>scss | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="开发文档Android百度地图百度鹰眼">
+  <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
-<meta property="og:title" content="开发文档">
-<meta property="og:url" content="http://yoursite.com/2020/07/28/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/index.html">
+<meta property="og:title" content="scss">
+<meta property="og:url" content="http://yoursite.com/2020/09/11/scss/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="开发文档Android百度地图百度鹰眼">
+<meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-07-28T12:52:51.000Z">
-<meta property="article:modified_time" content="2020-07-29T06:14:51.898Z">
+<meta property="article:published_time" content="2020-09-11T13:23:12.000Z">
+<meta property="article:modified_time" content="2020-09-11T13:42:28.098Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="dictionary">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -67,14 +66,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-开发文档" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-scss" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/28/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" class="article-date">
-  <time datetime="2020-07-28T12:52:51.000Z" itemprop="datePublished">2020-07-28</time>
+    <a href="/2020/09/11/scss/" class="article-date">
+  <time datetime="2020-09-11T13:23:12.000Z" itemprop="datePublished">2020-09-11</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
+    <a class="article-category-link" href="/categories/html-css-js/">html,css,js</a>
   </div>
 
   </div>
@@ -85,7 +84,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      开发文档
+      scss
     </h1>
   
 
@@ -93,35 +92,109 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="开发文档"><a href="#开发文档" class="headerlink" title="开发文档"></a>开发文档</h1><h2 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h2><p><a href="http://lbsyun.baidu.com/index.php?title=androidsdk/guide/create-project/androidstudio" target="_blank" rel="noopener">百度地图</a><br><a href="http://lbsyun.baidu.com/index.php?title=android-yingyan/guide/buildproject" target="_blank" rel="noopener">百度鹰眼</a></p>
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">一、SASS</div>
+
+<hr>
+<div class="title3">1.1 什么是SASS</div>
+
+<ul>
+<li>SASS是一款CSS的预编译器，定义了一种新的编程语言，需要先编译成CSS才能被浏览器理解。</li>
+<li>SASS比CSS更像一种编程语言，有变量，函数，控制语句，导入，嵌套等高级功能。</li>
+<li>类似的预编译器还有<code>less</code>,<code>Stylus</code>等<div class="title4">有了这些功能，SASS可以</div>
+</li>
+</ul>
+<ol>
+<li>提供变量，实现一键替换主题色之类的功能</li>
+<li>用嵌套写法减少选择器的重复书写</li>
+<li>用混用功能解决代码复用问题</li>
+<li>用函数进行复杂的运算</li>
+<li>把央视代码模块化，减少不同的模块的代码间不必要的相互影响，提高代码安全性</li>
+<li>……</li>
+</ol>
+<div class="title3">1.2 安装</div>
+<div class="title4">安装sass</div>
+
+<p>参考 <a href="https://sass.bootcss.com/documentation" target="_blank" rel="noopener">sass文档</a> 安装到本地</p>
+<p>在HTML文件中直接引入编译后的CSS文件即可</p>
+<div class="title4">Sass和Scss</div>
+
+<p>Scss是Sass 3 为了兼容CSS引入的新语法（任何标准的CSS3样式表都是具有相同语义的有效的Scss文件）</p>
+<blockquote>
+<p>文件后缀为<code>.scss</code></p>
+</blockquote>
+<hr>
+<div class="title2">二、变量</div>
+
+<hr>
+<div class="title3">待续</div>
+
+<div class="title4">待续</div>
+
+
+
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/28/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="cke4djokg000y48mahy1433dx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/scss/" data-id="ckeyajmdq000ec0ma8emcga4q" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          部署项目到云服务器
+          Java包的使用
         
       </div>
     </a>
   
   
-    <a href="/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">SQLite数据库</div>
+      <div class="article-nav-title">开发文档</div>
     </a>
   
 </nav>
@@ -137,7 +210,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css-js/">html,css,js</a></li></ul>
     </div>
   </div>
 
@@ -166,7 +239,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li></ul>
     </div>
   </div>
 
@@ -179,23 +252,23 @@
       <ul>
         
           <li>
+            <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Java包的使用</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/scss/">scss</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">开发文档</a>
+          </li>
+        
+          <li>
             <a href="/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/">Android中碰到的错误</a>
           </li>
         
           <li>
             <a href="/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">部署项目到云服务器</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/28/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/">开发文档</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/">SQLite数据库</a>
-          </li>
-        
-          <li>
-            <a href="/2020/07/22/Android%E6%9D%83%E9%99%90/">Android权限</a>
           </li>
         
       </ul>
