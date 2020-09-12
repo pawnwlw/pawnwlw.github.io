@@ -10,13 +10,14 @@
   <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
 <meta property="og:title" content="scss">
-<meta property="og:url" content="http://yoursite.com/2020/09/11/scss/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/09/12/scss/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-11T13:23:12.000Z">
-<meta property="article:modified_time" content="2020-09-11T13:42:28.098Z">
+<meta property="article:published_time" content="2020-09-12T08:49:12.000Z">
+<meta property="article:modified_time" content="2020-09-12T08:49:55.667Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="study">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -68,8 +69,8 @@
       <div class="outer">
         <section id="main"><article id="post-scss" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/11/scss/" class="article-date">
-  <time datetime="2020-09-11T13:23:12.000Z" itemprop="datePublished">2020-09-11</time>
+    <a href="/2020/09/12/scss/" class="article-date">
+  <time datetime="2020-09-12T08:49:12.000Z" itemprop="datePublished">2020-09-12</time>
 </a>
     
   <div class="article-category">
@@ -150,7 +151,7 @@
 <div class="title3">1.2 安装</div>
 <div class="title4">安装sass</div>
 
-<p>参考 <a href="https://sass.bootcss.com/documentation" target="_blank" rel="noopener">sass文档</a> 安装到本地</p>
+<p>参考 <a href="https://sass.bootcss.com/documentation" target="_blank" rel="noopener">sass文档</a> 安装到本地，然后配置到ideaj,vs等。（自行百度）</p>
 <p>在HTML文件中直接引入编译后的CSS文件即可</p>
 <div class="title4">Sass和Scss</div>
 
@@ -162,9 +163,54 @@
 <div class="title2">二、变量</div>
 
 <hr>
-<div class="title3">待续</div>
+<div class="title3">2.1 变量</div>
 
-<div class="title4">待续</div>
+<p>提供了SassScript的新功能。可用于任何属性，允许属性使用变量、算术运算等额外功能<br>变量以“$”开头，赋值方法与CSS一样:<br><code>$width: 10px;</code>   </p>
+<div class="title4">使用变量</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>变量类型为字符串一般不需要双引号，除非某些特殊情况，如有双斜杠“//”，则需要单引号或者双引号（因为<code>//</code>表示注释）</p>
+<div class="title4">定义类似于数组的变量</div>
+
+<p><code>$animals: puppy kitty chick;</code></p>
+<p>可配合循环语句使用</p>
+<div class="title4">支持简单计算</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因此可以方便的定义长宽比固定的元素，如</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$width</span> * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="title3">2.2 插值法</div>
+
+<p><code>#{}</code> 插值可以在Sass样式表的任何一个地方使用</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span>: <span class="string">"mail"</span>;</span><br><span class="line"><span class="variable">$top-or-bottom</span>: <span class="string">"top"</span>;</span><br><span class="line"><span class="variable">$left-or-right</span>: <span class="string">"left"</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.icon-</span>#&#123;<span class="variable">$name</span>&#125; &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: url(<span class="string">"/icons/#&#123;$name&#125;.svg"</span>);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  #&#123;<span class="variable">$top-or-bottom</span>&#125;: <span class="number">0</span>;</span><br><span class="line">  #&#123;<span class="variable">$left-or-right</span>&#125;: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以用插值法插入任何类型的变量，不仅仅是字符串</p>
+</blockquote>
+<hr>
+<div class="title2">三、嵌套</div>
+
+<hr>
+<blockquote>
+<p>将共同的选择器提取出来，防止选择器过长</p>
+</blockquote>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main <span class="selector-class">.double</span> <span class="selector-class">.item</span> <span class="selector-class">.links</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="title3">3.1 嵌套</div>
+<div class="title4">嵌套规则</div>
+
+<p>Sass允许将一套CSS样式嵌套进另一套样式中，内层的样式将他的外层的选择器作为父选择器。</p>
+<div class="title4">父选择器 &</div>
+
+<p>在嵌套时，有时候需要直接使用嵌套外层的福选择器，（例如，给元素设定<code>hover</code>样式时，可以用’&amp;’代表规则外层的父选择器）</p>
+<blockquote>
+<p>个人认为更像插值（可以字符串拼接）</p>
+</blockquote>
+<hr>
+<div class="title2">四、复用：mixin/include</div>
+
+<hr>
+<div class="title3">4.1 未完待续</div>
+<div class="title4">未完待续</div>
 
 
 
@@ -173,28 +219,21 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/scss/" data-id="ckeyajmdq000ec0ma8emcga4q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/12/scss/" data-id="ckezfk3nr000hs4ma8orb00j1" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Java包的使用
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">开发文档</div>
+      <div class="article-nav-title">Java包的使用</div>
     </a>
   
 </nav>
@@ -252,11 +291,11 @@
       <ul>
         
           <li>
-            <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Java包的使用</a>
+            <a href="/2020/09/12/scss/">scss</a>
           </li>
         
           <li>
-            <a href="/2020/09/11/scss/">scss</a>
+            <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Java包的使用</a>
           </li>
         
           <li>
