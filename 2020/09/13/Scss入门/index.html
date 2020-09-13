@@ -5,18 +5,20 @@
   
 
   
-  <title>scss | Hexo</title>
+  <title>scss入门 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
-<meta property="og:title" content="scss">
-<meta property="og:url" content="http://yoursite.com/2020/09/12/scss/index.html">
+<meta property="og:title" content="scss入门">
+<meta property="og:url" content="http://yoursite.com/2020/09/13/Scss%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-12T08:49:12.000Z">
-<meta property="article:modified_time" content="2020-09-12T08:49:55.667Z">
+<meta property="article:published_time" content="2020-09-13T06:38:12.000Z">
+<meta property="article:modified_time" content="2020-09-13T06:48:08.567Z">
 <meta property="article:author" content="John Doe">
+<meta property="article:tag" content="SCSS">
+<meta property="article:tag" content="CSS">
 <meta property="article:tag" content="study">
 <meta name="twitter:card" content="summary">
   
@@ -67,10 +69,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-scss" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Scss入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/12/scss/" class="article-date">
-  <time datetime="2020-09-12T08:49:12.000Z" itemprop="datePublished">2020-09-12</time>
+    <a href="/2020/09/13/Scss%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-09-13T06:38:12.000Z" itemprop="datePublished">2020-09-13</time>
 </a>
     
   <div class="article-category">
@@ -85,7 +87,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      scss
+      scss入门
     </h1>
   
 
@@ -128,6 +130,16 @@
 
 <div class="name">by pawncs</div>
 
+<hr>
+<div class="title2">零、摘要</div>
+
+<hr>
+<ol>
+<li><p>什么是SCSS和SASS，以及如何安装。</p>
+</li>
+<li><p>展示了变量、嵌套、混合功能的简单使用。</p>
+</li>
+</ol>
 <hr>
 <div class="title2">一、SASS</div>
 
@@ -209,20 +221,35 @@
 <div class="title2">四、复用：mixin/include</div>
 
 <hr>
-<div class="title3">4.1 未完待续</div>
-<div class="title4">未完待续</div>
+<blockquote>
+<p>我们可用混合（mixin/include）来解决代码复用的问题</p>
+</blockquote>
+<div class="title3">4.1 无参数混合</div>
 
+<div class="title4">混合的使用方式</div>
 
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用：</span></span><br><span class="line"><span class="selector-class">.user-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.admin-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>@mixin</code> : 定义可复用的样式<br><code>@include</code> : 应用可复用的样式</p>
+</blockquote>
+<div class="title3">4.2 有参数混合</div>
+<div class="title4">参数无默认值</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="number">100px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需传入变量 <code>$size</code></p>
+<div class="title4">参数有默认值</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>: <span class="number">100px</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不传参数就会使用默认的值 100px</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入参数就会使用传入的值 200px</span></span><br><span class="line"><span class="selector-class">.avatar-200</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="variable">$size</span>: <span class="number">200px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/12/scss/" data-id="ckezvna4w000tt4ma5x8b3777" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/13/Scss%E5%85%A5%E9%97%A8/" data-id="ckf0s2qee000298ma6umveerw" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
 
     </footer>
   </div>
@@ -230,19 +257,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          安卓开发学习
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Java包的使用</div>
+      <div class="article-nav-title">安卓开发学习</div>
     </a>
   
 </nav>
@@ -268,7 +286,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
     </div>
   </div>
 
@@ -278,7 +296,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 16.67px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 13.33px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 10px;">CSS</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 16.67px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 13.33px;">study</a>
     </div>
   </div>
 
@@ -300,11 +318,11 @@
       <ul>
         
           <li>
-            <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/">安卓开发学习</a>
+            <a href="/2020/09/13/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
           </li>
         
           <li>
-            <a href="/2020/09/12/scss/">scss</a>
+            <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/">安卓开发学习</a>
           </li>
         
           <li>
