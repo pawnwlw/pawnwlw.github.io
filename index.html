@@ -64,6 +64,379 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-javascript入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-09-22T06:28:39.000Z" itemprop="datePublished">2020-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/html-css-js/">html,css,js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">一、认识Javascript</div>
+
+<hr>
+<p>JavaScript主要由以下三部分组成：</p>
+<ol>
+<li>核心（ECMAscript）</li>
+<li>文档对象模型(DOM)</li>
+<li>浏览器对象模型(BOM)</li>
+</ol>
+<div class="title3">1.1 核心（ECMAscript）</div>
+
+<blockquote>
+<p><code>ECMAScript</code>规定了这门语言的基本组成部分</p>
+</blockquote>
+<p>主要由以下部分组成：</p>
+<ul>
+<li><p>语法</p>
+</li>
+<li><p>类型</p>
+</li>
+<li><p>语句</p>
+</li>
+<li><p>关键字</p>
+</li>
+<li><p>保留字</p>
+</li>
+<li><p>操作符</p>
+</li>
+<li><p>对象</p>
+</li>
+</ul>
+<p>有了这些，<code>JavaScript</code>可以完成基本的逻辑以及数据处理。</p>
+<div class="title3">1.2 文档对象模型（DOM）</div>
+
+<blockquote>
+<p><code>DOM</code>的功能为获取<code>html</code>标签，并对标签进行其他操作（增删样式，添加事件）。</p>
+</blockquote>
+<p>这些功能的实现基于以下接口：</p>
+<ul>
+<li><p>DOM 遍历和范围：<br>可以找到页面中所有标签</p>
+</li>
+<li><p>DOM 事件：<br>可以给标签添加事件（如给图片添加拖动事件）</p>
+</li>
+<li><p>DOM 样式：<br>可以更改页面中所有元素的样式，如更改某一段文字的颜色</p>
+<div class="title3">1.3 浏览器对象模型(BOM)</div>
+
+</li>
+</ul>
+<blockquote>
+<p><code>BOM</code>处理和浏览器相关的东西</p>
+</blockquote>
+<p>如：</p>
+<ul>
+<li><p>弹出新窗口功能</p>
+</li>
+<li><p>移动、缩放、关闭浏览器窗口的功能</p>
+</li>
+<li><p>给用户提供显示器分辨率的功能</p>
+</li>
+<li><p>提供浏览器信息</p>
+</li>
+</ul>
+<div class="title3">1.4 JavaScript的书写位置</div>
+
+<blockquote>
+<p>和<code>css</code>一样，分为<code>HTML</code>内部和外部。</p>
+</blockquote>
+<div class="title4">内部</div>
+
+<p>使用<code>script</code>标签内嵌。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// script标签嵌入JavaScript代码</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// JavaScript代码</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> name = <span class="string">"Bob"</span>;</span></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">"我的名字叫："</span>+name);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里的规范为：<code>&lt;script&gt;</code>标签的位置位于<code>body</code>标签内部，并保证是末尾。</p>
+</blockquote>
+<p>其实该标签写在哪都可，但是在进行<code>DOM</code>操作时，如果不注意位置，会出现奇怪的报错。</p>
+<div class="title4">外部</div>
+
+<p>代码写在<code>XXX.js</code>文件中，由引入标签引入即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'index.js'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>书写位置与内部书写方式一致，即在<code>body</code>标签的内部，但是在末尾</p>
+<hr>
+<hr>
+<div class="title2">二、基础数据类型</div>
+
+<hr>
+<div class="title3">2.1 变量</div>
+
+<p>在<code>JavaScript</code>中定义变量的关键词有两个：<code>let</code> , <code>const</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'Will Smith'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>曾经也有关键词 <code>var</code>， 但其会导致未知的错误，因此已经不常用了</p>
+</blockquote>
+<div class="title4">let 和 const 的异同</div>
+
+<ul>
+<li>const定义的变量只能赋值一次，let定义的变量可以多次赋值</li>
+<li>const定义的变量需要赋值，否则会报错；let定义的变量可以不赋初始值（默认为<code>undefined</code>）。</li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/22/javascript%E5%85%A5%E9%97%A8/" data-id="ckfe14m9a000bbsma15fk3tmp" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Scss入门" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-09-16T06:38:12.000Z" itemprop="datePublished">2020-09-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/html-css-js/">html,css,js</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">零、摘要</div>
+
+<hr>
+<ol>
+<li><p>什么是SCSS和SASS，以及如何安装。</p>
+</li>
+<li><p>展示了变量、嵌套、混合功能的简单使用。</p>
+</li>
+</ol>
+<hr>
+<div class="title2">一、SASS</div>
+
+<hr>
+<div class="title3">1.1 什么是SASS</div>
+
+<ul>
+<li>SASS是一款CSS的预编译器，定义了一种新的编程语言，需要先编译成CSS才能被浏览器理解。</li>
+<li>SASS比CSS更像一种编程语言，有变量，函数，控制语句，导入，嵌套等高级功能。</li>
+<li>类似的预编译器还有<code>less</code>,<code>Stylus</code>等<div class="title4">有了这些功能，SASS可以</div>
+</li>
+</ul>
+<ol>
+<li>提供变量，实现一键替换主题色之类的功能</li>
+<li>用嵌套写法减少选择器的重复书写</li>
+<li>用混用功能解决代码复用问题</li>
+<li>用函数进行复杂的运算</li>
+<li>把央视代码模块化，减少不同的模块的代码间不必要的相互影响，提高代码安全性</li>
+<li>……</li>
+</ol>
+<div class="title3">1.2 安装</div>
+<div class="title4">安装sass</div>
+
+<p>参考 <a href="https://sass.bootcss.com/documentation" target="_blank" rel="noopener">sass文档</a> 安装到本地，然后配置到ideaj,vs等。（自行百度）</p>
+<p>在HTML文件中直接引入编译后的CSS文件即可</p>
+<div class="title4">Sass和Scss</div>
+
+<p>Scss是Sass 3 为了兼容CSS引入的新语法（任何标准的CSS3样式表都是具有相同语义的有效的Scss文件）</p>
+<blockquote>
+<p>文件后缀为<code>.scss</code></p>
+</blockquote>
+<hr>
+<div class="title2">二、变量</div>
+
+<hr>
+<div class="title3">2.1 变量</div>
+
+<p>提供了SassScript的新功能。可用于任何属性，允许属性使用变量、算术运算等额外功能<br>变量以“$”开头，赋值方法与CSS一样:<br><code>$width: 10px;</code>   </p>
+<div class="title4">使用变量</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>变量类型为字符串一般不需要双引号，除非某些特殊情况，如有双斜杠“//”，则需要单引号或者双引号（因为<code>//</code>表示注释）</p>
+<div class="title4">定义类似于数组的变量</div>
+
+<p><code>$animals: puppy kitty chick;</code></p>
+<p>可配合循环语句使用</p>
+<div class="title4">支持简单计算</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>因此可以方便的定义长宽比固定的元素，如</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$width</span> * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="title3">2.2 插值法</div>
+
+<p><code>#{}</code> 插值可以在Sass样式表的任何一个地方使用</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span>: <span class="string">"mail"</span>;</span><br><span class="line"><span class="variable">$top-or-bottom</span>: <span class="string">"top"</span>;</span><br><span class="line"><span class="variable">$left-or-right</span>: <span class="string">"left"</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.icon-</span>#&#123;<span class="variable">$name</span>&#125; &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: url(<span class="string">"/icons/#&#123;$name&#125;.svg"</span>);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  #&#123;<span class="variable">$top-or-bottom</span>&#125;: <span class="number">0</span>;</span><br><span class="line">  #&#123;<span class="variable">$left-or-right</span>&#125;: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>可以用插值法插入任何类型的变量，不仅仅是字符串</p>
+</blockquote>
+<hr>
+<div class="title2">三、嵌套</div>
+
+<hr>
+<blockquote>
+<p>将共同的选择器提取出来，防止选择器过长</p>
+</blockquote>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main <span class="selector-class">.double</span> <span class="selector-class">.item</span> <span class="selector-class">.links</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="title3">3.1 嵌套</div>
+<div class="title4">嵌套规则</div>
+
+<p>Sass允许将一套CSS样式嵌套进另一套样式中，内层的样式将他的外层的选择器作为父选择器。</p>
+<div class="title4">父选择器 &</div>
+
+<p>在嵌套时，有时候需要直接使用嵌套外层的福选择器，（例如，给元素设定<code>hover</code>样式时，可以用’&amp;’代表规则外层的父选择器）</p>
+<blockquote>
+<p>个人认为更像插值（可以字符串拼接）</p>
+</blockquote>
+<hr>
+<div class="title2">四、复用：mixin/include</div>
+
+<hr>
+<blockquote>
+<p>我们可用混合（mixin/include）来解决代码复用的问题</p>
+</blockquote>
+<div class="title3">4.1 无参数混合</div>
+
+<div class="title4">混合的使用方式</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用：</span></span><br><span class="line"><span class="selector-class">.user-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.admin-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>@mixin</code> : 定义可复用的样式<br><code>@include</code> : 应用可复用的样式</p>
+</blockquote>
+<div class="title3">4.2 有参数混合</div>
+<div class="title4">参数无默认值</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="number">100px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需传入变量 <code>$size</code></p>
+<div class="title4">参数有默认值</div>
+
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>: <span class="number">100px</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不传参数就会使用默认的值 100px</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入参数就会使用传入的值 200px</span></span><br><span class="line"><span class="selector-class">.avatar-200</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="variable">$size</span>: <span class="number">200px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div class="title2">五、自定义函数</div>
+
+<hr>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@function</span> psd2px(<span class="variable">$px</span>) &#123;</span><br><span class="line">  @return #&#123;$px / 2&#125;px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="comment">// 假设设计稿上高度是100px，那么函数参数就写100，计算后返回的值就是 50px</span></span><br><span class="line">  <span class="attribute">height</span>: psd2px(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckfe14m9d000ebsma88k9hqf3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-移动端Web开发" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" class="article-date">
@@ -177,15 +550,23 @@
 
 <p>rem是根据根元素的字体大小转换的，em是根据本级元素的字体大小转换的（当本级元素未确定时，根据父元素）</p>
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="comment">// 父元素的字体大小为 20px</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line"></span><br><span class="line">  &gt; <span class="selector-class">.child</span> &#123;</span><br><span class="line">    <span class="comment">// 子元素的字体大小为 0.7 * 20px = 14px</span></span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">0.7em</span>; </span><br><span class="line">    <span class="comment">// 特别注意：子元素的宽度为 10 * 14px = 140px</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10em</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
+<hr>
+<hr>
+<div class="title2">三、认识新单位 vw/vh</div>
 
 <hr>
+<ul>
+<li>1vw = 1/100 视口宽度 </li>
+<li>1vh = 1/100 视口高度</li>
+</ul>
+<div class="title3">3.1 模态框</div>
 
+<p>指页面中弹出的窗口。此时需要给整个视口加上半透明覆盖层。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 将蒙层的宽高设置为视口的宽度和高度</span><br><span class="line"><span class="selector-tag">width</span>: 100<span class="selector-tag">vw</span>;</span><br><span class="line"><span class="selector-tag">height</span>: 100<span class="selector-tag">vh</span>;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckf3j7ljx001vp0ma66t42vhl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckfe14ma90027bsmah6cj1zo2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -352,199 +733,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckf3j7lir0005p0magzu7bey6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckfe14m920006bsma2ki63f78" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Scss入门" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/13/Scss%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2020-09-13T06:38:12.000Z" itemprop="datePublished">2020-09-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/html-css-js/">html,css,js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/13/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <style>
-.title1{
-    font-size:36px;
-    color:#e7767f;
-    /* 桃红 */
-
-}
-.title2{
-    font-size:29px;
-    color:#176f58;
-    /* 祖母绿 */
-}
-.title3{
-    font-size:22px;
-    color:#21a675;
-    /* 石绿 */
-}
-.title4{
-    font-size:15px;
-    color:#a8cd34;
-    /* 柳绿 */
-}
-.name{
-
-    margin-left: auto;
-    text-align: right;
-    color: #d05667;
-    margin-right: 10px;
-    margin-top: 20px;
-    /*海棠红*/
-}
-</style>
-
-<div class="name">by pawncs</div>
-
-<hr>
-<div class="title2">零、摘要</div>
-
-<hr>
-<ol>
-<li><p>什么是SCSS和SASS，以及如何安装。</p>
-</li>
-<li><p>展示了变量、嵌套、混合功能的简单使用。</p>
-</li>
-</ol>
-<hr>
-<div class="title2">一、SASS</div>
-
-<hr>
-<div class="title3">1.1 什么是SASS</div>
-
-<ul>
-<li>SASS是一款CSS的预编译器，定义了一种新的编程语言，需要先编译成CSS才能被浏览器理解。</li>
-<li>SASS比CSS更像一种编程语言，有变量，函数，控制语句，导入，嵌套等高级功能。</li>
-<li>类似的预编译器还有<code>less</code>,<code>Stylus</code>等<div class="title4">有了这些功能，SASS可以</div>
-</li>
-</ul>
-<ol>
-<li>提供变量，实现一键替换主题色之类的功能</li>
-<li>用嵌套写法减少选择器的重复书写</li>
-<li>用混用功能解决代码复用问题</li>
-<li>用函数进行复杂的运算</li>
-<li>把央视代码模块化，减少不同的模块的代码间不必要的相互影响，提高代码安全性</li>
-<li>……</li>
-</ol>
-<div class="title3">1.2 安装</div>
-<div class="title4">安装sass</div>
-
-<p>参考 <a href="https://sass.bootcss.com/documentation" target="_blank" rel="noopener">sass文档</a> 安装到本地，然后配置到ideaj,vs等。（自行百度）</p>
-<p>在HTML文件中直接引入编译后的CSS文件即可</p>
-<div class="title4">Sass和Scss</div>
-
-<p>Scss是Sass 3 为了兼容CSS引入的新语法（任何标准的CSS3样式表都是具有相同语义的有效的Scss文件）</p>
-<blockquote>
-<p>文件后缀为<code>.scss</code></p>
-</blockquote>
-<hr>
-<div class="title2">二、变量</div>
-
-<hr>
-<div class="title3">2.1 变量</div>
-
-<p>提供了SassScript的新功能。可用于任何属性，允许属性使用变量、算术运算等额外功能<br>变量以“$”开头，赋值方法与CSS一样:<br><code>$width: 10px;</code>   </p>
-<div class="title4">使用变量</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>变量类型为字符串一般不需要双引号，除非某些特殊情况，如有双斜杠“//”，则需要单引号或者双引号（因为<code>//</code>表示注释）</p>
-<div class="title4">定义类似于数组的变量</div>
-
-<p><code>$animals: puppy kitty chick;</code></p>
-<p>可配合循环语句使用</p>
-<div class="title4">支持简单计算</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因此可以方便的定义长宽比固定的元素，如</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$width</span> * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="title3">2.2 插值法</div>
-
-<p><code>#{}</code> 插值可以在Sass样式表的任何一个地方使用</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span>: <span class="string">"mail"</span>;</span><br><span class="line"><span class="variable">$top-or-bottom</span>: <span class="string">"top"</span>;</span><br><span class="line"><span class="variable">$left-or-right</span>: <span class="string">"left"</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.icon-</span>#&#123;<span class="variable">$name</span>&#125; &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: url(<span class="string">"/icons/#&#123;$name&#125;.svg"</span>);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  #&#123;<span class="variable">$top-or-bottom</span>&#125;: <span class="number">0</span>;</span><br><span class="line">  #&#123;<span class="variable">$left-or-right</span>&#125;: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>可以用插值法插入任何类型的变量，不仅仅是字符串</p>
-</blockquote>
-<hr>
-<div class="title2">三、嵌套</div>
-
-<hr>
-<blockquote>
-<p>将共同的选择器提取出来，防止选择器过长</p>
-</blockquote>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main <span class="selector-class">.double</span> <span class="selector-class">.item</span> <span class="selector-class">.links</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="title3">3.1 嵌套</div>
-<div class="title4">嵌套规则</div>
-
-<p>Sass允许将一套CSS样式嵌套进另一套样式中，内层的样式将他的外层的选择器作为父选择器。</p>
-<div class="title4">父选择器 &</div>
-
-<p>在嵌套时，有时候需要直接使用嵌套外层的福选择器，（例如，给元素设定<code>hover</code>样式时，可以用’&amp;’代表规则外层的父选择器）</p>
-<blockquote>
-<p>个人认为更像插值（可以字符串拼接）</p>
-</blockquote>
-<hr>
-<div class="title2">四、复用：mixin/include</div>
-
-<hr>
-<blockquote>
-<p>我们可用混合（mixin/include）来解决代码复用的问题</p>
-</blockquote>
-<div class="title3">4.1 无参数混合</div>
-
-<div class="title4">混合的使用方式</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用：</span></span><br><span class="line"><span class="selector-class">.user-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.admin-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>@mixin</code> : 定义可复用的样式<br><code>@include</code> : 应用可复用的样式</p>
-</blockquote>
-<div class="title3">4.2 有参数混合</div>
-<div class="title4">参数无默认值</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="number">100px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需传入变量 <code>$size</code></p>
-<div class="title4">参数有默认值</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>: <span class="number">100px</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不传参数就会使用默认的值 100px</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入参数就会使用传入的值 200px</span></span><br><span class="line"><span class="selector-class">.avatar-200</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="variable">$size</span>: <span class="number">200px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/13/Scss%E5%85%A5%E9%97%A8/" data-id="ckf3j7liv000bp0ma0dgl2yqj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
 
     </footer>
   </div>
@@ -922,7 +1114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckf3j7ljv001qp0ma9o04cpd0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckfe14ma0001sbsmaf3t8bp7c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -965,7 +1157,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckf3j7lit0008p0ma2ankfir3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckfe14m8w0005bsma1zbbdyxv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1008,7 +1200,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckf3j7ljq001hp0ma7x8xdh2t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckfe14m9x001nbsmafy4we4rc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1103,7 +1295,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckf3j7lin0001p0maamcj0vkh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckfe14m8r0003bsma2rn5h9rj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1216,7 +1408,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckf3j7ljw001tp0ma8hgj5rrn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckfe14ma80023bsmaew4u9oyt" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1319,55 +1511,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckf3j7lis0006p0magelt839q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckfe14m950008bsmagh1c1s6o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Android权限" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/22/Android%E6%9D%83%E9%99%90/" class="article-date">
-  <time datetime="2020-07-22T15:41:28.000Z" itemprop="datePublished">2020-07-22</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/Android%E6%9D%83%E9%99%90/">Android权限</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <ul>
-<li>Android 请求网络权限<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">uses-permission</span> <span class="attr">android:name</span>=<span class="string">"android.permission.INTERNET"</span>/&gt;</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/Android%E6%9D%83%E9%99%90/" data-id="ckf3j7lip0003p0ma9xbvc8rb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
 
     </footer>
   </div>
@@ -1411,7 +1558,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 16.67px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 16.67px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 15px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 17.5px;">study</a>
     </div>
   </div>
 
@@ -1433,6 +1580,14 @@
       <ul>
         
           <li>
+            <a href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/">移动端Web开发</a>
           </li>
         
@@ -1441,15 +1596,7 @@
           </li>
         
           <li>
-            <a href="/2020/09/13/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
-          </li>
-        
-          <li>
             <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/">安卓开发学习</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Java包的使用</a>
           </li>
         
       </ul>

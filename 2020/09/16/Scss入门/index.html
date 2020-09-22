@@ -10,12 +10,12 @@
   <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
 <meta property="og:title" content="scss入门">
-<meta property="og:url" content="http://yoursite.com/2020/09/13/Scss%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-13T06:38:12.000Z">
-<meta property="article:modified_time" content="2020-09-13T06:48:08.567Z">
+<meta property="article:published_time" content="2020-09-16T06:38:12.000Z">
+<meta property="article:modified_time" content="2020-09-16T12:46:24.760Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="CSS">
 <meta property="article:tag" content="study">
@@ -71,8 +71,8 @@
       <div class="outer">
         <section id="main"><article id="post-Scss入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/13/Scss%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2020-09-13T06:38:12.000Z" itemprop="datePublished">2020-09-13</time>
+    <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-09-16T06:38:12.000Z" itemprop="datePublished">2020-09-16</time>
 </a>
     
   <div class="article-category">
@@ -242,11 +242,16 @@
 <figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>: <span class="number">100px</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不传参数就会使用默认的值 100px</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入参数就会使用传入的值 200px</span></span><br><span class="line"><span class="selector-class">.avatar-200</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="variable">$size</span>: <span class="number">200px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <hr>
+<div class="title2">五、自定义函数</div>
+
+<hr>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@function</span> psd2px(<span class="variable">$px</span>) &#123;</span><br><span class="line">  @return #&#123;$px / 2&#125;px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="comment">// 假设设计稿上高度是100px，那么函数参数就写100，计算后返回的值就是 50px</span></span><br><span class="line">  <span class="attribute">height</span>: psd2px(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/13/Scss%E5%85%A5%E9%97%A8/" data-id="ckf3j7liv000bp0ma0dgl2yqj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckfe14m9d000ebsma88k9hqf3" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -257,19 +262,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/09/14/CSS%E8%A1%A5%E5%85%85/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          CSS补充.md
+          javascript入门
         
       </div>
     </a>
   
   
-    <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">安卓开发学习</div>
+      <div class="article-nav-title">移动端Web开发</div>
     </a>
   
 </nav>
@@ -305,7 +310,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 16.67px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 16.67px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 15px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 17.5px;">study</a>
     </div>
   </div>
 
@@ -327,6 +332,14 @@
       <ul>
         
           <li>
+            <a href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
+          </li>
+        
+          <li>
             <a href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/">移动端Web开发</a>
           </li>
         
@@ -335,15 +348,7 @@
           </li>
         
           <li>
-            <a href="/2020/09/13/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
-          </li>
-        
-          <li>
             <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/">安卓开发学习</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/">Java包的使用</a>
           </li>
         
       </ul>

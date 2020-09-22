@@ -5,17 +5,17 @@
   
 
   
-  <title>移动端Web开发 | Hexo</title>
+  <title>javascript入门 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端Web开发">
-<meta property="og:url" content="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:title" content="javascript入门">
+<meta property="og:url" content="http://yoursite.com/2020/09/22/javascript%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-15T05:00:04.000Z">
-<meta property="article:modified_time" content="2020-09-16T12:42:21.325Z">
+<meta property="article:published_time" content="2020-09-22T06:28:39.000Z">
+<meta property="article:modified_time" content="2020-09-22T14:03:23.633Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="study">
 <meta name="twitter:card" content="summary">
@@ -67,10 +67,10 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-移动端Web开发" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-javascript入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" class="article-date">
-  <time datetime="2020-09-15T05:00:04.000Z" itemprop="datePublished">2020-09-15</time>
+    <a href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-09-22T06:28:39.000Z" itemprop="datePublished">2020-09-22</time>
 </a>
     
   <div class="article-category">
@@ -85,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      移动端Web开发
+      javascript入门
     </h1>
   
 
@@ -129,74 +129,112 @@
 <div class="name">by pawncs</div>
 
 <hr>
-<div class="title2">一、认识meta </div>
+<div class="title2">一、认识Javascript</div>
 
 <hr>
-<blockquote>
-<p><code>&lt;meta&gt;</code> 在 <code>&lt;head&gt;</code> 标签内</p>
-</blockquote>
-<div class="title3">1.1 meta元素</div>
-
-<blockquote>
-<p>元数据信息：meta-infortion<br>元数据：用来描述数据的数据  </p>
-</blockquote>
-<p><code>&lt;meta&gt;</code> 是一个自闭合元素，只有开始标签，没有结束标签。</p>
-<p>对meta元素进行设置指的是通过标签属性进行设置。</p>
+<p>JavaScript主要由以下三部分组成：</p>
 <ol>
-<li>charset的属性<ul>
-<li>utf-8<br>(UTF-8是HTML5的默认属性，涵盖了世界上几乎所有字符和符号)(没有他，中文就是乱码)</li>
-</ul>
-</li>
-<li>viewport的属性<ul>
-<li>width：viewport的宽度</li>
-<li>height：viewport的高度</li>
-<li>initial-scale：初始的缩放比例</li>
-<li>minimum-scale：允许用户缩放到的最小比例</li>
-<li>maximum-scale：允许用户缩放到的最大比例</li>
-<li>user-scalable:用户是否可以手动缩放</li>
-</ul>
-</li>
+<li>核心（ECMAscript）</li>
+<li>文档对象模型(DOM)</li>
+<li>浏览器对象模型(BOM)</li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 声明文档使用的字符编码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<div class="title3">1.1 核心（ECMAscript）</div>
 
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置移动端视图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- H5页面窗口自动调整到设备宽度，并禁止用户缩放页面 --&gt;</span></span><br></pre></td></tr></table></figure>
-
-<hr>
-<hr>
-<div class="title2">二、认识新单位 rem/em</div>
-
-<hr>
 <blockquote>
-<p>rem 是一个相对长度单位。在不同的环境中，1rem可以转化为不同的px的值。</p>
+<p><code>ECMAScript</code>规定了这门语言的基本组成部分</p>
 </blockquote>
-<div class="title3">2.1 单位rem和px之间的转换</div>
-
-<p>rem和px之间的转换比取决于页根元素(<code>&lt;html&gt;&lt;/html&gt;</code>)的字体大小.1 rem = 根元素的字体大小</p>
-<p>例：浏览器默认字体大小为16px,则2.5rem = 2.5 * 16 px = 40px</p>
-<blockquote>
-<p>一般浏览器默认为16px.最小显示为10px.即设置10px以下的数值一般是没有用的，显示的时候都会按10px显示，除非用到了CSS的transform。</p>
-</blockquote>
-<div class="title3">2.1 单位em</div>
-
-<p>rem是根据根元素的字体大小转换的，em是根据本级元素的字体大小转换的（当本级元素未确定时，根据父元素）</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="comment">// 父元素的字体大小为 20px</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line"></span><br><span class="line">  &gt; <span class="selector-class">.child</span> &#123;</span><br><span class="line">    <span class="comment">// 子元素的字体大小为 0.7 * 20px = 14px</span></span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">0.7em</span>; </span><br><span class="line">    <span class="comment">// 特别注意：子元素的宽度为 10 * 14px = 140px</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10em</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<hr>
-<div class="title2">三、认识新单位 vw/vh</div>
-
-<hr>
+<p>主要由以下部分组成：</p>
 <ul>
-<li>1vw = 1/100 视口宽度 </li>
-<li>1vh = 1/100 视口高度</li>
+<li><p>语法</p>
+</li>
+<li><p>类型</p>
+</li>
+<li><p>语句</p>
+</li>
+<li><p>关键字</p>
+</li>
+<li><p>保留字</p>
+</li>
+<li><p>操作符</p>
+</li>
+<li><p>对象</p>
+</li>
 </ul>
-<div class="title3">3.1 模态框</div>
+<p>有了这些，<code>JavaScript</code>可以完成基本的逻辑以及数据处理。</p>
+<div class="title3">1.2 文档对象模型（DOM）</div>
 
-<p>指页面中弹出的窗口。此时需要给整个视口加上半透明覆盖层。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 将蒙层的宽高设置为视口的宽度和高度</span><br><span class="line"><span class="selector-tag">width</span>: 100<span class="selector-tag">vw</span>;</span><br><span class="line"><span class="selector-tag">height</span>: 100<span class="selector-tag">vh</span>;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>DOM</code>的功能为获取<code>html</code>标签，并对标签进行其他操作（增删样式，添加事件）。</p>
+</blockquote>
+<p>这些功能的实现基于以下接口：</p>
+<ul>
+<li><p>DOM 遍历和范围：<br>可以找到页面中所有标签</p>
+</li>
+<li><p>DOM 事件：<br>可以给标签添加事件（如给图片添加拖动事件）</p>
+</li>
+<li><p>DOM 样式：<br>可以更改页面中所有元素的样式，如更改某一段文字的颜色</p>
+<div class="title3">1.3 浏览器对象模型(BOM)</div>
+
+</li>
+</ul>
+<blockquote>
+<p><code>BOM</code>处理和浏览器相关的东西</p>
+</blockquote>
+<p>如：</p>
+<ul>
+<li><p>弹出新窗口功能</p>
+</li>
+<li><p>移动、缩放、关闭浏览器窗口的功能</p>
+</li>
+<li><p>给用户提供显示器分辨率的功能</p>
+</li>
+<li><p>提供浏览器信息</p>
+</li>
+</ul>
+<div class="title3">1.4 JavaScript的书写位置</div>
+
+<blockquote>
+<p>和<code>css</code>一样，分为<code>HTML</code>内部和外部。</p>
+</blockquote>
+<div class="title4">内部</div>
+
+<p>使用<code>script</code>标签内嵌。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// script标签嵌入JavaScript代码</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">// JavaScript代码</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">let</span> name = <span class="string">"Bob"</span>;</span></span><br><span class="line"><span class="actionscript">    <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="string">"我的名字叫："</span>+name);</span></span><br><span class="line">    &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>这里的规范为：<code>&lt;script&gt;</code>标签的位置位于<code>body</code>标签内部，并保证是末尾。</p>
+</blockquote>
+<p>其实该标签写在哪都可，但是在进行<code>DOM</code>操作时，如果不注意位置，会出现奇怪的报错。</p>
+<div class="title4">外部</div>
+
+<p>代码写在<code>XXX.js</code>文件中，由引入标签引入即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">'index.js'</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>书写位置与内部书写方式一致，即在<code>body</code>标签的内部，但是在末尾</p>
+<hr>
+<hr>
+<div class="title2">二、基础数据类型</div>
+
+<hr>
+<div class="title3">2.1 变量</div>
+
+<p>在<code>JavaScript</code>中定义变量的关键词有两个：<code>let</code> , <code>const</code>。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> name = <span class="string">'Will Smith'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(name);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>曾经也有关键词 <code>var</code>， 但其会导致未知的错误，因此已经不常用了</p>
+</blockquote>
+<div class="title4">let 和 const 的异同</div>
+
+<ul>
+<li>const定义的变量只能赋值一次，let定义的变量可以多次赋值</li>
+<li>const定义的变量需要赋值，否则会报错；let定义的变量可以不赋初始值（默认为<code>undefined</code>）。</li>
+</ul>
+<hr>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckfe14ma90027bsmah6cj1zo2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/22/javascript%E5%85%A5%E9%97%A8/" data-id="ckfe14m9a000bbsma15fk3tmp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -207,19 +245,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          scss入门
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/09/14/CSS%E8%A1%A5%E5%85%85/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CSS补充.md</div>
+      <div class="article-nav-title">scss入门</div>
     </a>
   
 </nav>
