@@ -66,8 +66,8 @@
   
     <article id="post-javascript入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2020-09-22T06:28:39.000Z" itemprop="datePublished">2020-09-22</time>
+    <a href="/2020/09/25/javascript%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-09-24T16:33:11.000Z" itemprop="datePublished">2020-09-25</time>
 </a>
     
   <div class="article-category">
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+      <a class="article-title" href="/2020/09/25/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
     </h1>
   
 
@@ -238,14 +238,47 @@
 <div class="title4">浮点数</div>
 
 <p>小数形式，科学计数法形式</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> floatNumber = <span class="number">1.2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> floatNumber = <span class="number">3.33e7</span>;<span class="comment">//3.33*10^7</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> floatNumber1 = <span class="number">1.2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> floatNumber2 = <span class="number">3.33e7</span>;<span class="comment">//3.33*10^7</span></span><br></pre></td></tr></table></figure>
+<p>浮点数最高精度为17位。但要注意其精度丢失的问题。（0.1 + 0.2 != 0.3）</p>
+<div class="title4">NaN</div>
 
+<p>当两个变量执行了运算，且返回的结果仍然应该是数字类型，但是执行的数学运算未成功，就会返回<code>NaN</code>.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="string">'number'</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line"><span class="keyword">let</span> c = a / b;</span><br><span class="line"><span class="built_in">console</span>.log(c); <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> c); <span class="comment">// number</span></span><br></pre></td></tr></table></figure>
+
+<p>其他会出现<code>NaN</code>的情况:</p>
+<ul>
+<li>0/0</li>
+<li>字符串乘以数字</li>
+<li><code>NaN</code>和其他数进行运算<div class="title3">2.3 类型转换/字符串拼接</div>
+<div class="title4">隐式转换</div>
+
+</li>
+</ul>
+<p>数字字符串(<code>string</code>)和数字(<code>number</code>)做加法运算，数字会隐式转换为字符串<br>数字字符串和数字做非加法运算，字符串会隐式转换为数字</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(<span class="number">20</span>+<span class="string">'20'</span>); <span class="comment">// 2020</span></span><br><span class="line"><span class="comment">// 调换位置亦可</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'20'</span>+<span class="number">20</span>); <span class="comment">// 2020</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'20'</span><span class="number">-10</span>); <span class="comment">// 10</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">10</span>*<span class="string">'10'</span>); <span class="comment">// 100</span></span><br><span class="line"><span class="built_in">console</span>.log(<span class="number">10</span>/<span class="string">'2'</span>); <span class="comment">// 5</span></span><br></pre></td></tr></table></figure>
+<div class="title4">强制类型转换</div>
+
+<p><code>parseInt()</code>,<code>parseFloat()</code></p>
+<div class="title4">字符串拼接</div>
+
+<p>用+号。不过我个人更喜欢模板字符串。即使用反引号<code>``</code>将${}括起来这种。</p>
+<div class="title3">2.4 运算符</div>
+<div class="title4">相等/全等</div>
+
+<p>区别：相等运算时可能会进行隐式转换</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> number1 = <span class="string">'45'</span>;</span><br><span class="line"><span class="keyword">let</span> number2 = <span class="number">45</span>;</span><br><span class="line"><span class="built_in">console</span>.log(number1 == number2); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>而全等运算会判断类型</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> number1 = <span class="string">'45'</span>;</span><br><span class="line"><span class="keyword">let</span> number2 = <span class="number">45</span>;</span><br><span class="line"><span class="built_in">console</span>.log(number1 === number2); <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>推荐使用全等。</p>
+<div class="title3">2.5、布尔类型/条件判断</div>
+
+<p>特别：<br>| 数据类型 | true | false |<br>| :—-: | :—-: | :—-: |<br>| 字符串 | 非空字符串 | “”(空字符串) |<br>| 数字 | 非零数字 | 0 |</p>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/22/javascript%E5%85%A5%E9%97%A8/" data-id="ckff6ed1o000sv0ma2ueleqwb" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/25/javascript%E5%85%A5%E9%97%A8/" data-id="ckfh1dq520014voma0k16fdf4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -439,7 +472,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckff6ed170003v0madv5857ql" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckfh1dq2y000bvoma7ip95jsd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -580,7 +613,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckff6ed1v0016v0mabrld35j7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckfh1dq6a001pvoma9d872nfx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -747,7 +780,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckff6ed1f000bv0mae1w74i93" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckfh1dq2p0006voma7aze8o9j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1104,7 +1137,8 @@
 <ul>
 <li><p>显式跳转和隐式跳转<br>显式：<code>Intent intent = new Intent(this,Activity.class)</code><br>隐式：在注册的xml里仿照初始界面。action改为<code>com.skypan.test.Activity</code>(随便写).然后intent写<code>setAction(string)</code></p>
 </li>
-<li><p>Activity之间的数据传递<br>``</p>
+<li><p>Activity之间的数据传递  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//activity1</span></span><br><span class="line"><span class="comment">// 将两个参数放进去 此处只能放对象</span></span><br><span class="line">intent.putExtra(<span class="string">"value1"</span>, <span class="string">"100"</span>);</span><br><span class="line">intent.putExtra(<span class="string">"value2"</span>, <span class="string">"200"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//activity2</span></span><br><span class="line"><span class="comment">// 接收传递过来的Intent对象</span></span><br><span class="line">Intent intent = getIntent();</span><br><span class="line"><span class="comment">// 接收内部的参数</span></span><br><span class="line">String value1 = intent.getStringExtra(<span class="string">"value1"</span>);</span><br><span class="line">String value2 = intent.getStringExtra(<span class="string">"value2"</span>);</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>startActivityForResult：启动Activity，结束后返回结果</p>
 </li>
@@ -1128,7 +1162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckff6ed1u0013v0machz96l5r" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckfh1dq65001lvoma3a2378wf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1171,7 +1205,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckff6ed190005v0mah67f3kew" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckfh1dq2m0005vomaemdhchxv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1214,7 +1248,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckff6ed1q000wv0maaxiw4drx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckfh1dq5x001gvomabz5v28cc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1309,7 +1343,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckff6ed1b0006v0ma94kt1ap5" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckfh1dq2h0003voma6by174mm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1422,7 +1456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckff6ed2b002bv0ma6zmdgfzy" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckfh1dq7i0025voma3y3v0iju" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1525,7 +1559,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckff6ed1d0008v0mag02e34z0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckfh1dq2t0008voma03iodcba" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1594,7 +1628,7 @@
       <ul>
         
           <li>
-            <a href="/2020/09/22/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+            <a href="/2020/09/25/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
           </li>
         
           <li>
