@@ -66,8 +66,8 @@
   
     <article id="post-javascript入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/25/javascript%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2020-09-24T16:33:11.000Z" itemprop="datePublished">2020-09-25</time>
+    <a href="/2020/09/26/javascript%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-09-25T16:33:11.000Z" itemprop="datePublished">2020-09-26</time>
 </a>
     
   <div class="article-category">
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+      <a class="article-title" href="/2020/09/26/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
     </h1>
   
 
@@ -274,11 +274,28 @@
 
 <p>特别：<br>| 数据类型 | true | false |<br>| :—-: | :—-: | :—-: |<br>| 字符串 | 非空字符串 | “”(空字符串) |<br>| 数字 | 非零数字 | 0 |</p>
 <hr>
+<hr>
+<div class="title2">三、数组</div>
+
+<hr>
+<p>用<code>[]</code>表示，可以储存不同类型的数据。<br>其他和Java，C等差不多，此处略。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> arr = [<span class="number">1</span>,<span class="string">'第一名'</span>,<span class="literal">true</span>,[<span class="number">2</span>,<span class="string">'第二名'</span>,<span class="literal">false</span>]];</span><br></pre></td></tr></table></figure>
+<div class="title3">3.1 增删改查</div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//增-push</span></span><br><span class="line">变量名.push(<span class="string">'要添加的值'</span>);</span><br><span class="line"><span class="comment">//一次多个</span></span><br><span class="line">schools.push(<span class="string">'河海大学'</span>, <span class="string">'大连理工大学'</span>, <span class="string">'哈尔滨工业大学'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//增加在开头 -unshift</span></span><br><span class="line">array.unshift(<span class="string">`待增加元素`</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//从后往前删 pop</span></span><br><span class="line">schools.pop();</span><br><span class="line"></span><br><span class="line"><span class="comment">//从前往后删 shift</span></span><br><span class="line">schools.shift();</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除指定位置 splice</span></span><br><span class="line"><span class="comment">//我更愿意理解为分割，返回从第一个参数为下标往后数第二个参数为个数的所有内容。</span></span><br><span class="line">school.splice(<span class="number">1</span>);</span><br><span class="line">school.splice(<span class="number">0</span>,<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//改 splice</span></span><br><span class="line"><span class="comment">//三个参数，第三个为替换为的内容</span></span><br><span class="line"><span class="keyword">let</span> schools = [<span class="string">'清华大学'</span>, <span class="string">'北京大学'</span>, <span class="string">'浙江大学'</span>, <span class="string">'同济大学'</span>];</span><br><span class="line"></span><br><span class="line">schools.splice(<span class="number">2</span>, <span class="number">0</span>, <span class="string">'江西理工大学'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(schools); <span class="comment">//  ["清华大学", "北京大学", "江西理工大学", "浙江大学", "同济大学"]</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//查 indexOf()</span></span><br><span class="line"><span class="comment">//第一个参数为寻找的内容，第二个参数为开始的下标，默认为0.返回找到的下标，-1表示未寻得。</span></span><br><span class="line"><span class="keyword">let</span> schools = [<span class="string">'清华大学'</span>, <span class="string">'北京大学'</span>, <span class="string">'浙江大学'</span>, <span class="string">'同济大学'</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> result = schools.indexOf(<span class="string">'浙江大学'</span>, <span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(result); <span class="comment">// -1</span></span><br></pre></td></tr></table></figure>
+
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/25/javascript%E5%85%A5%E9%97%A8/" data-id="ckfh1dq520014voma0k16fdf4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/26/javascript%E5%85%A5%E9%97%A8/" data-id="ckfih92a9000dbcma5hpi300h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -472,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckfh1dq2y000bvoma7ip95jsd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckfih92ac000jbcmaezzxac1f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -613,7 +630,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckfh1dq6a001pvoma9d872nfx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckfih92b5002ebcma7c64heqj" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -780,7 +797,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckfh1dq2p0006voma7aze8o9j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckfih92a7000abcma7ny885bg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1162,7 +1179,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckfh1dq65001lvoma3a2378wf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckfih92am0016bcma4x2k7toh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1205,7 +1222,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckfh1dq2m0005vomaemdhchxv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckfih92a30005bcmadkgp28xk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1248,7 +1265,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckfh1dq5x001gvomabz5v28cc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckfih92ai000wbcma5bukeybr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1343,7 +1360,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckfh1dq2h0003voma6by174mm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckfih92a50007bcma2z3m1l9j" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1456,7 +1473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckfh1dq7i0025voma3y3v0iju" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckfih92b10027bcmackwcfkgf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1559,7 +1576,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckfh1dq2t0008voma03iodcba" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckfih92ab000gbcma4qkc86p4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1586,7 +1603,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css-js/">html,css,js</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/diary/">diary</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/html-css-js/">html,css,js</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/linux/">linux</a></li></ul>
     </div>
   </div>
 
@@ -1628,7 +1645,7 @@
       <ul>
         
           <li>
-            <a href="/2020/09/25/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+            <a href="/2020/09/26/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
           </li>
         
           <li>
