@@ -10,12 +10,12 @@
   <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
 <meta property="og:title" content="javascript入门">
-<meta property="og:url" content="http://yoursite.com/2020/10/01/javascript%E5%85%A5%E9%97%A8/index.html">
+<meta property="og:url" content="http://yoursite.com/2020/10/02/javascript%E5%85%A5%E9%97%A8/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-10-01T15:33:11.000Z">
-<meta property="article:modified_time" content="2020-10-01T17:12:19.576Z">
+<meta property="article:published_time" content="2020-10-02T15:33:11.000Z">
+<meta property="article:modified_time" content="2020-10-02T16:23:39.511Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="study">
 <meta name="twitter:card" content="summary">
@@ -69,8 +69,8 @@
       <div class="outer">
         <section id="main"><article id="post-javascript入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/10/01/javascript%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2020-10-01T15:33:11.000Z" itemprop="datePublished">2020-10-01</time>
+    <a href="/2020/10/02/javascript%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-10-02T15:33:11.000Z" itemprop="datePublished">2020-10-02</time>
 </a>
     
   <div class="article-category">
@@ -418,11 +418,61 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> dt = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">dt.getTime(); <span class="comment">// 返回实例距离1970年1月1日00:00:00的毫秒数。</span></span><br><span class="line">dt.getDate(); <span class="comment">// 返回实例对象对应每个月的几号（从1开始）。</span></span><br><span class="line">dt.getDay(); <span class="comment">// 返回星期几，星期日为0，星期一为1，以此类推。</span></span><br><span class="line">dt.getFullYear(); <span class="comment">// 返回四位的年份。</span></span><br><span class="line">dt.getMonth(); <span class="comment">// 返回月份（0表示1月，11表示12月）。</span></span><br><span class="line">dt.getHours(); <span class="comment">// 返回小时（0-23）。</span></span><br><span class="line">dt.getMilliseconds(); <span class="comment">// 返回毫秒（0-999）。</span></span><br><span class="line">dt.getMinutes(); <span class="comment">// 返回分钟（0-59）。</span></span><br><span class="line">dt.getSeconds(); <span class="comment">// 返回秒（0-59）。</span></span><br></pre></td></tr></table></figure>
 <p>以上部分也可通过set方法设置<br><strong>注意月份</strong></p>
 <hr>
+<div class="title2">六、BOM</div>
+
+<hr>
+<blockquote>
+<p>和浏览器有关的对象，我们叫<strong>浏览器对象模型（Browser Object Model）</strong></p>
+</blockquote>
+<div class="title4">BOM对象</div>
+
+<ul>
+<li>window(窗口)：window是整个网页的框架，装载网页的内容</li>
+<li>navigator（浏览器）：存储浏览器相关信息</li>
+<li>history（历史）：用来存储网页栈（前进后退）</li>
+<li>screen（显示屏幕）：显示屏幕的信息（硬件信息）</li>
+<li>Location（地址）：当前访问的地址（网址）信息</li>
+</ul>
+<div class="title3">6.1 window</div>
+
+<blockquote>
+<p>window对象是浏览器的默认对象，可以隐式调用window对象的属性和方法</p>
+</blockquote>
+<p>例如<code>console.log()</code>,我们不需要写<code>window.console.log()</code></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window" target="_blank" rel="noopener">MDN文档—Window</a></p>
+<div class="title3">6.2 Location</div>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Location" target="_blank" rel="noopener">MDN文档—Location</a><br>|属性|值|解释|<br>|:–|:–|:–|<br>|href|<a href="https://developer.mozilla.org/zh-CN/search?q=123|网页的地址|" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/search?q=123|网页的地址|</a><br>|hostname|developer.mozilla.org|网页域名|<br>|host|developer.mozilla.org|网页域名 + 端口信息，这里端口默认80省略，所以和hostname相同|<br>|protocol|https:|代表协议信息|<br>|origin|<a href="https://developer.mozilla.org|页面来源的域名的标准形式|" target="_blank" rel="noopener">https://developer.mozilla.org|页面来源的域名的标准形式|</a><br>|pathname|/zh-CN/search|包含url路径部分|<br>|search|?q=123|URL参数|</p>
+<div class="title4">Location方法</div>
+
+<p>只需重点掌握一个 : <code>reload()</code></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">window</span>.location.reload();</span><br><span class="line">&#125;, <span class="number">3000</span>);</span><br></pre></td></tr></table></figure>
+<p>刷新页面</p>
+<div class="title4">跳转到新的地址</div>
+
+<p><code>window.location = &#39;https://www.youkeda.com&#39;;</code><br>直接赋值即可。</p>
+<div class="title3">6.3 History</div>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/History" target="_blank" rel="noopener">MDN文档—History</a></p>
+<blockquote>
+<p>存储窗口的历史记录</p>
+</blockquote>
+<p>两个方法：<code>back()</code>和<code>forward()</code><br>分别对应返回和前进按钮。</p>
+<div class="title3">6.4 Navifator</div>
+
+<blockquote>
+<p>表示用户代理的状态和标识，也即浏览器的基本信息。</p>
+</blockquote>
+<p>了解一个属性：<code>userAgent</code>，当前浏览器的用户代理</p>
+<div class="title3">6.4 screen</div>
+
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Screen" target="_blank" rel="noopener">MDN文档——screen</a></p>
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/01/javascript%E5%85%A5%E9%97%A8/" data-id="ckfr2tym6000pi8ma3s2damyl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/02/javascript%E5%85%A5%E9%97%A8/" data-id="ckfsgjb8h0014i8madd7uamrk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -494,7 +544,7 @@
       <ul>
         
           <li>
-            <a href="/2020/10/01/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+            <a href="/2020/10/02/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
           </li>
         
           <li>
