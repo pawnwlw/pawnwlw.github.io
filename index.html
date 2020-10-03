@@ -66,8 +66,8 @@
   
     <article id="post-javascript入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/10/02/javascript%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2020-10-02T15:33:11.000Z" itemprop="datePublished">2020-10-02</time>
+    <a href="/2020/10/03/javascript%E5%85%A5%E9%97%A8/" class="article-date">
+  <time datetime="2020-10-03T14:23:11.000Z" itemprop="datePublished">2020-10-03</time>
 </a>
     
   <div class="article-category">
@@ -82,7 +82,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/02/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+      <a class="article-title" href="/2020/10/03/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
     </h1>
   
 
@@ -465,11 +465,111 @@
 
 <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Screen" target="_blank" rel="noopener">MDN文档——screen</a></p>
 <hr>
+<hr>
+<div class="title2">七、DOM</div>
+
+<hr>
+<blockquote>
+<p>是整个Javascript甚至整个前端最核心的内容</p>
+</blockquote>
+<blockquote>
+<p><strong>文档对象模型</strong>，Document Object Model ——DOM。可以将 <code>web页面</code> 和 <code>脚本或编程语言联系起来</code> 。</p>
+</blockquote>
+<p>DOM是一种规范，只要遵循这种规范，任何语言都可以与web页面（文档）（由HTML和CSS绘制）联系起来</p>
+<div class="title4">DOM 映射</div>
+
+<p>DOM树：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  DOCUMENT</span><br><span class="line">     |</span><br><span class="line">    HTML</span><br><span class="line">   &#x2F;    \</span><br><span class="line"> HEAD   BODY</span><br><span class="line">  |      |</span><br><span class="line">TITLE   DIV</span><br><span class="line">       &#x2F;   \</span><br><span class="line">      H1    P</span><br></pre></td></tr></table></figure>
+<p>其中DOCUMENT就是根节点，每个HTML标签就是DOM节点，称为<code>Node</code>或者<code>Element</code></p>
+<div class="title3">7.1 访问DOM</div>
+
+<p>获取document对象：<code>window.document</code></p>
+<div class="title4">选择器查询</div>
+
+<p><code>document.querySelector(&#39;.class&#39;)</code></p>
+<p>迭代查询：即在document的某个后代节点上查询</p>
+<p><code>class = document.querySelector(&#39;.class&#39;);class2 = class.quertSelector(&#39;.class2&#39;)</code></p>
+<p>这里主要关注的是子节点和document一样都是DOM树上的节点就可。</p>
+<p>以上是返回查询到的第一个节点，如果要查询所有节点，则函数换为 <code>querySelectorAll</code> .返回<code>NodeList</code>对象，可以像数组一样访问。(我猜大概是用了对象的中括号运算符， <code>class[&#39;key&#39;]</code> 这样)</p>
+<p>和原生的DOM查询函数的区别：query类的函数返回的是拷贝的原始数据，getElementById等getElement类（原生查询函数）的函数返回的就是原始数据，会随着DOM节点的变化而变化。</p>
+<div class="title3">7.2 DOM属性</div>
+
+<div class = 'title4'>DOM类别</div>
+
+<p>若有代码如下：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>123<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"test"</span>&gt;</span>123<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">let</span> divDom = <span class="built_in">document</span>.querySelector(<span class="string">'div#test'</span>);</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(divDom.nodeType, divDom.nodeName, divDom.nodeValue);</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(<span class="string">'---------'</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">let</span> txtDom = divDom.firstChild;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(txtDom.nodeType, txtDom.nodeName, txtDom.nodeValue);</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(<span class="string">'---------'</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript"><span class="keyword">let</span> attDom = divDom.attributes.id;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(attDom.nodeType, attDom.nodeName, attDom.nodeValue);</span></span><br><span class="line"></span><br><span class="line">  <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th align="left">节点</th>
+<th align="left">nodeType</th>
+<th align="left">nodeName</th>
+<th align="left">nodeValue</th>
+<th align="left">类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">divDom</td>
+<td align="left">1</td>
+<td align="left">DIV</td>
+<td align="left">null</td>
+<td align="left">元素节点</td>
+</tr>
+<tr>
+<td align="left">txtDom</td>
+<td align="left">3</td>
+<td align="left">#text</td>
+<td align="left">123</td>
+<td align="left">文本节点</td>
+</tr>
+<tr>
+<td align="left">attDom</td>
+<td align="left">2</td>
+<td align="left">id</td>
+<td align="left">test</td>
+<td align="left">特性节点</td>
+</tr>
+</tbody></table>
+<p>总结：</p>
+<ol>
+<li>无论是标签还是属性还是字符串都是<code>Element</code>，不同的地方在于nodeType为1，2，3.</li>
+<li>HTML标签都是 元素节点 。<code>nodeName</code>表示标签名称。</li>
+<li>纯文本都是 文本节点，<code>nodeValue</code>表示文本内容。</li>
+<li>标签的属性都是特性节点，<code>nodeName</code> 表示key,<code>nodeName</code>表示属性value.</li>
+<li><code>attributes</code>可以获取元素节点所有属性，返回的是一个字典。（Map）.</li>
+</ol>
+<div class = 'title4'>DOM内容</div>
+
+<p>可以通过元素节点的属性获得。</p>
+<ul>
+<li>outerHTML<br>  整个DOM的HTML代码</li>
+<li>innerHTML<br>DOM内部HTML代码</li>
+<li>innerText<br>DOM内部纯文本内容</li>
+</ul>
+<div class = 'title4'>DOM亲属</div>
+
+<p>节点的firstChild,lastChild，childNodes,parentNode等属性，用以获取子节点。</p>
+<div class = 'title4'>DOM样式</div>
+
+<p>可以通过节点的classList属性获取其所有类名，style属性获取其CSSStyle.</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> h1Dom = <span class="built_in">document</span>.querySelector(<span class="string">'h1'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(h1Dom.classList);</span><br><span class="line"><span class="built_in">console</span>.log(h1Dom.style);</span><br><span class="line"><span class="built_in">console</span>.log(h1Dom.style.color);</span><br></pre></td></tr></table></figure>
+<div class = 'title4'>DOM数据属性*</div>
+
+<p>标签可以通过 <code>data-*</code> 属性存储数据。在节点中可以通过 <code>dataset</code> 属性获取关于<code>*</code>的键值对。<br>若<code>&lt;div data-qqq = &quot;123&quot;/&gt;</code>则 <code>divDom.dataset.qqq === &quot;123&quot;;//true</code></p>
+<div class = 'title3'>7.3 DOM 操作</div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建标签节点</span></span><br><span class="line"><span class="keyword">let</span> a = <span class="built_in">document</span>.createElement(tagName);</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加子节点</span></span><br><span class="line"><span class="built_in">document</span>.body.appendChild(a);</span><br></pre></td></tr></table></figure>
+<p>如果想在某个目标子节点之前添加，可以使用<code>insertBefore(newNode,referenceNode)</code>方法。</p>
+<div class = 'title4'>设置属性和样式</div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.setAttribute,可以设置所有属性</span></span><br><span class="line">img.setAttribute(<span class="string">'style'</span>, <span class="string">'width: 100%; height: 100%;'</span>);</span><br><span class="line"><span class="comment">//2.这个可以单独替换某个样式</span></span><br><span class="line">dom.style.color = <span class="string">'xxxx'</span>;</span><br><span class="line"><span class="comment">//3.或者可以给不同的class设置不同的样式，这里单纯操作classList就可以了</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * https://developer.mozilla.org/zh-CN/docs/Web/API/Element/classList</span></span><br><span class="line"><span class="comment"> * classList的基础操作。</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/02/javascript%E5%85%A5%E9%97%A8/" data-id="ckfsgjb8h0014i8madd7uamrk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckftrwob7000elsmaa5s9a9vl" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -663,7 +763,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckfsgjb7v0008i8ma6mvkep9c" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckftrwoaw0005lsma0bhu70k0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -804,7 +904,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckfsgjb990021i8madldh7b7a" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckftrwodf0028lsma71lu6epp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -971,7 +1071,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckfsgjb7t0006i8macoht1819" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckftrwoar0003lsmadt2y3pn7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1353,7 +1453,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckfsgjb8x001oi8mackuig2ay" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckftrwoct001plsmadi65cvs4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1396,7 +1496,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckfsgjb7s0005i8magsh16taf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckftrwob5000blsmafcjsdc7m" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1439,7 +1539,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckfsgjb8t001gi8ma4kb14gkt" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckftrwocn001jlsma1sx072ll" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1534,7 +1634,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckfsgjb7r0003i8mafl718zu2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckftrwoay0006lsmae0qe5ifs" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1647,7 +1747,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckfsgjb9h002ai8mafnj0gotn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckftrwod1001xlsmadjee5tg1" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1750,7 +1850,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckfsgjb7w000bi8ma72qw4meg" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckftrwob10008lsma22s012m6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1819,7 +1919,7 @@
       <ul>
         
           <li>
-            <a href="/2020/10/02/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
+            <a href="/2020/10/03/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
           </li>
         
           <li>
