@@ -5,19 +5,20 @@
   
 
   
-  <title>移动端Web开发 | Hexo</title>
+  <title>服务器简单操作MongoDB | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
-<meta property="og:title" content="移动端Web开发">
-<meta property="og:url" content="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:title" content="服务器简单操作MongoDB">
+<meta property="og:url" content="http://yoursite.com/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-09-15T05:00:04.000Z">
-<meta property="article:modified_time" content="2020-09-16T12:42:21.325Z">
+<meta property="article:published_time" content="2020-10-13T13:14:34.000Z">
+<meta property="article:modified_time" content="2020-10-13T14:00:41.522Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="study">
+<meta property="article:tag" content="dictionary">
+<meta property="article:tag" content="MongoDB">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -67,14 +68,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-移动端Web开发" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-服务器简单操作MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" class="article-date">
-  <time datetime="2020-09-15T05:00:04.000Z" itemprop="datePublished">2020-09-15</time>
+    <a href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" class="article-date">
+  <time datetime="2020-10-13T13:14:34.000Z" itemprop="datePublished">2020-10-13</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/html-css-js/">html,css,js</a>
+    <a class="article-category-link" href="/categories/linux/">linux</a>
   </div>
 
   </div>
@@ -85,7 +86,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      移动端Web开发
+      服务器简单操作MongoDB
     </h1>
   
 
@@ -128,78 +129,90 @@
 
 <div class="name">by pawncs</div>
 
+<p>首先登陆自己的系统，不提。</p>
 <hr>
-<div class="title2">一、认识meta </div>
+<div class="title2">一、安装</div>
 
 <hr>
+<div class="title3">1.1 安装Docker</div>
+
+<p>用Docker安装MongDB，比较自动，方便。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y update</span><br><span class="line">sudo yum -y install epel-release</span><br><span class="line">sudo yum -y install docker-io</span><br></pre></td></tr></table></figure>
+<p>分别更新系统所有包，安装扩展包，安装docker.注意不能写install docker.<br>使用root账号可去除sudo.</p>
+<div class="title3">1.1 安装MongoDB</div>
+
+<div class="title4">启动Docker</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br><span class="line">sudo docker version</span><br></pre></td></tr></table></figure>
+
+<div class="title4">安装MongoDB并启动</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mongo:latest</span><br><span class="line">sudo docker images</span><br><span class="line"></span><br><span class="line">sudo docker run -itd --name mongo -p 27017:27017 mongo --auth</span><br></pre></td></tr></table></figure>
+<p>前两行安装，后一行启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p><code>&lt;meta&gt;</code> 在 <code>&lt;head&gt;</code> 标签内</p>
+<p>检查是否启动成功</p>
 </blockquote>
-<div class="title3">1.1 meta元素</div>
+<p>MongoDB默认端口号为27017</p>
+<hr>
+<hr>
+<div class="title2">二、创建账户</div>
 
+<hr>
+<div class="title3">2.1 登录</div>
+
+<div class="title4">登录数据库</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mongo mongo admin</span><br></pre></td></tr></table></figure>
+<p>该命令为登入MongDB软件控制台，出现 <code>&gt;</code> 后，后面可以输入数据库操作命令了</p>
+<div class="title4">创建管理员账户</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; user:&#39;admin&#39;,pwd:&#39;123456&#39;,roles:[ &#123; role:&#39;root&#39;, db: &#39;admin&#39;&#125;]&#125;);</span><br><span class="line">db.auth(&#39;admin&#39;, &#39;123456&#39;)</span><br></pre></td></tr></table></figure>
+<p>创建完admin账户后，才可以继续创建数据库步骤</p>
 <blockquote>
-<p>元数据信息：meta-infortion<br>元数据：用来描述数据的数据  </p>
+<p>注意，管理员账户不能读写数据库。管理员是数据库软件MongoDB的管理员，只有软件的实例————数据库的用户可以读写数据库</p>
 </blockquote>
-<p><code>&lt;meta&gt;</code> 是一个自闭合元素，只有开始标签，没有结束标签。</p>
-<p>对meta元素进行设置指的是通过标签属性进行设置。</p>
-<ol>
-<li>charset的属性<ul>
-<li>utf-8<br>(UTF-8是HTML5的默认属性，涵盖了世界上几乎所有字符和符号)(没有他，中文就是乱码)</li>
-</ul>
-</li>
-<li>viewport的属性<ul>
-<li>width：viewport的宽度</li>
-<li>height：viewport的高度</li>
-<li>initial-scale：初始的缩放比例</li>
-<li>minimum-scale：允许用户缩放到的最小比例</li>
-<li>maximum-scale：允许用户缩放到的最大比例</li>
-<li>user-scalable:用户是否可以手动缩放</li>
-</ul>
-</li>
-</ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 声明文档使用的字符编码 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<hr>
+<div class="title2">三、创建数据库实例</div>
 
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 设置移动端视图 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"</span> /&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- H5页面窗口自动调整到设备宽度，并禁止用户缩放页面 --&gt;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<p>均需在MongoDB登录状态下执行</p>
+<div class="title3">3.1 切换数据库</div>
+
+<p><code>use</code>是创建并切换到指定数据库的意思，若已存在就直接切换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use practice</span><br></pre></td></tr></table></figure>
+
+<div class="title3">3.2 创建读写用户</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; user:&#39;xxxx&#39;,pwd:&#39;xxxxxx&#39;,roles:[&#123; role:&#39;root&#39;, db: &#39;admin&#39;&#125;,&#123; role:&#39;dbAdmin&#39;, db: &#39;practice&#39;&#125;]&#125;);</span><br></pre></td></tr></table></figure>
+
+<div class="title4">验证</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&#39;xxxx&#39;, &#39;xxxxxx&#39;)</span><br></pre></td></tr></table></figure>
+<p>返回1代表成功了。</p>
+<hr>
+<hr>
+<div class="title2">四、退出登录</div>
+-----
+退出MongoDB
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
 
 <hr>
 <hr>
-<div class="title2">二、认识新单位 rem/em</div>
+<div class="title2">附录</div>
+-----
+需记住MongoDB的端口号，数据库名，数据库的用户名和密码。
 
 <hr>
-<blockquote>
-<p>rem 是一个相对长度单位。在不同的环境中，1rem可以转化为不同的px的值。</p>
-</blockquote>
-<div class="title3">2.1 单位rem和px之间的转换</div>
 
-<p>rem和px之间的转换比取决于页根元素(<code>&lt;html&gt;&lt;/html&gt;</code>)的字体大小.1 rem = 根元素的字体大小</p>
-<p>例：浏览器默认字体大小为16px,则2.5rem = 2.5 * 16 px = 40px</p>
-<blockquote>
-<p>一般浏览器默认为16px.最小显示为10px.即设置10px以下的数值一般是没有用的，显示的时候都会按10px显示，除非用到了CSS的transform。</p>
-</blockquote>
-<div class="title3">2.1 单位em</div>
-
-<p>rem是根据根元素的字体大小转换的，em是根据本级元素的字体大小转换的（当本级元素未确定时，根据父元素）</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.parent</span> &#123;</span><br><span class="line">  <span class="comment">// 父元素的字体大小为 20px</span></span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">20px</span>;</span><br><span class="line"></span><br><span class="line">  &gt; <span class="selector-class">.child</span> &#123;</span><br><span class="line">    <span class="comment">// 子元素的字体大小为 0.7 * 20px = 14px</span></span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">0.7em</span>; </span><br><span class="line">    <span class="comment">// 特别注意：子元素的宽度为 10 * 14px = 140px</span></span><br><span class="line">    <span class="attribute">width</span>: <span class="number">10em</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<hr>
-<div class="title2">三、认识新单位 vw/vh</div>
-
-<hr>
-<ul>
-<li>1vw = 1/100 视口宽度 </li>
-<li>1vh = 1/100 视口高度</li>
-</ul>
-<div class="title3">3.1 模态框</div>
-
-<p>指页面中弹出的窗口。此时需要给整个视口加上半透明覆盖层。</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// 将蒙层的宽高设置为视口的宽度和高度</span><br><span class="line"><span class="selector-tag">width</span>: 100<span class="selector-tag">vw</span>;</span><br><span class="line"><span class="selector-tag">height</span>: 100<span class="selector-tag">vh</span>;</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckg819thh001mzgma72ox635h" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckg819tha0014zgmahtu5f6k5" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
 
     </footer>
   </div>
@@ -207,19 +220,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          scss入门
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/09/14/CSS%E8%A1%A5%E5%85%85/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/10/03/javascript%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">CSS补充.md</div>
+      <div class="article-nav-title">javascript入门</div>
     </a>
   
 </nav>

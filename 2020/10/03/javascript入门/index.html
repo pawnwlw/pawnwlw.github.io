@@ -15,7 +15,7 @@
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-10-03T14:23:11.000Z">
-<meta property="article:modified_time" content="2020-10-03T14:29:42.080Z">
+<meta property="article:modified_time" content="2020-10-08T15:42:08.737Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="study">
 <meta name="twitter:card" content="summary">
@@ -568,11 +568,58 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.setAttribute,可以设置所有属性</span></span><br><span class="line">img.setAttribute(<span class="string">'style'</span>, <span class="string">'width: 100%; height: 100%;'</span>);</span><br><span class="line"><span class="comment">//2.这个可以单独替换某个样式</span></span><br><span class="line">dom.style.color = <span class="string">'xxxx'</span>;</span><br><span class="line"><span class="comment">//3.或者可以给不同的class设置不同的样式，这里单纯操作classList就可以了</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * https://developer.mozilla.org/zh-CN/docs/Web/API/Element/classList</span></span><br><span class="line"><span class="comment"> * classList的基础操作。</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
 <hr>
+<hr>
+<div class="title2">八、DOM事件</div>
+
+<hr>
+<p>有关<code>MouseEvent</code>的一些属性<br>|属性|解释|<br>|:-|:-|:-|<br>|target|点击事件触发的Dom节点|<br>|type|事件名称|<br>|pageX/pageY|鼠标事件触发的页面坐标|</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Events" target="_blank" rel="noopener">事件文档</a><br>注意事件：冒泡，捕获，委托。</p>
+<p>阻止冒泡</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ......省略</span></span><br><span class="line">likeBtn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 点击事件</span></span><br><span class="line">  e.stopPropagation()</span><br><span class="line"></span><br><span class="line"><span class="comment">// ......省略</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<div class="title2">九、网络请求</div>
+
+<hr>
+<div class="title4">URL格式说明</div>
+
+<ul>
+<li>协议与域名间以<code>://</code>分隔。</li>
+<li>路径（path）以单斜杠<code>/</code>分隔。<ul>
+<li>windows的文件夹分隔符为<code>\</code>。</li>
+</ul>
+</li>
+<li>参数<ul>
+<li>路径与参数之间用<code>?</code>分隔。</li>
+<li>多个参数用<code>&amp;</code>分隔</li>
+<li>参数用参数名=参数值(<code>key=value</code>)的格式表示。</li>
+</ul>
+</li>
+</ul>
+<div class="title3">9.1 API + GET + POST</div>
+
+<div class="title4">API</div>
+
+<blockquote>
+<p>API(Application Programming Interface),应用程序接口</p>
+</blockquote>
+<p>API一般是预先定义的函数，目的是为了开发人员快速访问某个程序，无须了解内部机制的细节。</p>
+<div class="title4">fetch调用API（GET）</div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fetch(</span><br><span class="line">  <span class="string">'$&#123;URL&#125;'</span></span><br><span class="line">)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> response.json();</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">myJson</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(myJson);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p><code>fetch</code>是一个<code>Primise</code>对象</p>
+<hr>
+<div class="title4">fetch调用API（POST）</div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把JSON数据序列化成字符串</span></span><br><span class="line"><span class="keyword">const</span> data = <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">  username: <span class="string">'admin'</span>,</span><br><span class="line">  password: <span class="string">'123456'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fetch(</span><br><span class="line">  <span class="string">`<span class="subst">$&#123;URL&#125;</span>`</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    method: <span class="string">'POST'</span>,</span><br><span class="line">    body: data,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">'content-type'</span>: <span class="string">'application/json'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> response.json();</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">myJson</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(myJson);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckftrwob7000elsmaa5s9a9vl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckg819th2000jzgma46nmfnk7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -582,6 +629,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          服务器简单操作MongoDB
+        
+      </div>
+    </a>
   
   
     <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/" id="article-nav-older" class="article-nav-link-wrap">
@@ -612,7 +668,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
     </div>
   </div>
 
@@ -622,7 +678,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 15px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 17.5px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 16.67px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 16.67px;">study</a>
     </div>
   </div>
 
@@ -644,6 +700,10 @@
       <ul>
         
           <li>
+            <a href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/">服务器简单操作MongoDB</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/03/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
           </li>
         
@@ -657,10 +717,6 @@
         
           <li>
             <a href="/2020/09/14/CSS%E8%A1%A5%E5%85%85/">CSS补充.md</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/">安卓开发学习</a>
           </li>
         
       </ul>

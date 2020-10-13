@@ -64,6 +64,159 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-服务器简单操作MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" class="article-date">
+  <time datetime="2020-10-13T13:14:34.000Z" itemprop="datePublished">2020-10-13</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/linux/">linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/">服务器简单操作MongoDB</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<div class="name">by pawncs</div>
+
+<p>首先登陆自己的系统，不提。</p>
+<hr>
+<div class="title2">一、安装</div>
+
+<hr>
+<div class="title3">1.1 安装Docker</div>
+
+<p>用Docker安装MongDB，比较自动，方便。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y update</span><br><span class="line">sudo yum -y install epel-release</span><br><span class="line">sudo yum -y install docker-io</span><br></pre></td></tr></table></figure>
+<p>分别更新系统所有包，安装扩展包，安装docker.注意不能写install docker.<br>使用root账号可去除sudo.</p>
+<div class="title3">1.1 安装MongoDB</div>
+
+<div class="title4">启动Docker</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br><span class="line">sudo docker version</span><br></pre></td></tr></table></figure>
+
+<div class="title4">安装MongoDB并启动</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mongo:latest</span><br><span class="line">sudo docker images</span><br><span class="line"></span><br><span class="line">sudo docker run -itd --name mongo -p 27017:27017 mongo --auth</span><br></pre></td></tr></table></figure>
+<p>前两行安装，后一行启动</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>检查是否启动成功</p>
+</blockquote>
+<p>MongoDB默认端口号为27017</p>
+<hr>
+<hr>
+<div class="title2">二、创建账户</div>
+
+<hr>
+<div class="title3">2.1 登录</div>
+
+<div class="title4">登录数据库</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mongo mongo admin</span><br></pre></td></tr></table></figure>
+<p>该命令为登入MongDB软件控制台，出现 <code>&gt;</code> 后，后面可以输入数据库操作命令了</p>
+<div class="title4">创建管理员账户</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; user:&#39;admin&#39;,pwd:&#39;123456&#39;,roles:[ &#123; role:&#39;root&#39;, db: &#39;admin&#39;&#125;]&#125;);</span><br><span class="line">db.auth(&#39;admin&#39;, &#39;123456&#39;)</span><br></pre></td></tr></table></figure>
+<p>创建完admin账户后，才可以继续创建数据库步骤</p>
+<blockquote>
+<p>注意，管理员账户不能读写数据库。管理员是数据库软件MongoDB的管理员，只有软件的实例————数据库的用户可以读写数据库</p>
+</blockquote>
+<hr>
+<hr>
+<div class="title2">三、创建数据库实例</div>
+
+<hr>
+<p>均需在MongoDB登录状态下执行</p>
+<div class="title3">3.1 切换数据库</div>
+
+<p><code>use</code>是创建并切换到指定数据库的意思，若已存在就直接切换</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use practice</span><br></pre></td></tr></table></figure>
+
+<div class="title3">3.2 创建读写用户</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; user:&#39;xxxx&#39;,pwd:&#39;xxxxxx&#39;,roles:[&#123; role:&#39;root&#39;, db: &#39;admin&#39;&#125;,&#123; role:&#39;dbAdmin&#39;, db: &#39;practice&#39;&#125;]&#125;);</span><br></pre></td></tr></table></figure>
+
+<div class="title4">验证</div>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&#39;xxxx&#39;, &#39;xxxxxx&#39;)</span><br></pre></td></tr></table></figure>
+<p>返回1代表成功了。</p>
+<hr>
+<hr>
+<div class="title2">四、退出登录</div>
+-----
+退出MongoDB
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<div class="title2">附录</div>
+-----
+需记住MongoDB的端口号，数据库名，数据库的用户名和密码。
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckg819tha0014zgmahtu5f6k5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-javascript入门" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/10/03/javascript%E5%85%A5%E9%97%A8/" class="article-date">
@@ -565,11 +718,58 @@
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.setAttribute,可以设置所有属性</span></span><br><span class="line">img.setAttribute(<span class="string">'style'</span>, <span class="string">'width: 100%; height: 100%;'</span>);</span><br><span class="line"><span class="comment">//2.这个可以单独替换某个样式</span></span><br><span class="line">dom.style.color = <span class="string">'xxxx'</span>;</span><br><span class="line"><span class="comment">//3.或者可以给不同的class设置不同的样式，这里单纯操作classList就可以了</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment"> * https://developer.mozilla.org/zh-CN/docs/Web/API/Element/classList</span></span><br><span class="line"><span class="comment"> * classList的基础操作。</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
 <hr>
+<hr>
+<div class="title2">八、DOM事件</div>
+
+<hr>
+<p>有关<code>MouseEvent</code>的一些属性<br>|属性|解释|<br>|:-|:-|:-|<br>|target|点击事件触发的Dom节点|<br>|type|事件名称|<br>|pageX/pageY|鼠标事件触发的页面坐标|</p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/Events" target="_blank" rel="noopener">事件文档</a><br>注意事件：冒泡，捕获，委托。</p>
+<p>阻止冒泡</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ......省略</span></span><br><span class="line">likeBtn.addEventListener(<span class="string">'click'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 点击事件</span></span><br><span class="line">  e.stopPropagation()</span><br><span class="line"></span><br><span class="line"><span class="comment">// ......省略</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<hr>
+<div class="title2">九、网络请求</div>
+
+<hr>
+<div class="title4">URL格式说明</div>
+
+<ul>
+<li>协议与域名间以<code>://</code>分隔。</li>
+<li>路径（path）以单斜杠<code>/</code>分隔。<ul>
+<li>windows的文件夹分隔符为<code>\</code>。</li>
+</ul>
+</li>
+<li>参数<ul>
+<li>路径与参数之间用<code>?</code>分隔。</li>
+<li>多个参数用<code>&amp;</code>分隔</li>
+<li>参数用参数名=参数值(<code>key=value</code>)的格式表示。</li>
+</ul>
+</li>
+</ul>
+<div class="title3">9.1 API + GET + POST</div>
+
+<div class="title4">API</div>
+
+<blockquote>
+<p>API(Application Programming Interface),应用程序接口</p>
+</blockquote>
+<p>API一般是预先定义的函数，目的是为了开发人员快速访问某个程序，无须了解内部机制的细节。</p>
+<div class="title4">fetch调用API（GET）</div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">fetch(</span><br><span class="line">  <span class="string">'$&#123;URL&#125;'</span></span><br><span class="line">)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> response.json();</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span> (<span class="params">myJson</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(myJson);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+<p><code>fetch</code>是一个<code>Primise</code>对象</p>
+<hr>
+<div class="title4">fetch调用API（POST）</div>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把JSON数据序列化成字符串</span></span><br><span class="line"><span class="keyword">const</span> data = <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">  username: <span class="string">'admin'</span>,</span><br><span class="line">  password: <span class="string">'123456'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">fetch(</span><br><span class="line">  <span class="string">`<span class="subst">$&#123;URL&#125;</span>`</span>,</span><br><span class="line">  &#123;</span><br><span class="line">    method: <span class="string">'POST'</span>,</span><br><span class="line">    body: data,</span><br><span class="line">    headers: &#123;</span><br><span class="line">      <span class="string">'content-type'</span>: <span class="string">'application/json'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">response</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> response.json();</span><br><span class="line">  &#125;)</span><br><span class="line">  .then(<span class="function"><span class="keyword">function</span>(<span class="params">myJson</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(myJson);</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckftrwob7000elsmaa5s9a9vl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckg819th2000jzgma46nmfnk7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -763,7 +963,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckftrwoaw0005lsma0bhu70k0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckg819th3000lzgma577a4nxy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -904,7 +1104,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckftrwodf0028lsma71lu6epp" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckg819thh001mzgma72ox635h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1067,11 +1267,12 @@
 <h3 id="媒体查询-media"><a href="#媒体查询-media" class="headerlink" title="媒体查询 @media"></a>媒体查询 <code>@media</code></h3><p>当满足特定条件时，才使用对应的CSS属性块</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@media</span> screen <span class="keyword">and</span> (<span class="attribute">max-width:</span> <span class="number">600px</span>) &#123;</span><br><span class="line">  <span class="selector-class">.topnav</span> &#123;</span><br><span class="line">    <span class="attribute">flex-direction</span>: column;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="selector-class">.column</span> &#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h1 id="CSS关键帧-keyframes（动画）"><a href="#CSS关键帧-keyframes（动画）" class="headerlink" title="CSS关键帧@keyframes（动画）"></a>CSS关键帧@keyframes（动画）</h1><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/@keyframes" target="_blank" rel="noopener">MDN文档</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckftrwoar0003lsmadt2y3pn7" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckg819tgr0008zgmaasas69ew" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1453,7 +1654,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckftrwoct001plsmadi65cvs4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckg819the001fzgma8yj11xpv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1496,7 +1697,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckftrwob5000blsmafcjsdc7m" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckg819th0000ezgmabfcndjah" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1539,7 +1740,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckftrwocn001jlsma1sx072ll" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckg819th8000xzgmabg8e3qg4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1634,7 +1835,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckftrwoay0006lsmae0qe5ifs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckg819tgy000dzgmaa6up5web" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1747,113 +1948,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckftrwod1001xlsmadjee5tg1" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckg819thr0029zgmaemmihuo0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Sqlite数据库" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" class="article-date">
-  <time datetime="2020-07-23T09:45:36.000Z" itemprop="datePublished">2020-07-23</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/">SQLite数据库</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <style>
-.title1{
-    font-size:36px;
-    color:#e7767f;
-    /* 桃红 */
-
-}
-.title2{
-    font-size:29px;
-    color:#176f58;
-    /* 祖母绿 */
-}
-.title3{
-    font-size:22px;
-    color:#21a675;
-    /* 石绿 */
-}
-.title4{
-    font-size:15px;
-    color:#a8cd34;
-    /* 柳绿 */
-}
-.name{
-
-    margin-left: auto;
-    text-align: right;
-    color: #d05667;
-    margin-right: 10px;
-    margin-top: 20px;
-    /*海棠红*/
-}
-</style>
-
-<div class="name">by pawncs</div>
-
-<p><a href="https://www.imooc.com/video/13277" target="_blank" rel="noopener">视频</a></p>
-<div class="title2">一、SQLite是什么</div>
-
-<ul>
-<li>可嵌入</li>
-<li>小型的</li>
-<li>效率高</li>
-<li>开源的</li>
-<li>关系型数据库</li>
-<li>程序驱动</li>
-<li>无数据类型</li>
-<li>支持事务操作<div class="title2">二、SQLite操作</div>
-<div class="title3">2.1 创建SQLite数据库</div>
-
-</li>
-</ul>
-<blockquote>
-<p>SQLiteOpenHelper ————&gt; 帮助类<br>onCreate()       ————&gt; 创建方法<br>onUpgrade()      ————&gt; 数据库升级方法<br>onOpen()         ————&gt; 打开数据库方法  </p>
-</blockquote>
-<p>一个帮助类和其的三个回调函数</p>
-<div class="title3">2.2 创建表</div>
-
-<div class="title3">2.3 增删改查</div>
-
-<p>详情见以下视频</p>
-<p><a href="https://www.imooc.com/video/13277" target="_blank" rel="noopener">详情</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/23/Sqlite%E6%95%B0%E6%8D%AE%E5%BA%93/" data-id="ckftrwob10008lsma22s012m6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
 
     </footer>
   </div>
@@ -1866,7 +1964,7 @@
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1887,7 +1985,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
     </div>
   </div>
 
@@ -1897,7 +1995,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 15px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 17.5px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 16.67px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 16.67px;">study</a>
     </div>
   </div>
 
@@ -1919,6 +2017,10 @@
       <ul>
         
           <li>
+            <a href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/">服务器简单操作MongoDB</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/03/javascript%E5%85%A5%E9%97%A8/">javascript入门</a>
           </li>
         
@@ -1932,10 +2034,6 @@
         
           <li>
             <a href="/2020/09/14/CSS%E8%A1%A5%E5%85%85/">CSS补充.md</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/">安卓开发学习</a>
           </li>
         
       </ul>
