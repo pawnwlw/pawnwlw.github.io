@@ -39,6 +39,10 @@
         <a href="/" id="logo">诺亚方舟的货运仓</a>
       </h1>
       
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">pawncs的笔记之地</a>
+        </h2>
+      
     </div>
     <div id="header-inner" class="inner">
       <nav id="main-nav">
@@ -63,6 +67,152 @@
 </header>
       <div class="outer">
         <section id="main">
+  
+    <article id="post-Spring-Data-MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/10/14/Spring-Data-MongoDB/" class="article-date">
+  <time datetime="2020-10-14T08:26:38.000Z" itemprop="datePublished">2020-10-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/10/14/Spring-Data-MongoDB/">Spring_Data_MongoDB</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">零、目录</div>
+
+<hr>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">╔═══════╦ 一、配置  </span><br><span class="line">║       ╠═══ 1.1 添加依赖  </span><br><span class="line">║       ╚═══ 1.2 配置数据库  </span><br><span class="line">║   </span><br><span class="line">╠═══════╦ 二、CRUD（增删改查）  </span><br><span class="line">║       ╠═══ 2.1 Create —— 增加数据  </span><br><span class="line">║       ╠═══ 2.2 Retrieve —— 查询数据  </span><br><span class="line">║       ╠═══ 2.3 Update —— 更新数据  </span><br><span class="line">║       ╚═══ 2.4 Delete —— 删除数据  </span><br><span class="line">║   </span><br><span class="line">╠════════ 三、QUERY  </span><br><span class="line">║       </span><br><span class="line">╚════════ 四、分页</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div class="title2">一、配置</div>
+
+<hr>
+<div class="title3">1.1 添加依赖</div>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-mongodb<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<div class="title3">1.2 配置数据库</div>
+
+<p>修改 <code>application.properties</code> 文件，或者新建同名yml文件，使用Yml语法。</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 购买的云服务器的公网 IP</span></span><br><span class="line"><span class="meta">spring.data.mongodb.host</span>=<span class="string">xxx.xxx.xxx.xxx</span></span><br><span class="line"><span class="comment"># MongoDB 服务的端口号</span></span><br><span class="line"><span class="meta">spring.data.mongodb.port</span>=<span class="string">27017</span></span><br><span class="line"><span class="comment"># 创建的数据库及用户名和密码</span></span><br><span class="line"><span class="meta">spring.data.mongodb.database</span>= <span class="string">数据库名</span></span><br><span class="line"><span class="meta">spring.data.mongodb.username</span>= <span class="string">用户名</span></span><br><span class="line"><span class="meta">spring.data.mongodb.password</span>= <span class="string">密码</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<div class="title2">二、CRUD</div>
+
+<hr>
+<div class="title3">2.1 Create —— 增加数据</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.mongodb.core.MongoTemplate;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Autowired</span></span><br><span class="line">  <span class="keyword">private</span> MongoTemplate mongoTemplate;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Class1 class1 = <span class="keyword">new</span> Class1();</span><br><span class="line">    class1.setAttribute(<span class="string">"添加某属性"</span>);</span><br><span class="line">    <span class="comment">// 添加其他属性</span></span><br><span class="line">    mongoTemplate.insert(class1);</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>系统会自动为主键 <code>id</code> 属性赋值。</p>
+<div class="title3">2.2 Retrieve —— 查询数据</div>
+
+<p>此处ID为主键ID。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//根据id，返回对象</span></span><br><span class="line">mongoTemplate.findById(id, ClassName<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">//根据Query,返回列表</span></span><br><span class="line">mongoTemplate.find(query, ClassName<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">//有关Query如何创建放在第三章</span></span><br></pre></td></tr></table></figure>
+
+<div class="title3">2.3 Update —— 更新数据</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改 id=1 的数据</span></span><br><span class="line">Query query = <span class="keyword">new</span> Query(Criteria.where(<span class="string">"id"</span>).is(<span class="string">"1"</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 把歌名修改为 “new name”</span></span><br><span class="line">Update updateData = <span class="keyword">new</span> Update();</span><br><span class="line">updateData.set(<span class="string">"name"</span>, <span class="string">"new name"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行修改，修改返回结果的是一个对象</span></span><br><span class="line">UpdateResult result = mongoTemplate.updateFirst(query, updateData, ClassName<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">// 修改的记录数大于 0 ，表示修改成功</span></span><br><span class="line">System.out.println(<span class="string">"修改的数据记录数量："</span> + result.getModifiedCount());</span><br></pre></td></tr></table></figure>
+
+<p>先使用条件对象<code>Criteria</code>构建条件对象<code>Query</code>的实例，再用修改对象<code>Update</code>设置需要修改的字段。最后用<code>mongoTemplate</code>的方法完成修改</p>
+<div class="title3">2.4 Delete —— 删除数据</div>
+
+<p>函数<code>mongoTemplate.remove()</code>删除数据。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Song song = <span class="keyword">new</span> Song();</span><br><span class="line">song.setId(songId);<span class="comment">//主键ID</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 执行删除</span></span><br><span class="line">DeleteResult result = mongoTemplate.remove(song);</span><br><span class="line"><span class="comment">// 删除的记录数大于 0 ，表示删除成功</span></span><br><span class="line">System.out.println(<span class="string">"删除的数据记录数量："</span> + result.getDeletedCount());</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div class="title2">三、Query</div>
+
+<hr>
+<p>Query条件对象的实例根据Criteria条件对象的实例构建<br><code>Query query = new Query(criteria);</code></p>
+<div class="title4">Criteria单一使用</div>
+
+<p><code>Criteria criteria1 = Criteria.where(&quot;条件字段名&quot;).is(&quot;条件值&quot;)</code></p>
+<div class="title4">Criteria组合使用</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//or</span></span><br><span class="line">Criteria criteria = <span class="keyword">new</span> Criteria();</span><br><span class="line">criteria.orOperator(criteria1, criteria2);</span><br><span class="line"><span class="comment">//and</span></span><br><span class="line">Criteria criteria = <span class="keyword">new</span> Criteria();</span><br><span class="line">criteria.andOperator(criteria1, criteria2);</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div class="title2">四、分页</div>
+
+<hr>
+<p>让查询支持分页：只需调用<code>PageRequest.of()</code>构建一个分页对象，而后注入查询对象即可。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.domain.PageRequest;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Pageable;</span><br><span class="line"></span><br><span class="line"><span class="comment">//第一个参数是页码（从0开始计数），第二个参数是每页的数量。</span></span><br><span class="line">Pageable pageable = PageRequest.of(<span class="number">0</span> , <span class="number">20</span>);</span><br><span class="line">query.with(pageable);</span><br></pre></td></tr></table></figure>
+
+<p>计算查询总数，以计算总共多少页。<br>实现分页功能还需：</p>
+<ul>
+<li>调用<code>count(query,XXX.class)</code>方法获取查询总数。</li>
+<li>根据结果，分页条件，总数三个数据，构建分页器对象</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.data.domain.Page;</span><br><span class="line"><span class="keyword">import</span> org.springframework.data.repository.support.PageableExecutionUtils;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 总数</span></span><br><span class="line"><span class="keyword">long</span> count = mongoTemplate.count(query, Song<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line"><span class="comment">// 构建分页器</span></span><br><span class="line">Page&lt;Song&gt; pageResult = PageableExecutionUtils.getPage(songs, pageable, <span class="keyword">new</span> LongSupplier() &#123;</span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getAsLong</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> count;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckg996bh90007m8magz3ph0ai" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
   
     <article id="post-服务器简单操作MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -144,7 +294,7 @@
 <div class="title4">安装MongoDB并启动</div>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mongo:latest</span><br><span class="line">sudo docker images</span><br><span class="line"></span><br><span class="line">sudo docker run -itd --name mongo -p 27017:27017 mongo --auth</span><br></pre></td></tr></table></figure>
-<p>前两行安装，后一行启动</p>
+<p>前两行安装，后一行启动<br>（别的我都懂，但是真的装的好慢啊）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>检查是否启动成功</p>
@@ -200,12 +350,13 @@
 -----
 需记住MongoDB的端口号，数据库名，数据库的用户名和密码。
 
+<p>注意你的服务器的安全设置，需开放27017端口。</p>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckg8562rf001gdkmahgbibhge" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckg996bho0016m8madwhp62o6" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -769,7 +920,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckg8562r5000pdkma3p3dbrqm" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckg996bhl000zm8maf40ifprg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -963,7 +1114,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckg8562qz000adkmabjp2by1e" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckg996bh80006m8ma22sxbay5" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1104,7 +1255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckg8562rg001kdkmah491h5nn" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/" data-id="ckg996bis002nm8ma3m6w5a1f" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1272,7 +1423,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckg8562qw0007dkma12870dnj" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/14/CSS%E8%A1%A5%E5%85%85/" data-id="ckg996bh60004m8ma9ocp5kcb" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
@@ -1654,7 +1805,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckg8562rc0015dkma5e0j3omg" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" data-id="ckg996bhk000wm8madg1d559x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1697,7 +1848,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckg8562qu0005dkmab6dl3pb3" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckg996bha0009m8maew1ob0vy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1740,7 +1891,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckg8562rd0019dkmadwhm0swq" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" data-id="ckg996bhm0013m8ma3ldrcrpc" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1835,120 +1986,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckg8562qr0002dkmaazvwc9eb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-部署项目到云服务器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" class="article-date">
-  <time datetime="2020-08-09T07:33:03.000Z" itemprop="datePublished">2020-08-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/">部署项目到云服务器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <style>
-.title1{
-    font-size:36px;
-    color:#e7767f;
-    /* 桃红 */
-
-}
-.title2{
-    font-size:29px;
-    color:#176f58;
-    /* 祖母绿 */
-}
-.title3{
-    font-size:22px;
-    color:#21a675;
-    /* 石绿 */
-}
-.title4{
-    font-size:15px;
-    color:#a8cd34;
-    /* 柳绿 */
-}
-.name{
-
-    margin-left: auto;
-    text-align: right;
-    color: #d05667;
-    margin-right: 10px;
-    margin-top: 20px;
-    /*海棠红*/
-}
-</style>
-
-<div class="name">by pawncs</div>
-
-<p><a href="https://blog.csdn.net/gfd54gd5f46/article/details/54358384" target="_blank" rel="noopener">在云服务器上部署项目</a></p>
-<div class="title3">1.连接云主机</div>
-
-<p>按下不提，另寻教程。本人用的是腾讯云主机。</p>
-<hr>
-<div class="title3">2.安装配置Java</div>
-
-<p>已配置则略过</p>
-<div class="title4">查看yum库Java的版本</div>
-
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum –y list java*</span><br></pre></td></tr></table></figure>
-<div class="title4">安装JDK1.8所有相关组件</div>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install java-1.8.0-openjdk*</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>这里关注OpenJdk和Jdk的区别，若想详细了解可百度。</p>
-</blockquote>
-<div class="title4">配置。此处腾讯云服务器不需要配置，已经自动配置完成</div>
-
-<hr>
-<div class="title3">3.安装tomcat服务器并启动</div>
-
-<p>因为Spring Boot项目自带tomcat,所以这个块我们先跳过。，。如果不行再来解决</p>
-<hr>
-<div class="title3">4.下载并安装WinSCP</div>
-
-<p><a href="http://pan.baidu.com/s/1nvhlG1b" target="_blank" rel="noopener">下载链接</a><br>密码：3f3k</p>
-<div class="title3">5.开放端口</div>
-
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/iptables</span><br><span class="line"></span><br><span class="line">-A INPUT -m state --state NEW -m tcp -p tcp --dport <span class="number">8080</span> -j ACCEPT</span><br><span class="line"></span><br><span class="line">service iptables restart</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>三个命令分别是设置防火墙，开放8080端口，重启防火墙</p>
-</blockquote>
-<div class="title3">6.SpringBoot部署</div>
-
-<p>使用Jar包<br>放至任意目录，执行下面命令</p>
-<figure class="highlight cmd"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ nohup java -jar test.jar &gt;temp.txt &amp;</span><br><span class="line"></span><br><span class="line">//这种方法会把日志文件输入到你指定的文件中，没有则会自动创建。进程会在后台运行。</span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" data-id="ckg8562rk001sdkmafgll9q44" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckg996bhb000cm8ma8h0ug1v8" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
@@ -1995,7 +2033,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/MongoDB/" style="font-size: 10px;">MongoDB</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 16.67px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 16.67px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 13.33px;">CSS</a> <a href="/tags/MongoDB/" style="font-size: 13.33px;">MongoDB</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 20px;">note</a> <a href="/tags/study/" style="font-size: 16.67px;">study</a>
     </div>
   </div>
 
@@ -2017,6 +2055,10 @@
       <ul>
         
           <li>
+            <a href="/2020/10/14/Spring-Data-MongoDB/">Spring_Data_MongoDB</a>
+          </li>
+        
+          <li>
             <a href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/">服务器简单操作MongoDB</a>
           </li>
         
@@ -2030,10 +2072,6 @@
         
           <li>
             <a href="/2020/09/15/%E7%A7%BB%E5%8A%A8%E7%AB%AFWeb%E5%BC%80%E5%8F%91/">移动端Web开发</a>
-          </li>
-        
-          <li>
-            <a href="/2020/09/14/CSS%E8%A1%A5%E5%85%85/">CSS补充.md</a>
           </li>
         
       </ul>
