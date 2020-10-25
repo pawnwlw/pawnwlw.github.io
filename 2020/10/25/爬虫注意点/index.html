@@ -5,19 +5,18 @@
   
 
   
-  <title>Java包的使用 | 诺亚方舟的货运仓</title>
+  <title>爬虫注意点 | 诺亚方舟的货运仓</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="包的使用JavaJXL使用EXCEL读取">
+  <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java包的使用">
-<meta property="og:url" content="http://pawncs.github.io/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:title" content="爬虫注意点">
+<meta property="og:url" content="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/index.html">
 <meta property="og:site_name" content="诺亚方舟的货运仓">
-<meta property="og:description" content="包的使用JavaJXL使用EXCEL读取">
+<meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-09-11T13:27:08.000Z">
-<meta property="article:modified_time" content="2020-09-11T13:27:49.676Z">
+<meta property="article:published_time" content="2020-10-25T09:16:05.000Z">
+<meta property="article:modified_time" content="2020-10-25T09:36:33.839Z">
 <meta property="article:author" content="pawncs">
-<meta property="article:tag" content="dictionary">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="诺亚方舟的货运仓" type="application/atom+xml">
@@ -71,14 +70,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Java包的使用" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-爬虫注意点" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" class="article-date">
-  <time datetime="2020-09-11T13:27:08.000Z" itemprop="datePublished">2020-09-11</time>
+    <a href="/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" class="article-date">
+  <time datetime="2020-10-25T09:16:05.000Z" itemprop="datePublished">2020-10-25</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
   </div>
 
   </div>
@@ -89,7 +88,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java包的使用
+      爬虫注意点
     </h1>
   
 
@@ -97,35 +96,90 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="包的使用"><a href="#包的使用" class="headerlink" title="包的使用"></a>包的使用</h1><h2 id="Java"><a href="#Java" class="headerlink" title="Java"></a>Java</h2><p><a href="https://www.jianshu.com/p/7074af79feb5" target="_blank" rel="noopener">JXL使用</a>EXCEL读取</p>
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<!-- ~~~
+制表符
+┏ ┳ ┓ ━ ╔ ╦ ╗ ═ ╒ ╤ ╕ 
+┣ ╋ ┫ ┃ ╠ ╬ ╣ ║ ╞ ╪ ╡
+┗ ┻ ┛   ╚ ╩ ╝   ╘ ╧ ╛
+
+ ╱╲      ┄ ┄  ┅ ┅
+╱╱╲╲
+╲╲╱╱
+ ╲╱      ┆ ┆  ┇ ┇ 
+~~~ -->
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">一、Header</div>
+
+<p>保证四个header和直接访问该网址的相同</p>
+<ul>
+<li>User-Agent</li>
+<li>Referer</li>
+<li>Host</li>
+<li>Cookie</li>
+</ul>
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/11/Java%E5%8C%85%E7%9A%84%E4%BD%BF%E7%94%A8/" data-id="ckgox6j3c0008d8ma972hai7s" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckgox6j3s001dd8macg0b1d41" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
-
     </footer>
   </div>
   
     
 <nav id="article-nav">
   
-    <a href="/2020/09/12/%E5%AE%89%E5%8D%93%E5%AD%A6%E4%B9%A0/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2020/10/25/JAVA%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BB%A5%E5%8F%8A%E4%BE%9D%E8%B5%96%E7%AD%89%E7%9A%84%E9%85%8D%E7%BD%AE/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          安卓开发学习
+          JAVA数据库以及依赖等的配置
         
       </div>
     </a>
   
   
-    <a href="/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2020/10/14/Spring-Data-MongoDB/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">开发文档</div>
+      <div class="article-nav-title">Spring_Data_MongoDB</div>
     </a>
   
 </nav>
