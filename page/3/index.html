@@ -68,6 +68,154 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-realm使用" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/20/realm%E4%BD%BF%E7%94%A8/" class="article-date">
+  <time datetime="2020-07-20T12:59:59.000Z" itemprop="datePublished">2020-07-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Android/">Android</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/20/realm%E4%BD%BF%E7%94%A8/">Realm使用</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+<div class="name">by pawncs</div>
+<div class="title2">一、安装</div>
+
+<p>将其作为Gradle插件安装。</p>
+<div class="title4">步骤1：将类路径添加到build.gradle中。</div>
+
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">buildscript</span> &#123;</span><br><span class="line">    <span class="keyword">repositories</span> &#123;</span><br><span class="line">        jcenter()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">dependencies</span> &#123;</span><br><span class="line">        <span class="keyword">classpath</span> <span class="string">"io.realm:realm-gradle-plugin:6.0.2"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="title4">步骤2：realm-android在应用程序级别build.gradle文件顶部附近应用插件。</div>
+
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apply plugin: <span class="string">'realm-android'</span></span><br></pre></td></tr></table></figure>
+
+<div class="title4">步骤3：在application文件里将其初始化。</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Realm.init(<span class="keyword">this</span>);</span><br></pre></td></tr></table></figure>
+<p><a href="https://www.imooc.com/video/19247" target="_blank" rel="noopener">视频</a></p>
+<div class="title3">Realm 模型的概念</div>
+
+<ul>
+<li>一个模型就是一张表，模型中的子弹表示表中的列</li>
+<li>模型需要继承RealmObject类</li>
+<li>模型实时，自动更新</li>
+</ul>
+<div class="title3">Realm 事务</div>
+
+<ul>
+<li>所有会使数据发生变化的操作必须在事务中进行</li>
+<li>事务分为同步事务和异步事务两种</li>
+<li>两种事务共有三种写法</li>
+</ul>
+<div class="title4">手动同步开启事务</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">        <span class="comment">//获取realm对象</span></span><br><span class="line">        Realm realm = Realm.getDefaultInstance();</span><br><span class="line">        <span class="comment">//开启事务</span></span><br><span class="line">        realm.beginTransaction();</span><br><span class="line">        <span class="comment">//创建被管理的实例对象，该对象的所有变更都会被直接应用到Realm数据源中</span></span><br><span class="line">        Model model = realm.createObject(Model<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">        <span class="comment">//更改数据</span></span><br><span class="line">        model.setCount(model.getCount() + <span class="number">1</span>);</span><br><span class="line">        <span class="comment">//提交事务</span></span><br><span class="line">        realm.commitTransaction();</span><br><span class="line"><span class="comment">//         //取消事务        </span></span><br><span class="line"><span class="comment">//        realm.cancelTransaction();</span></span><br></pre></td></tr></table></figure>
+
+<div class="title4">同步事务执行块</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">*除了写法和上一种不同外并没有本质的区别</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line">realm.executeTransaction(<span class="keyword">new</span> Realm.Transaction() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Realm realm)</span> </span>&#123;</span><br><span class="line">                Model model = realm.createObject(Model<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">                model.setCount(model.getCount() + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br></pre></td></tr></table></figure>
+
+<div class="title4">异步事务执行块</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">    Realm realm = Realm.getDefaultInstance();</span><br><span class="line">    RealmAsyncTask asyncTask = realm.executeTransactionAsync(<span class="keyword">new</span> Realm.Transaction() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute</span><span class="params">(Realm realm)</span> </span>&#123;</span><br><span class="line">            Model model = realm.createObject(Model<span class="class">.<span class="keyword">class</span>)</span>;</span><br><span class="line">            model.setName(<span class="string">"异步"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="keyword">new</span> Realm.Transaction.OnSuccess() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onSuccess</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            Log.d(<span class="string">"Realm"</span>,<span class="string">"事务成功回调"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, <span class="keyword">new</span> Realm.Transaction.OnError() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onError</span><span class="params">(Throwable error)</span> </span>&#123;</span><br><span class="line">            Log.e(<span class="string">"Realm"</span>,<span class="string">"事务失败回调"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<div class="title3">引用计数</div>
+
+<ul>
+<li>Realm实例使用引用计数的方式。<blockquote>
+<p>每次<code>getDefaultInstance</code>计数加一，<code>close</code>时计数减一。所以每次打开之后都要关闭。</p>
+</blockquote>
+</li>
+</ul>
+<div class="title3">增删改查之——增</div>
+
+<ul>
+<li><p>insert或insertOrUpdate</p>
+</li>
+<li><p>copyToRealm/createObject获取自动更新的Realm模型（把new出来的对象放到Realm里。）</p>
+</li>
+</ul>
+<blockquote>
+<p>在做实验的时候发现一点，即引用了Realm后，再添加Button标签，若button没有添加事件，则工程无法启动</p>
+</blockquote>
+<blockquote>
+<p>密码加密<code>setPassword(EncrytUtils.encryptMD5ToString(password))</code></p>
+</blockquote>
+<blockquote>
+<p>未完待续</p>
+</blockquote>
+<div class="title1">附录</div>
+
+<ul>
+<li><p>此错误为未在表AdroidManifest.xml中注册Application</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.IllegalStateException: Call &#96;Realm.init(Context)&#96; before calling this method.</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>实体类必须构建一个无参构造函数，不然会报编译错误</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Compilation failed; see the compiler error output for details.</span><br></pre></td></tr></table></figure></li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pawncs.github.io/2020/07/20/realm%E4%BD%BF%E7%94%A8/" data-id="ckkhxd6g70013f4magr9dgr49" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-7-18-晴" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/18/7-18-%E6%99%B4/" class="article-date">
@@ -864,6 +1012,10 @@
       <ul>
         
           <li>
+            <a href="/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/">Stream--JAVA流数据</a>
+          </li>
+        
+          <li>
             <a href="/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Lambda表达式</a>
           </li>
         
@@ -877,10 +1029,6 @@
         
           <li>
             <a href="/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/">java数据库以及依赖等的配置</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/">爬虫注意点</a>
           </li>
         
       </ul>
