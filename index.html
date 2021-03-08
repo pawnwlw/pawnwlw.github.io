@@ -68,6 +68,129 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2021-03-07T12:44:23.000Z" itemprop="datePublished">2021-03-07</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">一、单例模式</div>
+
+<hr>
+<ul>
+<li>保证只有一个实例对象的方式，就是单例模式。  <ul>
+<li>实现方式可以将构造方法私有化，同时增加私有的静态实例，访问该对象即访问唯一实例（也可以在访问时再初始化）。命名：<code>XXXInstance</code></li>
+</ul>
+</li>
+<li>单例模式可以节约系统资源</li>
+</ul>
+<hr>
+<div class="title2">二、简单工厂模式</div>
+
+<hr>
+<ul>
+<li><p>工厂——生产实例(命名为<code>XXXFactory</code>)</p>
+<ul>
+<li>实现根据不同要求产生不同对象的功能<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FruitFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Fruit <span class="title">getFruit</span><span class="params">(Customer customer)</span> </span>&#123;</span><br><span class="line">        Fruit fruit = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"sweet"</span>.equals(customer.getFlavor())) &#123;</span><br><span class="line">            fruit = <span class="keyword">new</span> Watermelon();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"acid"</span>.equals(customer.getFlavor())) &#123;</span><br><span class="line">            fruit = <span class="keyword">new</span> Lemon();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"smelly"</span>.equals(customer.getFlavor())) &#123;</span><br><span class="line">            fruit = <span class="keyword">new</span> Durian();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> fruit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>优点是职责明确</p>
+</li>
+<li><p>实现接口的每个类具有相同的方法，为了防止出现重复代码，可以加个继承的抽象类。</p>
+</li>
+</ul>
+<hr>
+<div class="title2">三、抽象工厂模式</div>
+
+<hr>
+<ul>
+<li>实质是工厂的工厂，将工厂进一步抽象<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SnacksFactory</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 取得水果</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Fruit <span class="title">getFruit</span><span class="params">(Customer customer)</span></span>;</span><br><span class="line">    <span class="comment">// 取得饮料</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Drink <span class="title">getDrink</span><span class="params">(Customer customer)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SnacksFactoryBuilder</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> SnacksFactory <span class="title">buildFactory</span><span class="params">(String choice)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (choice.equalsIgnoreCase(<span class="string">"fruit"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FruitFactory();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (choice.equalsIgnoreCase(<span class="string">"drink"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> DrinkFactory();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<div class="title2">四、观察者模式</div>
+
+<hr>
+<p>适合“订阅/通知的场景”</p>
+<ol>
+<li>观察什么<br>观察被观察者。被观察者需继承<code>Observable</code>类。  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//告诉父类被观察者已改变</span></span><br><span class="line"> <span class="keyword">super</span>.setChanged();</span><br><span class="line"> <span class="comment">// 发出通知，参数是额外的信息</span></span><br><span class="line"> <span class="keyword">super</span>.notifyObservers(<span class="string">"XXX"</span>);</span><br></pre></td></tr></table></figure></li>
+<li>谁接受通知<br>观察者接受通知，需继承<code>Observer</code>类<br>需实现<code>update</code>方法。其中第一个参数是被观察者（已继承<code>Observable</code>）,第二个参数是额外的信息（<code>notifyObservers</code>传入的对象）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Observable o, Object arg)</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>怎么接受通知<br>被观察者调用方法<code>addObserver()</code>添加观察者。</li>
+</ol>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckm0osnfx0029ysma58ywcd25" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Stream-JAVA流数据" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" class="article-date">
@@ -230,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="cklxdcs4p0000tcma2qfgf0ov" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckm0osnfi0015ysmadco2hzfb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -365,7 +488,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="cklwiv9df0000n0ma0ssb2ahg" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckm0osnfd000xysmaejnjdhuy" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li></ul>
@@ -495,7 +618,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckkhxd6fs0007f4macjosfhmf" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckm0osnel0005ysma5grvgz7i" class="article-share-link">Share</a>
       
       
     </footer>
@@ -596,7 +719,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckkhxd6g1000pf4ma9s5b3hox" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckm0osnfh0013ysmahpeahuco" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -720,7 +843,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckkhxd6fw000df4ma5yqx9joa" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckm0osneq0008ysma18h9buyq" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -820,7 +943,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckkhxd6gj0021f4ma6lfu5vzl" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckm0osnfx002bysmaheua9pyb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -964,7 +1087,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckkhxd6fz000jf4ma3thm9vxm" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckm0osnfg0012ysma0qsj3uv0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1118,7 +1241,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckkhxd6gh001tf4ma9qtucwwy" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckm0osnfv0024ysma9sxeaqvd" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1682,204 +1805,10 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckkhxd6g70016f4ma27r09m42" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/03/javascript%E5%85%A5%E9%97%A8/" data-id="ckm0osnfn001lysmaatw901n2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Scss入门" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/" class="article-date">
-  <time datetime="2020-09-16T06:38:12.000Z" itemprop="datePublished">2020-09-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/html-css-js/">html,css,js</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/16/Scss%E5%85%A5%E9%97%A8/">scss入门</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <style>
-.title1{
-    font-size:36px;
-    color:#e7767f;
-    /* 桃红 */
-
-}
-.title2{
-    font-size:29px;
-    color:#176f58;
-    /* 祖母绿 */
-}
-.title3{
-    font-size:22px;
-    color:#21a675;
-    /* 石绿 */
-}
-.title4{
-    font-size:15px;
-    color:#a8cd34;
-    /* 柳绿 */
-}
-.name{
-
-    margin-left: auto;
-    text-align: right;
-    color: #d05667;
-    margin-right: 10px;
-    margin-top: 20px;
-    /*海棠红*/
-}
-</style>
-
-<div class="name">by pawncs</div>
-
-<hr>
-<div class="title2">零、摘要</div>
-
-<hr>
-<ol>
-<li><p>什么是SCSS和SASS，以及如何安装。</p>
-</li>
-<li><p>展示了变量、嵌套、混合功能的简单使用。</p>
-</li>
-</ol>
-<hr>
-<div class="title2">一、SASS</div>
-
-<hr>
-<div class="title3">1.1 什么是SASS</div>
-
-<ul>
-<li>SASS是一款CSS的预编译器，定义了一种新的编程语言，需要先编译成CSS才能被浏览器理解。</li>
-<li>SASS比CSS更像一种编程语言，有变量，函数，控制语句，导入，嵌套等高级功能。</li>
-<li>类似的预编译器还有<code>less</code>,<code>Stylus</code>等<div class="title4">有了这些功能，SASS可以</div>
-</li>
-</ul>
-<ol>
-<li>提供变量，实现一键替换主题色之类的功能</li>
-<li>用嵌套写法减少选择器的重复书写</li>
-<li>用混用功能解决代码复用问题</li>
-<li>用函数进行复杂的运算</li>
-<li>把央视代码模块化，减少不同的模块的代码间不必要的相互影响，提高代码安全性</li>
-<li>……</li>
-</ol>
-<div class="title3">1.2 安装</div>
-<div class="title4">安装sass</div>
-
-<p>参考 <a href="https://sass.bootcss.com/documentation" target="_blank" rel="noopener">sass文档</a> 安装到本地，然后配置到ideaj,vs等。（自行百度）</p>
-<p>在HTML文件中直接引入编译后的CSS文件即可</p>
-<div class="title4">Sass和Scss</div>
-
-<p>Scss是Sass 3 为了兼容CSS引入的新语法（任何标准的CSS3样式表都是具有相同语义的有效的Scss文件）</p>
-<blockquote>
-<p>文件后缀为<code>.scss</code></p>
-</blockquote>
-<hr>
-<div class="title2">二、变量</div>
-
-<hr>
-<div class="title3">2.1 变量</div>
-
-<p>提供了SassScript的新功能。可用于任何属性，允许属性使用变量、算术运算等额外功能<br>变量以“$”开头，赋值方法与CSS一样:<br><code>$width: 10px;</code>   </p>
-<div class="title4">使用变量</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>变量类型为字符串一般不需要双引号，除非某些特殊情况，如有双斜杠“//”，则需要单引号或者双引号（因为<code>//</code>表示注释）</p>
-<div class="title4">定义类似于数组的变量</div>
-
-<p><code>$animals: puppy kitty chick;</code></p>
-<p>可配合循环语句使用</p>
-<div class="title4">支持简单计算</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>因此可以方便的定义长宽比固定的元素，如</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$width</span>: <span class="number">10px</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-id">#main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$width</span> / <span class="number">2</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$width</span> * <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="title3">2.2 插值法</div>
-
-<p><code>#{}</code> 插值可以在Sass样式表的任何一个地方使用</p>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$name</span>: <span class="string">"mail"</span>;</span><br><span class="line"><span class="variable">$top-or-bottom</span>: <span class="string">"top"</span>;</span><br><span class="line"><span class="variable">$left-or-right</span>: <span class="string">"left"</span>;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.icon-</span>#&#123;<span class="variable">$name</span>&#125; &#123;</span><br><span class="line">  <span class="attribute">background-image</span>: url(<span class="string">"/icons/#&#123;$name&#125;.svg"</span>);</span><br><span class="line">  <span class="attribute">position</span>: absolute;</span><br><span class="line">  #&#123;<span class="variable">$top-or-bottom</span>&#125;: <span class="number">0</span>;</span><br><span class="line">  #&#123;<span class="variable">$left-or-right</span>&#125;: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>可以用插值法插入任何类型的变量，不仅仅是字符串</p>
-</blockquote>
-<hr>
-<div class="title2">三、嵌套</div>
-
-<hr>
-<blockquote>
-<p>将共同的选择器提取出来，防止选择器过长</p>
-</blockquote>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">main <span class="selector-class">.double</span> <span class="selector-class">.item</span> <span class="selector-class">.links</span> &#123;</span><br><span class="line">  <span class="attribute">text-align</span>: center;</span><br><span class="line">  <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">margin-right</span>: <span class="number">20px</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<div class="title3">3.1 嵌套</div>
-<div class="title4">嵌套规则</div>
-
-<p>Sass允许将一套CSS样式嵌套进另一套样式中，内层的样式将他的外层的选择器作为父选择器。</p>
-<div class="title4">父选择器 &</div>
-
-<p>在嵌套时，有时候需要直接使用嵌套外层的福选择器，（例如，给元素设定<code>hover</code>样式时，可以用’&amp;’代表规则外层的父选择器）</p>
-<blockquote>
-<p>个人认为更像插值（可以字符串拼接）</p>
-</blockquote>
-<hr>
-<div class="title2">四、复用：mixin/include</div>
-
-<hr>
-<blockquote>
-<p>我们可用混合（mixin/include）来解决代码复用的问题</p>
-</blockquote>
-<div class="title3">4.1 无参数混合</div>
-
-<div class="title4">混合的使用方式</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">100px</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="number">100px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用：</span></span><br><span class="line"><span class="selector-class">.user-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.admin-avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p><code>@mixin</code> : 定义可复用的样式<br><code>@include</code> : 应用可复用的样式</p>
-</blockquote>
-<div class="title3">4.2 有参数混合</div>
-<div class="title4">参数无默认值</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 应用</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="number">100px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>需传入变量 <code>$size</code></p>
-<div class="title4">参数有默认值</div>
-
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@mixin</span> square(<span class="variable">$size</span>: <span class="number">100px</span>) &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="variable">$size</span>;</span><br><span class="line">  <span class="attribute">height</span>: <span class="variable">$size</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 不传参数就会使用默认的值 100px</span></span><br><span class="line"><span class="selector-class">.avatar</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 传入参数就会使用传入的值 200px</span></span><br><span class="line"><span class="selector-class">.avatar-200</span> &#123;</span><br><span class="line">  <span class="keyword">@include</span> square(<span class="variable">$size</span>: <span class="number">200px</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<hr>
-<div class="title2">五、自定义函数</div>
-
-<hr>
-<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@function</span> psd2px(<span class="variable">$px</span>) &#123;</span><br><span class="line">  @return #&#123;$px / 2&#125;px;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.header</span> &#123;</span><br><span class="line">  <span class="comment">// 假设设计稿上高度是100px，那么函数参数就写100，计算后返回的值就是 50px</span></span><br><span class="line">  <span class="attribute">height</span>: psd2px(<span class="number">100</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/09/16/Scss%E5%85%A5%E9%97%A8/" data-id="ckkhxd6fy000gf4magzl3466e" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
 
     </footer>
   </div>
@@ -1913,7 +1842,7 @@ mysql-connector-java`
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
     </div>
   </div>
 
@@ -1923,7 +1852,7 @@ mysql-connector-java`
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
     </div>
   </div>
 
@@ -1945,6 +1874,10 @@ mysql-connector-java`
       <ul>
         
           <li>
+            <a href="/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+          </li>
+        
+          <li>
             <a href="/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/">Stream--JAVA流数据</a>
           </li>
         
@@ -1958,10 +1891,6 @@ mysql-connector-java`
         
           <li>
             <a href="/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/">flutter学习</a>
-          </li>
-        
-          <li>
-            <a href="/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/">java数据库以及依赖等的配置</a>
           </li>
         
       </ul>

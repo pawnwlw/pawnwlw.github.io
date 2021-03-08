@@ -5,19 +5,19 @@
   
 
   
-  <title>Android中碰到的错误 | 诺亚方舟的货运仓</title>
+  <title>设计模式 | 诺亚方舟的货运仓</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android中碰到的错误">
-<meta property="og:url" content="http://pawncs.github.io/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/index.html">
+<meta property="og:title" content="设计模式">
+<meta property="og:url" content="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="诺亚方舟的货运仓">
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-08-20T18:43:34.000Z">
-<meta property="article:modified_time" content="2020-08-20T18:49:31.062Z">
+<meta property="article:published_time" content="2021-03-07T12:44:23.000Z">
+<meta property="article:modified_time" content="2021-03-08T14:35:15.040Z">
 <meta property="article:author" content="pawncs">
-<meta property="article:tag" content="note">
+<meta property="article:tag" content="Design Pattern">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="诺亚方舟的货运仓" type="application/atom+xml">
@@ -71,14 +71,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Android中碰到的错误" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-设计模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" class="article-date">
-  <time datetime="2020-08-20T18:43:34.000Z" itemprop="datePublished">2020-08-21</time>
+    <a href="/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="article-date">
+  <time datetime="2021-03-07T12:44:23.000Z" itemprop="datePublished">2021-03-07</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Android/">Android</a>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
   </div>
 
   </div>
@@ -89,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Android中碰到的错误
+      设计模式
     </h1>
   
 
@@ -133,31 +133,59 @@
 <div class="name">by pawncs</div>
 
 <hr>
-<div class="title2">一、Realm篇</div>
+<div class="title2">一、单例模式</div>
 
 <hr>
-<div class="title4">@PrimaryKey</div>
-
-<p>只有Integer和String和其相关类能作为主键。<br><code>Date</code>不行…(查了好几天)</p>
-<p>……<br>……<br>章结尾</p>
+<ul>
+<li>保证只有一个实例对象的方式，就是单例模式。  <ul>
+<li>实现方式可以将构造方法私有化，同时增加私有的静态实例，访问该对象即访问唯一实例（也可以在访问时再初始化）。命名：<code>XXXInstance</code></li>
+</ul>
+</li>
+<li>单例模式可以节约系统资源</li>
+</ul>
 <hr>
-<div class="title2">附录、显示错误细节</div>
+<div class="title2">二、简单工厂模式</div>
 
 <hr>
-<p>在terminal端口输入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew compileDebug --stacktrace -info</span><br></pre></td></tr></table></figure>
-<p>查错误详情  </p>
-<p>或</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew compileDebug --stacktrace -debug</span><br></pre></td></tr></table></figure>
-<p>再</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradlew compileDebugSources --stacktrace -info</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>工厂——生产实例(命名为<code>XXXFactory</code>)</p>
+<ul>
+<li>实现根据不同要求产生不同对象的功能<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">FruitFactory</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> Fruit <span class="title">getFruit</span><span class="params">(Customer customer)</span> </span>&#123;</span><br><span class="line">        Fruit fruit = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="string">"sweet"</span>.equals(customer.getFlavor())) &#123;</span><br><span class="line">            fruit = <span class="keyword">new</span> Watermelon();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"acid"</span>.equals(customer.getFlavor())) &#123;</span><br><span class="line">            fruit = <span class="keyword">new</span> Lemon();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="string">"smelly"</span>.equals(customer.getFlavor())) &#123;</span><br><span class="line">            fruit = <span class="keyword">new</span> Durian();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> fruit;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>优点是职责明确</p>
+</li>
+<li><p>实现接口的每个类具有相同的方法，为了防止出现重复代码，可以加个继承的抽象类。</p>
+</li>
+</ul>
+<hr>
+<div class="title2">三、抽象工厂模式</div>
+
+<hr>
+<ul>
+<li>实质是工厂的工厂，将工厂进一步抽象<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SnacksFactory</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 取得水果</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Fruit <span class="title">getFruit</span><span class="params">(Customer customer)</span></span>;</span><br><span class="line">    <span class="comment">// 取得饮料</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Drink <span class="title">getDrink</span><span class="params">(Customer customer)</span></span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SnacksFactoryBuilder</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> SnacksFactory <span class="title">buildFactory</span><span class="params">(String choice)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (choice.equalsIgnoreCase(<span class="string">"fruit"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> FruitFactory();</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (choice.equalsIgnoreCase(<span class="string">"drink"</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> DrinkFactory();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<div class="title2">四、观察者模式</div>
+
+<hr>
+<p>适合“订阅/通知的场景”</p>
+<ol>
+<li>观察什么<br>观察被观察者。被观察者需继承<code>Observable</code>类。  <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//告诉父类被观察者已改变</span></span><br><span class="line"> <span class="keyword">super</span>.setChanged();</span><br><span class="line"> <span class="comment">// 发出通知，参数是额外的信息</span></span><br><span class="line"> <span class="keyword">super</span>.notifyObservers(<span class="string">"XXX"</span>);</span><br></pre></td></tr></table></figure></li>
+<li>谁接受通知<br>观察者接受通知，需继承<code>Observer</code>类<br>需实现<code>update</code>方法。其中第一个参数是被观察者（已继承<code>Observable</code>）,第二个参数是额外的信息（<code>notifyObservers</code>传入的对象）<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Observable o, Object arg)</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></li>
+<li>怎么接受通知<br>被观察者调用方法<code>addObserver()</code>添加观察者。</li>
+</ol>
+<hr>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/08/21/Android%E4%B8%AD%E7%A2%B0%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF/" data-id="ckm0osnef0003ysma8oyt88pl" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckm0osnfx0029ysma58ywcd25" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/note/" rel="tag">note</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li></ul>
 
     </footer>
   </div>
@@ -165,19 +193,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2020/09/11/%E5%BC%80%E5%8F%91%E6%96%87%E6%A1%A3/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          开发文档
-        
-      </div>
-    </a>
   
-  
-    <a href="/2020/08/09/%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE%E5%88%B0%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">部署项目到云服务器</div>
+      <div class="article-nav-title">Stream--JAVA流数据</div>
     </a>
   
 </nav>
