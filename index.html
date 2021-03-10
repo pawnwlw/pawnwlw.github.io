@@ -126,7 +126,6 @@
 
 <div class="name">by pawncs</div>
 
-<p><a href="#并发和线程-part3">1232</a></p>
 <hr>
 <div class="title2">零、目录</div>
 
@@ -191,6 +190,15 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>实际上并发容器内部是由线程池实现的。我们也可以指定用哪个线程池运行任务：（第二个参数指定）<code>CompletableFuture.supplyAsync(
+    () -&gt; reg.regId(s),
+    EXECUTOR_SERVICE
+  )</code>。当遇到并发度高，任务执行慢的情况，就手动指定线程池，严格控制线程任务了。</p>
+</blockquote>
+<blockquote>
+<p>如果企业技术升级较慢，还处于java6时代，那么线程池就够了，java8就得用并发容器了。</p>
+</blockquote>
 <hr>
 <div class="title2" id="并发和线程-part3">三、线程池</div>
 
@@ -204,13 +212,40 @@
 <p>需要引入依赖</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建线程工厂实例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> BasicThreadFactory.Builder()</span><br><span class="line">  .namingPattern(<span class="string">"xxx-pool-%d"</span>)</span><br><span class="line">  .daemon(<span class="keyword">true</span>)</span><br><span class="line">  .build();</span><br></pre></td></tr></table></figure>
+
+<div class="title3">3.1 创建线程工厂实例</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> BasicThreadFactory.Builder()</span><br><span class="line">  .namingPattern(<span class="string">"xxx-pool-%d"</span>)</span><br><span class="line">  .daemon(<span class="keyword">true</span>)</span><br><span class="line">  .build();</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>其中<code>namingPattern()</code>方法是为了定义线程名字格式。(修改xxx).</p>
 </blockquote>
+<div class="title3">3.2 创建线程等待实例</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(<span class="number">2048</span>);<span class="comment">//6核，8核。1，2核就512.</span></span><br></pre></td></tr></table></figure>
+<div class="title3">3.2 创建线程池实例</div>
+
+<ul>
+<li>创建<code>ThreadPoolExecutor</code>实例。 <blockquote>
+<p>构造函数参数说明</p>
+</blockquote>
+<table>
+<tr><th>参数序号</th><th>解释</th></tr>
+<tr><td>1</td><td>线程池初始化核心线程数量（一般两位数）</td></tr>
+<tr><td>2</td><td>线程池最大线程数（通常不超过200）</td></tr>
+<tr><td>3</td><td>线程数超过核心线程数时，如果没有任务经过多久回收（立即回收：0，通常30）</td></tr>
+<tr><td>4</td><td>第三个参数的时间单位（TimeUnit.SECONDS）</td></tr>
+<tr><td>5</td><td>等待队列实例</td></tr>
+<tr><td>6</td><td>线程工厂实例</td></tr>
+<tr><td>7</td><td>任务超过队列容量时，采用什么策略（AbortPolicy表拒绝，主程序自己处理）</td></tr>
+</table>
+
 </li>
 </ul>
+<blockquote>
+<p>线程池可以防止线程过多，做到对线程的精确控制</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//执行</span></span><br><span class="line">Thread t = <span class="keyword">new</span> Thread(runAbleImpl);</span><br><span class="line">t.start();</span><br><span class="line"><span class="comment">//--&gt;</span></span><br><span class="line">EXECUTOR.execute(runAbleImpl);</span><br><span class="line"><span class="comment">//EXECUTOR是ThreadPoolExecutor的实例，是static final对象。</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <div class="title2" id="并发和线程-partEX">EX、其他</div>
 
@@ -223,7 +258,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckm35pgah0025wgma49q42zn6" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckm3eom59001s2cmaaceg7ajv" class="article-share-link">Share</a>
       
       
     </footer>
@@ -344,7 +379,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckm35pgal002kwgma8czq94ca" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckm3eom5r002k2cma26tu3df9" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li></ul>
@@ -518,7 +553,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckm35pga0000vwgma2hz5cvjf" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckm3eom51001a2cma8w7y6emn" class="article-share-link">Share</a>
       
       
     </footer>
@@ -653,7 +688,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckm35pg9q000cwgmaf6jdfheb" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckm3eom3v00062cmaffiy83oh" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li></ul>
@@ -783,7 +818,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckm35pg9o0007wgmaawooemfj" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckm3eom3u00052cma03sc9iuc" class="article-share-link">Share</a>
       
       
     </footer>
@@ -884,7 +919,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckm35pga1000zwgma58jd8vpk" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckm3eom55001j2cma7k395daf" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1008,7 +1043,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckm35pg9p000bwgma1nhbarbm" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckm3eom4q00102cmabd9h7dyu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1108,7 +1143,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckm35pgal002hwgma32lahgpf" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckm3eom69002x2cmabpm40139" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1252,7 +1287,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckm35pg9x000pwgma9tdifq0d" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckm3eom41000e2cmac2cb3bnm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1406,7 +1441,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckm35pgag0021wgmaaxnj5xg0" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckm3eom69002y2cma6vus5m59" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>

@@ -15,7 +15,7 @@
 <meta property="og:description" content=".title1{     font-size:36px;     color:#e7767f;     &#x2F;* 桃红 *&#x2F;  } .title2{     font-size:29px;     color:#176f58;     &#x2F;* 祖母绿 *&#x2F; } .title3{     font-size:22px;     color:#21a675;     &#x2F;* 石绿 *&#x2F; } .title4{">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-03-09T12:28:37.000Z">
-<meta property="article:modified_time" content="2021-03-10T08:04:15.294Z">
+<meta property="article:modified_time" content="2021-03-10T12:15:02.723Z">
 <meta property="article:author" content="pawncs">
 <meta name="twitter:card" content="summary">
   
@@ -128,7 +128,6 @@
 
 <div class="name">by pawncs</div>
 
-<p><a href="#并发和线程-part3">1232</a></p>
 <hr>
 <div class="title2">零、目录</div>
 
@@ -193,6 +192,15 @@
 </ul>
 </li>
 </ul>
+<blockquote>
+<p>实际上并发容器内部是由线程池实现的。我们也可以指定用哪个线程池运行任务：（第二个参数指定）<code>CompletableFuture.supplyAsync(
+    () -&gt; reg.regId(s),
+    EXECUTOR_SERVICE
+  )</code>。当遇到并发度高，任务执行慢的情况，就手动指定线程池，严格控制线程任务了。</p>
+</blockquote>
+<blockquote>
+<p>如果企业技术升级较慢，还处于java6时代，那么线程池就够了，java8就得用并发容器了。</p>
+</blockquote>
 <hr>
 <div class="title2" id="并发和线程-part3">三、线程池</div>
 
@@ -206,13 +214,40 @@
 <p>需要引入依赖</p>
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>创建线程工厂实例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> BasicThreadFactory.Builder()</span><br><span class="line">  .namingPattern(<span class="string">"xxx-pool-%d"</span>)</span><br><span class="line">  .daemon(<span class="keyword">true</span>)</span><br><span class="line">  .build();</span><br></pre></td></tr></table></figure>
+
+<div class="title3">3.1 创建线程工厂实例</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> BasicThreadFactory.Builder()</span><br><span class="line">  .namingPattern(<span class="string">"xxx-pool-%d"</span>)</span><br><span class="line">  .daemon(<span class="keyword">true</span>)</span><br><span class="line">  .build();</span><br></pre></td></tr></table></figure>
 <blockquote>
 <p>其中<code>namingPattern()</code>方法是为了定义线程名字格式。(修改xxx).</p>
 </blockquote>
+<div class="title3">3.2 创建线程等待实例</div>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> LinkedBlockingQueue&lt;Runnable&gt;(<span class="number">2048</span>);<span class="comment">//6核，8核。1，2核就512.</span></span><br></pre></td></tr></table></figure>
+<div class="title3">3.2 创建线程池实例</div>
+
+<ul>
+<li>创建<code>ThreadPoolExecutor</code>实例。 <blockquote>
+<p>构造函数参数说明</p>
+</blockquote>
+<table>
+<tr><th>参数序号</th><th>解释</th></tr>
+<tr><td>1</td><td>线程池初始化核心线程数量（一般两位数）</td></tr>
+<tr><td>2</td><td>线程池最大线程数（通常不超过200）</td></tr>
+<tr><td>3</td><td>线程数超过核心线程数时，如果没有任务经过多久回收（立即回收：0，通常30）</td></tr>
+<tr><td>4</td><td>第三个参数的时间单位（TimeUnit.SECONDS）</td></tr>
+<tr><td>5</td><td>等待队列实例</td></tr>
+<tr><td>6</td><td>线程工厂实例</td></tr>
+<tr><td>7</td><td>任务超过队列容量时，采用什么策略（AbortPolicy表拒绝，主程序自己处理）</td></tr>
+</table>
+
 </li>
 </ul>
+<blockquote>
+<p>线程池可以防止线程过多，做到对线程的精确控制</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//执行</span></span><br><span class="line">Thread t = <span class="keyword">new</span> Thread(runAbleImpl);</span><br><span class="line">t.start();</span><br><span class="line"><span class="comment">//--&gt;</span></span><br><span class="line">EXECUTOR.execute(runAbleImpl);</span><br><span class="line"><span class="comment">//EXECUTOR是ThreadPoolExecutor的实例，是static final对象。</span></span><br></pre></td></tr></table></figure>
+
 <hr>
 <div class="title2" id="并发和线程-partEX">EX、其他</div>
 
@@ -225,7 +260,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckm35pgah0025wgma49q42zn6" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckm3eom59001s2cmaaceg7ajv" class="article-share-link">Share</a>
       
       
     </footer>
