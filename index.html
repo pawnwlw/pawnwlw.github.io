@@ -126,7 +126,7 @@
 
 <div class="name">by pawncs</div>
 
-<p><a href="#part3">1232</a><br><a href=".part3">1232</a></p>
+<p><a href="#并发和线程-part3">1232</a></p>
 <hr>
 <div class="title2">一、线程锁</div>
 
@@ -182,7 +182,7 @@
 </li>
 </ul>
 <hr>
-<div class="title2 part3" id="part3">三、线程池</div>
+<div class="title2" id="并发和线程-part3">三、线程池</div>
 
 <hr>
 <ul>
@@ -195,9 +195,9 @@
 </blockquote>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.commons<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>commons-lang3<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.10<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
-<li>创建线程工厂实例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> BasicThreadFactory.Builder()</span><br><span class="line">  .namingPattern(<span class="string">"studentReg-pool-%d"</span>)</span><br><span class="line">  .daemon(<span class="keyword">true</span>)</span><br><span class="line">  .build();</span><br></pre></td></tr></table></figure>
+<li>创建线程工厂实例<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> BasicThreadFactory.Builder()</span><br><span class="line">  .namingPattern(<span class="string">"xxx-pool-%d"</span>)</span><br><span class="line">  .daemon(<span class="keyword">true</span>)</span><br><span class="line">  .build();</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>其中</p>
+<p>其中<code>namingPattern()</code>方法是为了定义线程名字格式。(修改xxx).</p>
 </blockquote>
 </li>
 </ul>
@@ -213,7 +213,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckm35ev6z001y38ma6qj74n4o" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckm35jihz001kqgma7lhe5cpm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -334,7 +334,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckm35ev7w002z38maaiv78b9y" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckm35jiic002kqgmag3yi01gm" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li></ul>
@@ -508,7 +508,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckm35ev6x001s38ma0h9laevy" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckm35jihp0010qgmaavazadzz" class="article-share-link">Share</a>
       
       
     </footer>
@@ -643,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckm35ev64000638ma86xy2teh" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckm35jihh000gqgma3p48hqck" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li></ul>
@@ -773,7 +773,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckm35ev63000538ma5va70jfn" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckm35jihc0006qgma8oo7c2lt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -874,7 +874,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckm35ev6q001b38maabss63ry" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckm35jiho000wqgma057yadk0" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -998,7 +998,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckm35ev6m001438ma3a4sgr3e" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckm35jihf000aqgmaa17h0xjr" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1098,7 +1098,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckm35ev7p002o38mahgbh3f8f" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckm35jii50022qgma6x6x4r8t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1242,7 +1242,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckm35ev6n001638ma5l1rd928" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckm35jihn000tqgma71hb8w9d" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1396,7 +1396,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckm35ev7r002r38mabqd4f5g7" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckm35jii4001zqgma2l3481s2" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
