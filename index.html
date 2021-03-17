@@ -68,12 +68,145 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Mybatis" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/17/Mybatis/" class="article-date">
+  <time datetime="2021-03-17T00:57:24.000Z" itemprop="datePublished">2021-03-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/17/Mybatis/">MyBatis</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2">零、目录</div>
+
+<hr>
+<p>一、MyBatis 入门<br><a href="#Mybatis-1-2">1.2 sql语句</a> </p>
+<hr>
+<div class="title2">一、Mybatis入门</div>
+
+<hr>
+<div class="title3">1.1 简介</div>
+
+<blockquote>
+<p>Mybatis优势：可以灵活自定义SQL又兼具ORM框架的特性</p>
+</blockquote>
+<ul>
+<li>ORM(Object Relational Mapping)：对象关系映射，用于实现面向对象编程语言里不同类型系统的数据之间的转换</li>
+<li>基于JDBC(JAVA领域所有数据库框架都基于JDBC) </li>
+</ul>
+<p>集成Mybatis  </p>
+<ol>
+<li>添加Spring Web依赖</li>
+<li>添加MyBatis Framework依赖</li>
+<li>添加MySQL Driver依赖<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.mybatis.spring.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mybatis-spring-boot-starter<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.1.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>mysql<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>mysql-connector-java<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">scope</span>&gt;</span>runtime<span class="tag">&lt;/<span class="name">scope</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p style="color:red">此时无法启动，因为找不到数据库连接</p>
+
+</li>
+</ol>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">spring.datasource.url</span>=<span class="string">jdbc:mysql://mysql数据库地址:数据库端口/数据库名称?serverTimezone=GMT%2B8</span></span><br><span class="line"><span class="meta">spring.datasource.username</span>=<span class="string">用户名</span></span><br><span class="line"><span class="meta">spring.datasource.password</span>=<span class="string">密码</span></span><br></pre></td></tr></table></figure>
+<p><code>serverTimezone=GMT%2B8</code> 的目的是设置时区为中国时区</p>
+<div class="title3" id="Mybatis-1-2">1.2 sql语句</div>
+
+<p><a href="https://www.w3school.com.cn/sql/sql_create_table.asp" target="_blank" rel="noopener">sql语句</a></p>
+<div class="title3" id="Mybatis-1-3">1.3 MyBatis 映射对象</div>
+
+<ul>
+<li>DO 对象(data object)：<br>用来映射数据库的表的对象。<br>一般放在dataobject的包下<ul>
+<li>注意：<code>DATETIME</code> 映射 <code>java.util.Date</code></li>
+</ul>
+</li>
+</ul>
+<div class="title3" id="Mybatis-1-4">1.4 MyBatis DAO</div>
+
+<ul>
+<li><p>DAO层 (data access object):DAO层会包含对数据库操作的接口和实现类</p>
+</li>
+<li><p>增删改查</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mapper</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserDAO</span> </span>&#123;</span><br><span class="line">    <span class="comment">//这里用了别名解决数据库名称和DO类名称不一致的问题</span></span><br><span class="line">    <span class="meta">@Select</span>(<span class="string">"SELECT id,user_name as userName,pwd,nick_name as nickName,avatar,gmt_created as gmtCreated,gmt_modified as gmtModified FROM user"</span>)</span><br><span class="line">    <span class="function">List&lt;UserDO&gt; <span class="title">findAll</span><span class="params">()</span></span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//这里用了#&#123;userName&#125;来导入参数中的属性</span></span><br><span class="line">     <span class="meta">@Insert</span>(<span class="string">"INSERT INTO user (user_name, pwd, nick_name,avatar,gmt_created,gmt_modified) VALUES(#&#123;userName&#125;, #&#123;pwd&#125;, #&#123;nickName&#125;, #&#123;avatar&#125;,now(),now())"</span>)</span><br><span class="line">     <span class="comment">//三个设置分别是：允许数据库使用自增主键、设置表的主键字段名称，设置DO模型的主键字段</span></span><br><span class="line">    <span class="meta">@Options</span>(useGeneratedKeys = <span class="keyword">true</span>, keyColumn = <span class="string">"id"</span>, keyProperty = <span class="string">"id"</span>)</span><br><span class="line"> </span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">insert</span><span class="params">(UserDO userDO)</span></span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pawncs.github.io/2021/03/17/Mybatis/" data-id="ckmdbr1jq000jboma5wr1fi3x" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-并发和线程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" class="article-date">
   <time datetime="2021-03-09T12:28:37.000Z" itemprop="datePublished">2021-03-09</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -258,7 +391,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckm3eom59001s2cmaaceg7ajv" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckmdbr1k90021bomabqtqfdjq" class="article-share-link">Share</a>
       
       
     </footer>
@@ -379,7 +512,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckm3eom5r002k2cma26tu3df9" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckmdbr1kq002yboma0nlybpw7" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li></ul>
@@ -553,7 +686,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckm3eom51001a2cma8w7y6emn" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckmdbr1jv000zbomaczgof54j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -688,7 +821,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckm3eom3v00062cmaffiy83oh" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckmdbr1jn000dboma15p906hn" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li></ul>
@@ -818,7 +951,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckm3eom3u00052cma03sc9iuc" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckmdbr1jk0007boma0t2cbcjk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -919,7 +1052,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckm3eom55001j2cma7k395daf" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckmdbr1jy0016bomafu6n2jz4" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1043,7 +1176,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckm3eom4q00102cmabd9h7dyu" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckmdbr1jj0006boma5fxwe78z" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1143,7 +1276,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckm3eom69002x2cmabpm40139" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckmdbr1k8001ybomaf67z7nkk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1287,161 +1420,7 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckm3eom41000e2cmac2cb3bnm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-服务器简单操作MongoDB" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" class="article-date">
-  <time datetime="2020-10-13T13:14:34.000Z" itemprop="datePublished">2020-10-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/linux/">linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/">服务器简单操作MongoDB</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <style>
-.title1{
-    font-size:36px;
-    color:#e7767f;
-    /* 桃红 */
-
-}
-.title2{
-    font-size:29px;
-    color:#176f58;
-    /* 祖母绿 */
-}
-.title3{
-    font-size:22px;
-    color:#21a675;
-    /* 石绿 */
-}
-.title4{
-    font-size:15px;
-    color:#a8cd34;
-    /* 柳绿 */
-}
-.name{
-
-    margin-left: auto;
-    text-align: right;
-    color: #d05667;
-    margin-right: 10px;
-    margin-top: 20px;
-    /*海棠红*/
-}
-</style>
-
-<div class="name">by pawncs</div>
-
-<p>首先登陆自己的系统，不提。</p>
-<hr>
-<div class="title2">一、安装</div>
-
-<hr>
-<div class="title3">1.1 安装Docker</div>
-
-<p>用Docker安装MongDB，比较自动，方便。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo yum -y update</span><br><span class="line">sudo yum -y install epel-release</span><br><span class="line">sudo yum -y install docker-io</span><br></pre></td></tr></table></figure>
-<p>分别更新系统所有包，安装扩展包，安装docker.注意不能写install docker.<br>使用root账号可去除sudo.</p>
-<div class="title3">1.1 安装MongoDB</div>
-
-<div class="title4">启动Docker</div>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start docker</span><br><span class="line">sudo docker version</span><br></pre></td></tr></table></figure>
-
-<div class="title4">安装MongoDB并启动</div>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo docker pull mongo:latest</span><br><span class="line">sudo docker images</span><br><span class="line"></span><br><span class="line">sudo docker run -itd --name mongo -p 27017:27017 mongo --auth</span><br></pre></td></tr></table></figure>
-<p>前两行安装，后一行启动<br>（别的我都懂，但是真的装的好慢啊）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker ps</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>检查是否启动成功</p>
-</blockquote>
-<p>MongoDB默认端口号为27017</p>
-<hr>
-<hr>
-<div class="title2">二、创建账户</div>
-
-<hr>
-<div class="title3">2.1 登录</div>
-
-<div class="title4">登录数据库</div>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo docker exec -it mongo mongo admin</span><br></pre></td></tr></table></figure>
-<p>该命令为登入MongDB软件控制台，出现 <code>&gt;</code> 后，后面可以输入数据库操作命令了</p>
-<div class="title4">创建管理员账户</div>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; user:&#39;admin&#39;,pwd:&#39;123456&#39;,roles:[ &#123; role:&#39;root&#39;, db: &#39;admin&#39;&#125;]&#125;);</span><br><span class="line">db.auth(&#39;admin&#39;, &#39;123456&#39;)</span><br></pre></td></tr></table></figure>
-<p>创建完admin账户后，才可以继续创建数据库步骤</p>
-<blockquote>
-<p>注意，管理员账户不能读写数据库。管理员是数据库软件MongoDB的管理员，只有软件的实例————数据库的用户可以读写数据库</p>
-</blockquote>
-<hr>
-<hr>
-<div class="title2">三、创建数据库实例</div>
-
-<hr>
-<p>均需在MongoDB登录状态下执行</p>
-<div class="title3">3.1 切换数据库</div>
-
-<p><code>use</code>是创建并切换到指定数据库的意思，若已存在就直接切换</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">use practice</span><br></pre></td></tr></table></figure>
-
-<div class="title3">3.2 创建读写用户</div>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.createUser(&#123; user:&#39;xxxx&#39;,pwd:&#39;xxxxxx&#39;,roles:[&#123; role:&#39;root&#39;, db: &#39;admin&#39;&#125;,&#123; role:&#39;dbAdmin&#39;, db: &#39;practice&#39;&#125;]&#125;);</span><br></pre></td></tr></table></figure>
-
-<div class="title4">验证</div>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">db.auth(&#39;xxxx&#39;, &#39;xxxxxx&#39;)</span><br></pre></td></tr></table></figure>
-<p>返回1代表成功了。</p>
-<hr>
-<hr>
-<div class="title2">四、退出登录</div>
------
-退出MongoDB
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exit</span><br></pre></td></tr></table></figure>
-
-<hr>
-<hr>
-<div class="title2">附录</div>
------
-需记住MongoDB的端口号，数据库名，数据库的用户名和密码。
-
-<p>注意你的服务器的安全设置，需开放27017端口。</p>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/13/%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%AE%80%E5%8D%95%E6%93%8D%E4%BD%9CMongoDB/" data-id="ckm3eom69002y2cma6vus5m59" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/14/Spring-Data-MongoDB/" data-id="ckmdbr1ju000xbomae5209puu" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1457,7 +1436,7 @@ mysql-connector-java`
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
   </nav>
 
 </section>
@@ -1478,7 +1457,7 @@ mysql-connector-java`
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
     </div>
   </div>
 
@@ -1488,7 +1467,7 @@ mysql-connector-java`
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
     </div>
   </div>
 
@@ -1510,6 +1489,10 @@ mysql-connector-java`
       <ul>
         
           <li>
+            <a href="/2021/03/17/Mybatis/">MyBatis</a>
+          </li>
+        
+          <li>
             <a href="/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/">并发和线程</a>
           </li>
         
@@ -1523,10 +1506,6 @@ mysql-connector-java`
         
           <li>
             <a href="/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/">Lambda表达式</a>
-          </li>
-        
-          <li>
-            <a href="/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/">CSS简单图形绘制</a>
           </li>
         
       </ul>
