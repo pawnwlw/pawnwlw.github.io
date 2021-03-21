@@ -68,6 +68,207 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-java-GC" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/20/java-GC/" class="article-date">
+  <time datetime="2021-03-20T14:16:36.000Z" itemprop="datePublished">2021-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/20/java-GC/">java-GC</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <style>
+.title1{
+    font-size:36px;
+    color:#e7767f;
+    /* 桃红 */
+
+}
+.title2{
+    font-size:29px;
+    color:#176f58;
+    /* 祖母绿 */
+}
+.title3{
+    font-size:22px;
+    color:#21a675;
+    /* 石绿 */
+}
+.title4{
+    font-size:15px;
+    color:#a8cd34;
+    /* 柳绿 */
+}
+.name{
+
+    margin-left: auto;
+    text-align: right;
+    color: #d05667;
+    margin-right: 10px;
+    margin-top: 20px;
+    /*海棠红*/
+}
+</style>
+
+
+<div class="name">by pawncs</div>
+
+<hr>
+<div class="title2" >零、目录</div>
+
+<hr>
+<p>   <a href="#java-GC1">一、GC</a><br>   <a href="#java-GC2">二、何时触发GC</a><br>   <a href="#java-GC3">三、如何找到该被清理的对象（存活检测）</a></p>
+<p>   3.1 引用计数法<br>   3.2 可达性分析法<br>   3.3 延伸  </p>
+<p>   <a href="#java-GC4">如何进行清理</a><br>   <a href="#java-GC5">垃圾收集器</a><br>   <a href="#java-GCEX">参考</a>  </p>
+<hr>
+<div class="title2" id="java-GC1">一、GC</div>
+
+<hr>
+<p>java中，内存的管理：对象的管理，即对象的分配和释放。</p>
+<p>在JAVA中，对象的释放，由GC来完成。</p>
+<hr>
+<div class="title2" id="java-GC2">二、何时触发GC</div>
+
+<hr>
+<p><a href="https://hadyang.github.io/interview/docs/java/jvm/gc/#%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E8%A7%A6%E5%8F%91%E6%9D%A1%E4%BB%B6" target="_blank" rel="noopener">垃圾回收触发条件</a></p>
+<hr>
+<div class="title2" id="java-GC3">三、如何找到该被清理的对象（存活检测）</div>
+
+<hr>
+<p>GC通常采取有向图的方式（节点为对象，边为引用类型）记录和管理堆（heap）中的所有对象。当其确认一些对象不可达时，GC就回收内存空间。下面除了介绍这种方式（可达性分析）,还介绍了引用计数法。</p>
+<blockquote>
+<p>判断是否可达-&gt;引用计数法、可达性分析法。</p>
+</blockquote>
+<div class="title3">3.1 引用计数法</div>
+
+<p>引用计数法</p>
+<ul>
+<li>简单，但速度较慢 </li>
+<li>无法判断是否循环利用</li>
+<li>java未用  </li>
+</ul>
+<blockquote>
+<p>每个对象包含一个引用计数器，当一个句柄同一个对象连接时，加一，超出作用域，或者设为null,减一。垃圾收集器在对象列表中移动巡视，发现引用计数为0，就释放他占据的空间。但这样无法判断循环引用（要找到他们，垃圾收集器要做更多工作）。(参考《JAVA编程思想第四版》P684)</p>
+</blockquote>
+<div class="title3">3.2 可达性分析法</div>
+
+<p>可达性分析法：</p>
+<blockquote>
+<p>从”GC Root”对象作为起点进行搜索，若其到一个对象间没有可达路径，则称该对象不可达。当一个对象多次（至少2次）被判断为不可达（没有逃脱成为可回收对象的可能性），则真正的回收他。</p>
+<blockquote>
+<p>“基于这么一个原理：所有非死锁的对象最终都肯定能回溯到一个句柄，该句柄要么存在堆栈，要么存在静态存储空间。这个回溯链可能会经历许多对象。”——《JAVA编程思想第四版》P684</p>
+</blockquote>
+</blockquote>
+<p><a href="https://hadyang.github.io/interview/docs/java/jvm/gc/#%E6%A0%B9%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">GC Root</a></p>
+<div class="title3">3.3 延伸-引用</div>
+
+<p>JVM中的引用类型：</p>
+<ul>
+<li>强引用</li>
+<li>软引用</li>
+<li>弱引用</li>
+<li>虚引用</li>
+</ul>
+<p>最终目标是什么引用类型取决于max(所有链条的min(单链上所有边的强度))</p>
+<ul>
+<li><p>强引用（StrongReference）<br>形如A a = new A();<br>区别：<strong>强引用禁止目标被垃圾收集器收集</strong></p>
+</li>
+<li><p>软引用（SoftReference）：  </p>
+<pre><code>内存溢出前清理目标，若和引用队列关联，则加入引用队列。其他情况可以选择清理的时间或是否清楚他们</code></pre></li>
+<li><p>弱引用（WeakReference）：  </p>
+<pre><code>在GC时会回收所有的weakReference.若和引用队列关联，则加入引用队列    </code></pre></li>
+<li><p>虚引用（PhantomReference）：  </p>
+<pre><code>&lt;strong&gt;GC时并不会清除虚引用，虚引用必须由程序明确清除&lt;/strong&gt;同时也不能通过虚引用取得对象的实例。  
+（虚引用主要用于跟踪垃圾回收的状态。不能单独使用，只能跟队列联合使用）</code></pre></li>
+</ul>
+<div class="title4">参考</div>
+
+<p><a href="https://www.jianshu.com/p/825cca41d962" target="_blank" rel="noopener">软引用、弱引用、虚引用-他们的特点及应用场景</a>  </p>
+<p><a href="https://www.jianshu.com/p/ade51a91dfd6" target="_blank" rel="noopener">Java中弱引用、软引用、虚引用及强引用的区别</a></p>
+<hr>
+<div class="title2" id="java——GC4">四、如何进行清理</div>
+
+<hr>
+<p>标记清除算法(Mark-Sweep)、复制算法(Copying)、标记整理算法(Mark-Compact)、<strong>分带收集算法（generational collection）</strong></p>
+<ul>
+<li><p>标记清除：可能产生太多碎片</p>
+</li>
+<li><p>复制：解决标记清除的缺陷。（实现简单，运行高效，不易产生内存碎片）缺点是只能使用一半的内存。且效率和存活对象数量有关。</p>
+</li>
+<li><p>标记整理（压缩法）：解决赋值法的缺陷。充分利用空间。标记完后将存活对象向一端移动。</p>
+</li>
+<li><p><strong>分带收集算法（generational collection）</strong>。根据对象存活的生命周期将内存划分为若干个不同的区域。（老年代和新生代）。老年代每次只有少量回收，新生代每次会有多个回收-&gt;新生代使用复制算法，老年代使用标记整理（压缩算法）<br>（都会要求程序停止运行（一般情况））</p>
+<blockquote>
+<p>记忆集</p>
+</blockquote>
+</li>
+</ul>
+<hr>
+<div class="title2" id="java-GC5">五、垃圾收集器</div>
+
+<hr>
+<ul>
+<li><p>Serial Old收集器（单线程，serial针对新生代，使用复制算法，serial old收集器针对老年代，使用标记整理）（简单高效，带来停顿）</p>
+</li>
+<li><p>ParNew （serial 的多线程版）</p>
+</li>
+<li><p>Parallel Scavenge收集器 （回收时不需要暂停其他用户线程，使用复制算法）（目的是为了达到可控的吞吐量）（没懂什么意思）（吞吐量 = 运行代码/（运行代码+垃圾收集））</p>
+</li>
+<li><p>Parallel Old收集器 （Parallel Scavenge的老年代版本）（多线程和标记整理算法）</p>
+</li>
+<li><p>CMS（Concurrent Mark Sweep） 收集器 （获取最短回收停顿时间为目的的收集器，并发，采用Mark-SWeep算法）(标记清除、运行在老年代)</p>
+</li>
+<li><p>G1收集器面向服务端，充分利用CPU，多核，并发并行，能建立可预测的停顿时间（使命是替换掉CMS）</p>
+</li>
+</ul>
+<hr>
+<div class="title2" id="java-GCEX">EX、参考</div>
+
+<hr>
+<ul>
+<li><p><a href="https://blog.csdn.net/weixin_44027397/article/details/114383323?spm=1001.2014.3001.5501" target="_blank" rel="noopener">Java中的GC简单介绍</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/yrwan95/article/details/82829186?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522161490811816780271538995%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fall.%2522%257D&request_id=161490811816780271538995&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~first_rank_v2~rank_v29-2-82829186.pc_search_result_hbase_insert&utm_term=java%E4%B8%89%E7%A7%8D%E5%9E%83%E5%9C%BE%E5%9B%9E%E6%94%B6%E7%AE%97%E6%B3%95" target="_blank" rel="noopener">Java 垃圾回收机制与几种垃圾回收算法</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/lucky_jiexia/article/details/105823438" target="_blank" rel="noopener">《剑指Java面试-Offer直通车》–Java底层知识GC</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/ThinkWon/article/details/103831676" target="_blank" rel="noopener">深入理解Java虚拟机-垃圾回收器与内存分配策略</a></p>
+</li>
+</ul>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://pawncs.github.io/2021/03/20/java-GC/" data-id="ckminanap0012iomaffikhffu" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-字符集与编码" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2021/03/20/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E7%BC%96%E7%A0%81/" class="article-date">
@@ -223,7 +424,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/20/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E7%BC%96%E7%A0%81/" data-id="ckmhv647d001pm0mabvcw00t9" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/20/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E7%BC%96%E7%A0%81/" data-id="ckminanax001sioma9pjx9ycb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -350,7 +551,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/17/Mybatis/" data-id="ckmhv64770016m0madimnfbhi" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/17/Mybatis/" data-id="ckminanao000wioma8wlyd75t" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li></ul>
@@ -556,7 +757,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckmhv647j001zm0ma7stdb7zc" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckminanb30027ioma2o9x2txt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -677,7 +878,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckmhv647q002lm0ma15iqd2z8" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckminanec0039iomaf7tq5h8c" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li></ul>
@@ -851,7 +1052,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckmhv64780018m0maay1aavh7" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckminanap000yioma6pk35h31" class="article-share-link">Share</a>
       
       
     </footer>
@@ -986,7 +1187,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckmhv646y000tm0madu4b85ti" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/05/Lambda%E8%A1%A8%E8%BE%BE%E5%BC%8F/" data-id="ckminanah000giomaf4pnhegg" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li></ul>
@@ -1116,7 +1317,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckmhv646d0005m0ma4liy83oa" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/01/29/CSS%E7%AE%80%E5%8D%95%E5%9B%BE%E5%BD%A2%E7%BB%98%E5%88%B6/" data-id="ckminanad0008iomaalgggy5w" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1217,7 +1418,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckmhv647b001im0madcgf7qs0" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/11/10/flutter%E5%AD%A6%E4%B9%A0/" data-id="ckminanas001aiomafe5j3dlv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1341,109 +1542,11 @@ mysql-connector-java`
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckmhv646f000am0maf2mmckkp" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2020/10/25/JAVA%E4%B8%80%E4%BA%9B%E9%85%8D%E7%BD%AE%E5%92%8C%E4%BE%9D%E8%B5%96/" data-id="ckminanae000aioma3sld8s2o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
 
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-爬虫注意点" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" class="article-date">
-  <time datetime="2020-10-25T09:16:05.000Z" itemprop="datePublished">2020-10-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/">爬虫注意点</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <style>
-.title1{
-    font-size:36px;
-    color:#e7767f;
-    /* 桃红 */
-
-}
-.title2{
-    font-size:29px;
-    color:#176f58;
-    /* 祖母绿 */
-}
-.title3{
-    font-size:22px;
-    color:#21a675;
-    /* 石绿 */
-}
-.title4{
-    font-size:15px;
-    color:#a8cd34;
-    /* 柳绿 */
-}
-.name{
-
-    margin-left: auto;
-    text-align: right;
-    color: #d05667;
-    margin-right: 10px;
-    margin-top: 20px;
-    /*海棠红*/
-}
-</style>
-
-<!-- ~~~
-制表符
-┏ ┳ ┓ ━ ╔ ╦ ╗ ═ ╒ ╤ ╕ 
-┣ ╋ ┫ ┃ ╠ ╬ ╣ ║ ╞ ╪ ╡
-┗ ┻ ┛   ╚ ╩ ╝   ╘ ╧ ╛
-
- ╱╲      ┄ ┄  ┅ ┅
-╱╱╲╲
-╲╲╱╱
- ╲╱      ┆ ┆  ┇ ┇ 
-~~~ -->
-
-<div class="name">by pawncs</div>
-
-<hr>
-<div class="title2">一、Header</div>
-
-<p>保证四个header和直接访问该网址的相同</p>
-<ul>
-<li>User-Agent</li>
-<li>Referer</li>
-<li>Host</li>
-<li>Cookie</li>
-</ul>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2020/10/25/%E7%88%AC%E8%99%AB%E6%B3%A8%E6%84%8F%E7%82%B9/" data-id="ckmhv647m0029m0ma4fyx2l5a" class="article-share-link">Share</a>
-      
-      
     </footer>
   </div>
   
@@ -1476,7 +1579,7 @@ mysql-connector-java`
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/" rel="tag">CSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Flutter/" rel="tag">Flutter</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Lambda/" rel="tag">Lambda</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MongoDB/" rel="tag">MongoDB</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Realm/" rel="tag">Realm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCSS/" rel="tag">SCSS</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQLite/" rel="tag">SQLite</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gradle/" rel="tag">gradle</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/note/" rel="tag">note</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/study/" rel="tag">study</a></li></ul>
     </div>
   </div>
 
@@ -1486,7 +1589,7 @@ mysql-connector-java`
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
+      <a href="/tags/CSS/" style="font-size: 12.5px;">CSS</a> <a href="/tags/Design-Pattern/" style="font-size: 10px;">Design Pattern</a> <a href="/tags/Flutter/" style="font-size: 10px;">Flutter</a> <a href="/tags/JVM/" style="font-size: 10px;">JVM</a> <a href="/tags/Lambda/" style="font-size: 10px;">Lambda</a> <a href="/tags/MongoDB/" style="font-size: 12.5px;">MongoDB</a> <a href="/tags/MyBatis/" style="font-size: 10px;">MyBatis</a> <a href="/tags/Realm/" style="font-size: 10px;">Realm</a> <a href="/tags/SCSS/" style="font-size: 10px;">SCSS</a> <a href="/tags/SQLite/" style="font-size: 10px;">SQLite</a> <a href="/tags/dictionary/" style="font-size: 20px;">dictionary</a> <a href="/tags/gradle/" style="font-size: 10px;">gradle</a> <a href="/tags/note/" style="font-size: 17.5px;">note</a> <a href="/tags/study/" style="font-size: 15px;">study</a>
     </div>
   </div>
 
@@ -1508,6 +1611,10 @@ mysql-connector-java`
       <ul>
         
           <li>
+            <a href="/2021/03/20/java-GC/">java-GC</a>
+          </li>
+        
+          <li>
             <a href="/2021/03/20/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E7%BC%96%E7%A0%81/">字符集与编码</a>
           </li>
         
@@ -1521,10 +1628,6 @@ mysql-connector-java`
         
           <li>
             <a href="/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
-          </li>
-        
-          <li>
-            <a href="/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/">Stream--JAVA流数据</a>
           </li>
         
       </ul>
