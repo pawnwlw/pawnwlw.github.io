@@ -355,70 +355,86 @@
 </table>
 
 <div class="title3" id="http-4-1">4.1代表性状态码</div>
-+ 200 OK
-  + 请求已正常处理
 
 <ul>
-<li>204 No Content<ul>
+<li><p>200 OK</p>
+<ul>
+<li>请求已正常处理</li>
+</ul>
+</li>
+<li><p>204 No Content</p>
+<ul>
 <li>请求处理成功，但返回的响应报文不含主体</li>
 </ul>
 </li>
-<li>206 Partial Content<ul>
+<li><p>206 Partial Content</p>
+<ul>
 <li>该状态码表示客户端进行了范围请求（只要一部分），服务器成功执行。</li>
 <li>响应报文Content-Range 指定报文实体内容</li>
 </ul>
 </li>
-<li>301 Moved Permanently<ul>
+<li><p>301 Moved Permanently</p>
+<ul>
 <li>永久性重定向。</li>
 <li>表示请求的资源已经被分配了新的URI，以后应用现在的URI（应按Location的首部重新保存URI）</li>
 </ul>
 </li>
-<li>302 Found<ul>
+<li><p>302 Found</p>
+<ul>
 <li>临时性重定向。</li>
 <li>表示希望用户（本次）使用新的URI访问（需要保留原先的URI）</li>
 </ul>
 </li>
-<li>303 See Other<ul>
+<li><p>303 See Other</p>
+<ul>
 <li>该请求对应的资源存在另一个URI，应使用GET定向获取请求的资源</li>
 <li>和302类似，但要求POST换GET</li>
 </ul>
 </li>
-<li>304 Not Modified<ul>
+<li><p>304 Not Modified</p>
+<ul>
 <li>服务端接受客户端的请求，但发生了请求的条件未满足的情况（If-Match，If-Range等首部）将直接返回304（不包含响应主体）</li>
 <li>虽然在3XX，但和重定向无关</li>
 </ul>
 </li>
-<li>307 Temporary Redirect<ul>
+<li><p>307 Temporary Redirect</p>
+<ul>
 <li>临时重定向</li>
 <li>和302相同。</li>
 </ul>
 </li>
-<li>400 Bad Request<ul>
+<li><p>400 Bad Request</p>
+<ul>
 <li>请求报文中存在语法错误</li>
 <li>需修改请求内容后重发请求</li>
 <li>浏览器会像对待200一样对待400</li>
 </ul>
 </li>
-<li>401 Unauthorized<ul>
+<li><p>401 Unauthorized</p>
+<ul>
 <li>请求需要有通过HTTP认证的认证信息。</li>
 <li>返回401的响应必须由一个适用于被请求资源的WWW-Authenticate首部用以质询（challenge）用户信息。当浏览器初次接收401时，会弹出认证用的对话窗口。</li>
 <li>若之前有过1次请求，则表明认证失败。</li>
 </ul>
 </li>
-<li>403 Forbidden<ul>
+<li><p>403 Forbidden</p>
+<ul>
 <li>对请求资源的访问被服务器拒绝</li>
 <li>服务器可能在响应主体部分给出说明</li>
 </ul>
 </li>
-<li>404 Not Found<ul>
+<li><p>404 Not Found</p>
+<ul>
 <li>服务器没有请求的资源</li>
 </ul>
 </li>
-<li>500 Internal Server Error<ul>
+<li><p>500 Internal Server Error</p>
+<ul>
 <li>服务器在执行请求时发生了错误，也可能是Web应用存在的BUG或某些临时的故障</li>
 </ul>
 </li>
-<li>503 Service Unavailable<ul>
+<li><p>503 Service Unavailable</p>
+<ul>
 <li>服务器正处于超负载或正在进行停机维护，无法处理请求</li>
 <li>如果事先知道解除以上状况时间，可写入Retry-After首部字段再发回客户端</li>
 </ul>
@@ -636,7 +652,43 @@
 <div id ="http-9" class="title2">九、基于http的功能追加协议</div>
 
 <hr>
-<p>Http虽简单快捷，但随着时代的发展仍疲态尽显。因此出现了一些补充协议试图解决WEB的瓶颈。HTTP2.0也在指定规划中。<br>HTTP/2.0 七项核心技术：<br>|技术|协议|<br>|—|—|<br>|压缩|SPDY,Friendly|<br>|多路复用 |SPDY|<br>|TLS义务化|Speed+Mobility|<br>|协商|Speed+Mobility,Friendly|<br>|客户端拉曳(Client Pull)/服务器推送(Servel Push)|Speed+Mobility|<br>|流量控制|SPDY|<br>|WebSocket|Speed+Mobility|</p>
+<p>Http虽简单快捷，但随着时代的发展仍疲态尽显。因此出现了一些补充协议试图解决WEB的瓶颈。HTTP2.0也在指定规划中。<br>HTTP/2.0 七项核心技术：</p>
+<table>
+<thead>
+<tr>
+<th>技术</th>
+<th>协议</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>压缩</td>
+<td>SPDY,Friendly</td>
+</tr>
+<tr>
+<td>多路复用</td>
+<td>SPDY</td>
+</tr>
+<tr>
+<td>TLS义务化</td>
+<td>Speed+Mobility</td>
+</tr>
+<tr>
+<td>协商</td>
+<td>Speed+Mobility,Friendly</td>
+</tr>
+<tr>
+<td>客户端拉曳(Client Pull)/服务器推送(Servel Push)</td>
+<td>Speed+Mobility</td>
+</tr>
+<tr>
+<td>流量控制</td>
+<td>SPDY</td>
+</tr>
+<tr>
+<td>WebSocket</td>
+<td>Speed+Mobility</td>
+</tr>
+</tbody></table>
 <hr>
 <hr>
 <div id ="http-10" class="title2">十、构建web内容的技术</div>
@@ -690,7 +742,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/07/07/http%E5%8D%8F%E8%AE%AE/" data-id="ckqt0jvel0012nkma5ad0fk1f" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/07/07/http%E5%8D%8F%E8%AE%AE/" data-id="ckqt0prcs0027xoma3zsf9sks" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/" rel="tag">http</a></li></ul>
@@ -1058,7 +1110,7 @@ Redis:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/04/23/Redis/" data-id="ckqt0jvf6002onkma49kwhs1b" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/04/23/Redis/" data-id="ckqt0prbt000hxoma46nw5lbx" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Redis/" rel="tag">Redis</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dictionary/" rel="tag">dictionary</a></li></ul>
@@ -1323,7 +1375,7 @@ Redis:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/04/07/java-io/" data-id="ckqt0jvet001hnkma5z306p2d" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/04/07/java-io/" data-id="ckqt0prct002axoma6wooeypp" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/IO/" rel="tag">IO</a></li></ul>
@@ -1515,7 +1567,7 @@ Redis:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/29/Mybatis/" data-id="ckqt0jveo001bnkma1dacf9oj" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/29/Mybatis/" data-id="ckqt0prbr000fxomagdxo877o" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MyBatis/" rel="tag">MyBatis</a></li></ul>
@@ -1594,7 +1646,7 @@ Redis:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/23/java-%E7%B1%BB%E5%8A%A0%E8%BD%BD/" data-id="ckqt0jveq001enkma86dfasxi" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/23/java-%E7%B1%BB%E5%8A%A0%E8%BD%BD/" data-id="ckqt0prcn0022xomaaf4u7e1r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -1793,7 +1845,7 @@ Redis:
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/20/java-GC/" data-id="ckqt0jven0019nkmahuzbbrvz" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/20/java-GC/" data-id="ckqt0prco0024xoma3xm57ros" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JVM/" rel="tag">JVM</a></li></ul>
@@ -1960,7 +2012,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/20/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E7%BC%96%E7%A0%81/" data-id="ckqt0jvex001unkma4hgs8anc" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/20/%E5%AD%97%E7%AC%A6%E9%9B%86%E4%B8%8E%E7%BC%96%E7%A0%81/" data-id="ckqt0prd0002txoma4tbnhn33" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2164,7 +2216,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckqt0jvfl003xnkma24wfblot" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/09/%E5%B9%B6%E5%8F%91%E5%92%8C%E7%BA%BF%E7%A8%8B/" data-id="ckqt0prd30034xomafeis3403" class="article-share-link">Share</a>
       
       
     </footer>
@@ -2285,7 +2337,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckqt0jvf8002snkma5rkucgp6" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/07/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" data-id="ckqt0prd8003fxomafbf31b1h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Design-Pattern/" rel="tag">Design Pattern</a></li></ul>
@@ -2459,7 +2511,7 @@ FFFF
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckqt0jveg000snkma9i7h0w0d" class="article-share-link">Share</a>
+      <a data-url="http://pawncs.github.io/2021/03/06/Stream-JAVA%E6%B5%81%E6%95%B0%E6%8D%AE/" data-id="ckqt0prbz000yxomaf9ow0php" class="article-share-link">Share</a>
       
       
     </footer>
